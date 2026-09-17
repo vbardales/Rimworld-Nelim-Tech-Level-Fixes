@@ -17,13 +17,12 @@ showcase:
 tested_on:
 workshop:
 remaining:
-  - unverified: Mod/About/ModIcon.png and Mod/About/Preview.png absent
-  - unverified: About.xml has no <url> and the description has no closing "Source code on GitHub" link
+  - unverified: Mod/About/ModIcon.png and Mod/About/Preview.png absent; user will generate both on 2026-09-20
   - unverified: settings_audit not run; MOD_SETTINGS.md gate not reached
   - unverified: localization/translation_en/translation_fr not run; TRANSLATIONS.md gate not reached
   - unverified: no functional/automated/pickles/XML test scenarios written or run
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-17, .gitignore and .gitattributes added, committed and pushed
+updated:      2026-09-17, About.xml now declares <url> and the description's closing GitHub source link
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -116,7 +115,19 @@ ATTRIBUTION.md duplicated into `Mod/`; `.gitignore` and `.gitattributes` added.
 
 - Generate and install `Mod/About/ModIcon.png` at the expected dimensions and
   format. No image has been generated in this session (the audit and this
-  follow-up work were documentation/repository work only).
+  follow-up work were documentation/repository work only); the user will
+  generate both `ModIcon.png` and `Preview.png` on 2026-09-20.
+  `PROMPT_TECHLEVELFIXES.md` (git-ignored, local only) holds the Preview
+  prompt prepared on 2026-09-17.
+
+### Preemptively closed, ahead of `preOptions`
+
+`About.xml` now declares `<url>https://github.com/vbardales/rimworld-nelim-tech-level-fixes</url>`
+and the `<description>` closes with
+`[url=https://github.com/vbardales/rimworld-nelim-tech-level-fixes]Source code on GitHub[/url]`,
+satisfying PUBLISHING.md's description-link criterion ahead of time. Safe to do now because
+no `About/PublishedFileId.txt` exists yet: the Workshop item has never been created, so this
+description has not been sent to Steam and is not yet a "one shot" already spent.
 
 ### Reservations (non-blocking)
 

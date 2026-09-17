@@ -3,6 +3,7 @@
   <name>Nelim's Tech Level Fixes</name>
   <packageId>nelim.techlevelfixes</packageId>
   <author>Nelim</author>
+  <url>https://github.com/vbardales/rimworld-nelim-tech-level-fixes</url>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
@@ -41,5 +42,7 @@
 
 Every file under Patches/ is generated: one per source mod, named after its packageId. Deleting a file undoes that mod's corrections; deleting the folder undoes everything.
 
-It loads after the mods it corrects, listed in loadAfter, so their own patches have already run. None of them is required: a correction whose item is missing does nothing.</description>
+It loads after the mods it corrects, listed in loadAfter, so their own patches have already run. None of them is required: a correction whose item is missing does nothing.
+
+[url=https://github.com/vbardales/rimworld-nelim-tech-level-fixes]Source code on GitHub[/url]</description>
 </ModMetaData>
