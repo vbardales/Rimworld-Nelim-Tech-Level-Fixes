@@ -19,9 +19,10 @@ workshop:
 remaining:
   - unverified: Mod/About/ModIcon.png and Mod/About/Preview.png absent; user will generate both on 2026-09-20
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
-  - unverified: no automated test harness exists (no C# to test); no XML patch-application checker or pickles/Gherkin scenarios written yet — not yet justified as not_applicable, just not done
+  - unverified: no automated C# test harness exists (no C# to test); no pickles/Gherkin scenarios written yet — not yet justified as not_applicable, just not done
+  - defect: Mod/Patches/zal.alchemy.xml's AlchemyBench correction targets xpath `/Defs/thingDef[defName="AlchemyBench"]` (lowercase `thingDef`) instead of `/Defs/ThingDef[...]`; XPath element-name matching is case-sensitive, so this correction likely matches nothing and silently never applies, unlike every other correction in the mod (28/29 files use `ThingDef` correctly). Found by Tests/Check-Patches.ps1. Do not hand-edit the file: PUBLISHING.md/the file's own header say it is regenerated whole by cherrypick from zal.alchemy's current source, and a manual fix here would be silently overwritten by the next pass. The fix belongs in cherrypick's generation for this source mod, then a rerun.
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-17, TESTING.md written: 8 functional scenarios, none run yet
+updated:      2026-09-17, Tests/Check-Patches.ps1 (XML tests) written and run: 1 real defect found in zal.alchemy.xml, not yet green
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -72,7 +73,7 @@ has started.
 | options | Not reached | `settings_audit` unchecked; gate not entered. |
 | l10n | Not reached | `localization`, `translation_en`, `translation_fr` unchecked; gate not entered. |
 | preTest | Not reached | Not applicable yet: no LoadFolders.xml is shipped, and there is nothing to audit for dependency declarations beyond the existing `loadAfter` list, which is out of scope until the earlier gates pass. |
-| done | Not reached | `TESTING.md` now has 8 functional scenarios (preconditions/actions/expected results), written 2026-09-17 by static inspection of the patch files, none run. No automated harness, XML patch-application checker or pickles/Gherkin scenarios exist yet. |
+| done | Not reached | `TESTING.md` now has 8 functional scenarios (preconditions/actions/expected results), written 2026-09-17, none run in game. `Tests/Check-Patches.ps1` (XML tests) is written and was run 2026-09-17: it currently reports **1 failure**, a real defect in `zal.alchemy.xml` (see `remaining`), so this gate is not "au vert" yet. No automated C# harness or pickles/Gherkin scenarios exist. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
 ### What is actually in the shipped folder
@@ -175,6 +176,45 @@ independently established, same caveat on `workflow_stage` as above.
 - Conclusion: this mod adds or changes no player-facing text of its own. The
   `<url>`/description source-code link added this session is About metadata,
   explicitly outside the in-game translation gate per TRANSLATIONS.md.
+
+## XML tests — 2026-09-17
+
+`Tests/Check-Patches.ps1` written and run this session. Pure XML/XPath validation,
+no RimWorld installation, no assembly reference: it does not use the shared
+`../scripts/Check-DefRefs.ps1` / `Check-XmlFields.ps1` family, because those walk
+actual Def XML (`<ThingDef>`, `<ResearchProjectDef>`, ...) and this mod ships none
+of its own — only `<Patch>` operation files. What it checks instead, per file:
+
+- well-formed XML, root element is exactly `<Patch>` (case-sensitive);
+- the header comment's `Corrections : N` matches the actual `<Operation>` count;
+- every top-level operation is `PatchOperationConditional`, its outer `xpath`
+  matches `/Defs/(ThingDef|ResearchProjectDef)[defName="..."]` **case-sensitively**,
+  and `<success>Always</success>` is present;
+- the nested conditional's `xpath` is the outer xpath plus `/techLevel`, its
+  `match` is `PatchOperationReplace` and its `nomatch` is `PatchOperationAdd`,
+  each with the expected xpath;
+- the replace branch's and the add branch's `<techLevel>` value are identical, and
+  is one of the seven values the game defines (`Undefined`, `Animal`, `Neolithic`,
+  `Medieval`, `Industrial`, `Spacer`, `Ultra`, `Archotech`);
+- no `defName` is corrected twice within one file;
+- every patch file's own name (the source mod's `packageId`) has a matching
+  `<loadAfter><li>` entry in `About.xml`, and vice versa — exactly 29 both ways.
+
+Run with `.\Tests\Check-Patches.ps1` from the repository root (Windows PowerShell
+5.1; no `pwsh`/PowerShell 7 available in this environment). Result: **29 files
+checked, 163 corrections, 29 loadAfter entries, 1 problem** — not green. See the
+`defect` entry in `remaining` above.
+
+**Case sensitivity was not incidental to write.** The first version of this script
+used PowerShell's default `-match`/`-eq`/`-contains`, which are case-*insensitive*
+unless the `-c` form is used; against XPath, where case is semantically load-bearing,
+that would have made the checker report a clean pass on the very file that has a
+real bug. Rewritten to use `-cmatch`/`-ceq`/`-cne`/`-cnotcontains` throughout, then
+verified negatively before trusting a green run: a deliberately mismatched
+replace/add pair was injected into a working copy, confirmed to be caught, and
+reverted (`git status` confirmed no residual change) before the real run above.
+That real run, on the unmodified tree, is what found the `zal.alchemy.xml` defect —
+it was not seeded, it was already there.
 
 ### Reservations (non-blocking)
 
