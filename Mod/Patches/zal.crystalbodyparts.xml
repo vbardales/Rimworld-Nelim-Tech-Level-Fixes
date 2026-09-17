@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Crystal Bodyparts (Continued) reecrit ce fichier en entier.
+
+     Source : Crystal Bodyparts (Continued) (zal.crystalbodyparts)
+     Corrections : 7 -->
+<Patch>
+
+  <!-- AdvCrystalArm : Medieval -> Archotech -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AdvCrystalArm"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AdvCrystalArm"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalArm"]/techLevel</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalArm"]</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AdvCrystalEar : Medieval -> Archotech -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AdvCrystalEar"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AdvCrystalEar"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalEar"]/techLevel</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalEar"]</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AdvCrystalEye : Medieval -> Archotech -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AdvCrystalEye"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AdvCrystalEye"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalEye"]/techLevel</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalEye"]</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AdvCrystalJoy : Medieval -> Archotech -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AdvCrystalJoy"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AdvCrystalJoy"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalJoy"]/techLevel</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalJoy"]</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AdvCrystalLeg : Medieval -> Archotech -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AdvCrystalLeg"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AdvCrystalLeg"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalLeg"]/techLevel</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalLeg"]</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AdvCrystalPain : Medieval -> Archotech -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AdvCrystalPain"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AdvCrystalPain"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalPain"]/techLevel</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AdvCrystalPain"]</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- CBPAdvCrystalSkin : Medieval -> Archotech -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="CBPAdvCrystalSkin"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="CBPAdvCrystalSkin"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="CBPAdvCrystalSkin"]/techLevel</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="CBPAdvCrystalSkin"]</xpath>
+        <value><techLevel>Archotech</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

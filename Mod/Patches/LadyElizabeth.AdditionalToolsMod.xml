@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Additional Tools Mod reecrit ce fichier en entier.
+
+     Source : Additional Tools Mod (LadyElizabeth.AdditionalToolsMod)
+     Corrections : 6 -->
+<Patch>
+
+  <!-- Book_Generic : Industrial -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Book_Generic"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Book_Generic"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Book_Generic"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Book_Generic"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Bucket_Generic : Industrial -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bucket_Generic"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Bucket_Generic"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Bucket_Generic"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Bucket_Generic"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Hammer_Generic : Industrial -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Hammer_Generic"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Hammer_Generic"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Hammer_Generic"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Hammer_Generic"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Machette_Generic : Industrial -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Machette_Generic"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Machette_Generic"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Machette_Generic"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Machette_Generic"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Pickaxe_Steel : Industrial -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Pickaxe_Steel"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Pickaxe_Steel"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Pickaxe_Steel"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Pickaxe_Steel"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Pickaxe_Wood : Industrial -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Pickaxe_Wood"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Pickaxe_Wood"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Pickaxe_Wood"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Pickaxe_Wood"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

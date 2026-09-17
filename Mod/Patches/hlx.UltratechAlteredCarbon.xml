@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Altered Carbon 2: ReSleeved reecrit ce fichier en entier.
+
+     Source : Altered Carbon 2: ReSleeved (hlx.UltratechAlteredCarbon)
+     Corrections : 11 -->
+<Patch>
+
+  <!-- AC_CastingRelay : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_CastingRelay"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_CastingRelay"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_CastingRelay"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_CastingRelay"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_Gun_AncientGraserTurret : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_Gun_AncientGraserTurret"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_Gun_AncientGraserTurret"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_Gun_AncientGraserTurret"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_Gun_AncientGraserTurret"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_Gun_Autorevolver : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_Gun_Autorevolver"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_Gun_Autorevolver"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_Gun_Autorevolver"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_Gun_Autorevolver"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_NanoStorageDrive : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_NanoStorageDrive"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_NanoStorageDrive"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_NanoStorageDrive"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_NanoStorageDrive"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_NeuralConnector : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_NeuralConnector"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_NeuralConnector"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_NeuralConnector"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_NeuralConnector"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_NeuralEditor : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_NeuralEditor"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_NeuralEditor"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_NeuralEditor"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_NeuralEditor"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_NeuralMatrix : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_NeuralMatrix"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_NeuralMatrix"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_NeuralMatrix"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_NeuralMatrix"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_SleeveCasket : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_SleeveCasket"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_SleeveCasket"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_SleeveCasket"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_SleeveCasket"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_SleeveGestator : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_SleeveGestator"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_SleeveGestator"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_SleeveGestator"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_SleeveGestator"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_StackCache : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_StackCache"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_StackCache"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_StackCache"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_StackCache"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AC_Turret_AncientGraserTurret : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AC_Turret_AncientGraserTurret"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AC_Turret_AncientGraserTurret"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AC_Turret_AncientGraserTurret"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AC_Turret_AncientGraserTurret"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

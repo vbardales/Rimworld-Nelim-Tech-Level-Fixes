@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Advanced Brewery reecrit ce fichier en entier.
+
+     Source : Advanced Brewery (starter.beeer)
+     Corrections : 2 -->
+<Patch>
+
+  <!-- ElectricBrewery : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="ElectricBrewery"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="ElectricBrewery"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="ElectricBrewery"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="ElectricBrewery"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- HiTechBrewery : (aucun) -> Spacer -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="HiTechBrewery"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="HiTechBrewery"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="HiTechBrewery"]/techLevel</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="HiTechBrewery"]</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

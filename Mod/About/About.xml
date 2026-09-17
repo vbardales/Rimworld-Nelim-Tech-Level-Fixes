@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Tech Level Fixes</name>
+  <packageId>nelim.techlevelfixes</packageId>
+  <author>Nelim</author>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <loadAfter>
+    <li>AKN.Decorations</li>
+    <li>Ali.CookingTable</li>
+    <li>Ali.CraftingTable</li>
+    <li>AmateurLLTechBox.AmatuerLLsToys.0001</li>
+    <li>AR13S.AnimalCaps</li>
+    <li>cedaro.animalcommander</li>
+    <li>Dipsy.Diapers</li>
+    <li>hlx.UltratechAlteredCarbon</li>
+    <li>IronSniper.WindowsSkylights</li>
+    <li>LadyElizabeth.AdditionalToolsMod</li>
+    <li>leafzxg.AlphaThrumboExtension</li>
+    <li>Mlie.AdvancedRaiders</li>
+    <li>moncho.AlcoholRehabSobrix</li>
+    <li>Newton.AKN.CaretakerApparel</li>
+    <li>overpl.AnimalSarcophagus</li>
+    <li>Romyashi.AncientJunkLoot</li>
+    <li>Romyashi.AncientRelics</li>
+    <li>rye.animalrepeller</li>
+    <li>sarg.alphabooks</li>
+    <li>starter.beeer</li>
+    <li>TurboPickle.GlitterCraft</li>
+    <li>Udon.AnimalSimpleCommand</li>
+    <li>Vanya.Outsource.BodyTypeExtend</li>
+    <li>zal.alchemy</li>
+    <li>zal.alternativepowersolutions</li>
+    <li>zal.ancientamulets</li>
+    <li>zal.angelarm</li>
+    <li>zal.crystalbodyparts</li>
+    <li>zal.easternarmory</li>
+  </loadAfter>
+  <description>Rewrites the tech level of items, to the level arbitrated for each one with the cherrypick tool, mod by mod.
+
+Every file under Patches/ is generated: one per source mod, named after its packageId. Deleting a file undoes that mod's corrections; deleting the folder undoes everything.
+
+It loads after the mods it corrects, listed in loadAfter, so their own patches have already run. None of them is required: a correction whose item is missing does nothing.</description>
+</ModMetaData>

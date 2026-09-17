@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Alchemy (Continued) reecrit ce fichier en entier.
+
+     Source : Alchemy (Continued) (zal.alchemy)
+     Corrections : 2 -->
+<Patch>
+
+  <!-- AlchemyAlchemy : Industrial -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ResearchProjectDef[defName="AlchemyAlchemy"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ResearchProjectDef[defName="AlchemyAlchemy"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ResearchProjectDef[defName="AlchemyAlchemy"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ResearchProjectDef[defName="AlchemyAlchemy"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AlchemyBench : (aucun) -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/thingDef[defName="AlchemyBench"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/thingDef[defName="AlchemyBench"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/thingDef[defName="AlchemyBench"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/thingDef[defName="AlchemyBench"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

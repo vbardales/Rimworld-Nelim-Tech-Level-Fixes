@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Ancient Relics reecrit ce fichier en entier.
+
+     Source : Ancient Relics (Romyashi.AncientRelics)
+     Corrections : 5 -->
+<Patch>
+
+  <!-- Romy_Artillery_AncientMortar : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Romy_Artillery_AncientMortar"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Romy_Artillery_AncientMortar"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Romy_Artillery_AncientMortar"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Romy_Artillery_AncientMortar"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Romy_Gun_AncientMiniTurret : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Romy_Gun_AncientMiniTurret"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Romy_Gun_AncientMiniTurret"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Romy_Gun_AncientMiniTurret"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Romy_Gun_AncientMiniTurret"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Romy_Oldsteel : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Romy_Oldsteel"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Romy_Oldsteel"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Romy_Oldsteel"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Romy_Oldsteel"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Romy_Turret_AncientMiniTurret : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Romy_Turret_AncientMiniTurret"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Romy_Turret_AncientMiniTurret"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Romy_Turret_AncientMiniTurret"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Romy_Turret_AncientMiniTurret"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Romy_Turret_AncientMortar : (aucun) -> Ultra -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Romy_Turret_AncientMortar"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Romy_Turret_AncientMortar"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Romy_Turret_AncientMortar"]/techLevel</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Romy_Turret_AncientMortar"]</xpath>
+        <value><techLevel>Ultra</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>
