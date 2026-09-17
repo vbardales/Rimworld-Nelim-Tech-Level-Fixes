@@ -19,9 +19,9 @@ workshop:
 remaining:
   - unverified: Mod/About/ModIcon.png and Mod/About/Preview.png absent; user will generate both on 2026-09-20
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
-  - unverified: no automated C# test harness exists (no C# to test); no pickles/Gherkin scenarios written yet — not yet justified as not_applicable, just not done
+  - unverified: no automated C# test harness exists (no C# to test)
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-17, re-audited after brrainz.zombieland addition by another session: 30 files, 166 corrections, checker still green, settings_audit/localization re-verified not_applicable on the current tree
+updated:      2026-09-17, pickles/Gherkin suite written and run: 6/6 scenarios green
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -72,7 +72,7 @@ has started.
 | options | Not reached | `settings_audit` unchecked; gate not entered. |
 | l10n | Not reached | `localization`, `translation_en`, `translation_fr` unchecked; gate not entered. |
 | preTest | Not reached | Not applicable yet: no LoadFolders.xml is shipped, and there is nothing to audit for dependency declarations beyond the existing `loadAfter` list, which is out of scope until the earlier gates pass. |
-| done | Not reached | `TESTING.md` now has 8 functional scenarios (preconditions/actions/expected results), written 2026-09-17, none run in game. `Tests/Check-Patches.ps1` (XML tests) is written and green as of 2026-09-17 (29 files, 163 corrections, 0 problems) after a false-positive fix — see below. No automated C# harness or pickles/Gherkin scenarios exist. |
+| done | Not reached | `TESTING.md` has 8 functional scenarios, written 2026-09-17, none run in game. `Tests/Check-Patches.ps1` (XML tests) and `Tests/techlevelfixes.feature` + `Tests/Run-Gherkin.ps1` (pickles/Gherkin) are both written and green as of 2026-09-17 (30 files, 166 corrections). No automated C# harness exists (no C# to test). The in-game half of "done" — actually walking TESTING.md's 8 scenarios — remains outstanding. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
 ### What is actually in the shipped folder
@@ -266,6 +266,50 @@ corrections.** Re-verified rather than assumed unchanged:
 
 No transition changes as a result: `workflow_stage` stays `horsMonoRepo`, still
 blocked on ModIcon/Preview generation (2026-09-20) ahead of `preOptions`.
+
+## Pickles / Gherkin tests — 2026-09-17
+
+`Tests/techlevelfixes.feature` (6 scenarios, Given/When/Then/So) and
+`Tests/Run-Gherkin.ps1`, written and run this session.
+
+No Cucumber/SpecFlow/Reqnroll is installed in this environment, and the installed
+`Pester` is 3.4.0, which predates Pester's own Gherkin support (`Invoke-Gherkin`,
+added in Pester 4) — confirmed with `Get-Module -ListAvailable Pester` before
+choosing an approach, rather than assumed. Installing new tooling for one small
+feature file was rejected in favour of a minimal, honest substitute: the runner
+reads the real `.feature` file's text for its human-readable Given/When/Then/So
+lines (so the printed spec and the file can never silently drift from each other),
+prints each scenario back, and executes one real check per scenario **title**
+against the live `Mod/Patches/` tree and `About.xml` — not a general Gherkin
+engine, and it says so in its own header. An unmapped scenario title fails loudly
+("the .feature file and Run-Gherkin.ps1 have drifted apart") rather than being
+silently skipped.
+
+The six scenarios are the behavioural promises `README.md` and `ATTRIBUTION.md`
+make, expressed as specification rather than as code-shaped assertions (that is
+what distinguishes this from `Tests/Check-Patches.ps1`, not different underlying
+facts): a correction's replace and add branches always agree; only the game's own
+seven tech levels are ever written; no `defName` is corrected twice per file; a
+missing target is harmless because `<success>` is always `Always`; nothing but
+`<techLevel>` is ever written; and every patch file's source mod is declared in
+`loadAfter`, exactly once, in both directions.
+
+Run with `.\Tests\Run-Gherkin.ps1` from the repository root. **Result: 6/6
+scenarios passed, against 166 corrections across 30 source mods.**
+
+Verified negatively before trusting the green run, in an isolated scratch copy
+(not the real tree): a `<value>` was given a second, non-`techLevel` child
+element, confirmed caught by name (`starter.beeer.xml: <value> contains
+"<techLevel>Industrial</techLevel><label>x</label>", expected exactly one
+<techLevel>`), then the scratch copy was discarded. That scratch copy's
+deliberately partial `Mod/Patches/` (one file, all 30 `loadAfter` entries) also
+exercised the "every corrected mod is declared" scenario's failure path for real,
+incidentally.
+
+What this suite does **not** cover: anything requiring a running game. It is a
+readable, executable restatement of the same static shape `Check-Patches.ps1`
+already verifies, not a substitute for `TESTING.md`'s 8 in-game scenarios, none
+of which have been run.
 
 ### Reservations (non-blocking)
 
