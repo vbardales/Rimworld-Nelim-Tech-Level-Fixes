@@ -18,9 +18,10 @@ tested_on:
 workshop:
 remaining:
   - unverified: Mod/About/ModIcon.png and Mod/About/Preview.png absent; user will generate both on 2026-09-20
-  - unverified: no functional/automated/pickles/XML test scenarios written or run
+  - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
+  - unverified: no automated test harness exists (no C# to test); no XML patch-application checker or pickles/Gherkin scenarios written yet — not yet justified as not_applicable, just not done
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-17, settings_audit and localization/translation_en/translation_fr established not_applicable by static inventory (no C# anywhere, only techLevel ever changed)
+updated:      2026-09-17, TESTING.md written: 8 functional scenarios, none run yet
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -71,7 +72,7 @@ has started.
 | options | Not reached | `settings_audit` unchecked; gate not entered. |
 | l10n | Not reached | `localization`, `translation_en`, `translation_fr` unchecked; gate not entered. |
 | preTest | Not reached | Not applicable yet: no LoadFolders.xml is shipped, and there is nothing to audit for dependency declarations beyond the existing `loadAfter` list, which is out of scope until the earlier gates pass. |
-| done | Not reached | No test scenarios (functional, automated, pickles/Gherkin or XML) have been written. |
+| done | Not reached | `TESTING.md` now has 8 functional scenarios (preconditions/actions/expected results), written 2026-09-17 by static inspection of the patch files, none run. No automated harness, XML patch-application checker or pickles/Gherkin scenarios exist yet. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
 ### What is actually in the shipped folder
