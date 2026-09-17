@@ -8,6 +8,10 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 ### Added
 
 - Repository documentation: README, ATTRIBUTION, LICENSE (MIT), this changelog.
+- 3 tech-level corrections for `brrainz.zombieland` (Zombieland): `Thumper` (none -> Medieval,
+  matching its `Smithing` research prerequisite), `ZombieSerumSimple` (Neolithic -> Industrial,
+  aligning it with its ten `ZombieSerumCore`-derived siblings), `ZombieShocker` (none ->
+  Industrial, matching its `Electricity` research prerequisite and `ComponentIndustrial` cost).
 
 ## [1.0.0] — 2026-09-17
 

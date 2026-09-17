@@ -22,17 +22,17 @@ simply does nothing.
 
 ## Mods corrected in this release
 
-29 source mods, one file each under `Mod/Patches/`:
+30 source mods, one file each under `Mod/Patches/`:
 
 `AKN.Decorations`, `Ali.CookingTable`, `Ali.CraftingTable`, `AmateurLLTechBox.AmatuerLLsToys.0001`,
-`AR13S.AnimalCaps`, `cedaro.animalcommander`, `Dipsy.Diapers`, `hlx.UltratechAlteredCarbon`,
-`IronSniper.WindowsSkylights`, `LadyElizabeth.AdditionalToolsMod`, `leafzxg.AlphaThrumboExtension`,
-`Mlie.AdvancedRaiders`, `moncho.AlcoholRehabSobrix`, `Newton.AKN.CaretakerApparel`,
-`overpl.AnimalSarcophagus`, `Romyashi.AncientJunkLoot`, `Romyashi.AncientRelics`,
-`rye.animalrepeller`, `sarg.alphabooks`, `starter.beeer`, `TurboPickle.GlitterCraft`,
-`Udon.AnimalSimpleCommand`, `Vanya.Outsource.BodyTypeExtend`, `zal.alchemy`,
-`zal.alternativepowersolutions`, `zal.ancientamulets`, `zal.angelarm`, `zal.crystalbodyparts`,
-`zal.easternarmory`.
+`AR13S.AnimalCaps`, `brrainz.zombieland`, `cedaro.animalcommander`, `Dipsy.Diapers`,
+`hlx.UltratechAlteredCarbon`, `IronSniper.WindowsSkylights`, `LadyElizabeth.AdditionalToolsMod`,
+`leafzxg.AlphaThrumboExtension`, `Mlie.AdvancedRaiders`, `moncho.AlcoholRehabSobrix`,
+`Newton.AKN.CaretakerApparel`, `overpl.AnimalSarcophagus`, `Romyashi.AncientJunkLoot`,
+`Romyashi.AncientRelics`, `rye.animalrepeller`, `sarg.alphabooks`, `starter.beeer`,
+`TurboPickle.GlitterCraft`, `Udon.AnimalSimpleCommand`, `Vanya.Outsource.BodyTypeExtend`,
+`zal.alchemy`, `zal.alternativepowersolutions`, `zal.ancientamulets`, `zal.angelarm`,
+`zal.crystalbodyparts`, `zal.easternarmory`.
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for how these mods relate to this one.
 
