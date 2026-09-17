@@ -179,6 +179,10 @@ independently established, same caveat on `workflow_stage` as above.
 
 - No visual defect can be reported for ModIcon/Preview because neither file
   exists yet; this is an absence, not a constatation of a bad image.
-- The `loadAfter` list is long (28 entries) but every one is declared optional in
-  the description; `dependencies: none` reflects that as read, not a claim that
-  it has been re-verified against each source mod's current `packageId`.
+- The `loadAfter` list is long (29 entries) but every one is declared optional in
+  the description; `dependencies: none` reflects that as read. Confirmed
+  2026-09-17: every patch operation across the tree uses only the vanilla
+  `PatchOperationAdd`/`PatchOperationReplace`/`PatchOperationConditional`
+  classes, no framework-namespaced `Class` attribute, so there is no hidden
+  technical dependency either — this has not been re-verified against each
+  source mod's current `packageId` on Steam, only against the patch XML itself.
