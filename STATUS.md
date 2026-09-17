@@ -1,8 +1,8 @@
 ---
-settings_audit: unchecked
-localization: unchecked
-translation_en: unchecked
-translation_fr: unchecked
+settings_audit: not_applicable
+localization: not_applicable
+translation_en: not_applicable
+translation_fr: not_applicable
 mod:          Nelim's Tech Level Fixes
 packageId:    nelim.techlevelfixes
 repo:         rimworld-nelim-tech-level-fixes
@@ -18,11 +18,9 @@ tested_on:
 workshop:
 remaining:
   - unverified: Mod/About/ModIcon.png and Mod/About/Preview.png absent; user will generate both on 2026-09-20
-  - unverified: settings_audit not run; MOD_SETTINGS.md gate not reached
-  - unverified: localization/translation_en/translation_fr not run; TRANSLATIONS.md gate not reached
   - unverified: no functional/automated/pickles/XML test scenarios written or run
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-17, About.xml now declares <url> and the description's closing GitHub source link
+updated:      2026-09-17, settings_audit and localization/translation_en/translation_fr established not_applicable by static inventory (no C# anywhere, only techLevel ever changed)
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -128,6 +126,54 @@ and the `<description>` closes with
 satisfying PUBLISHING.md's description-link criterion ahead of time. Safe to do now because
 no `About/PublishedFileId.txt` exists yet: the Workshop item has never been created, so this
 description has not been sent to Steam and is not yet a "one shot" already spent.
+
+### Settings audit — 2026-09-17, autonomous follow-up
+
+`settings_audit: not_applicable`, independently established regardless of overall
+`workflow_stage` (still gated behind ModIcon générée/Preview générée/preOptions
+in transition order — see interpretation rules).
+
+- Inventory: `git ls-files` and a directory walk confirm the entire repository
+  contains only `Mod/About/About.xml`, 29 generated XML patch files, and
+  documentation. There is no `Source/`, no `Assemblies/`, no `.dll`, no C# file
+  anywhere in the tree.
+- Since no assembly is shipped, there is no possible owner for `ModSettings`,
+  `Mod`, `MainButtonDef`, `MainTabWindow` or any settings window: none of these
+  types can exist without compiled code. This is a structural impossibility, not
+  an inference from a missing settings page alone (MOD_SETTINGS.md warns
+  against that shortcut; here the absence of *any* C# closes the question
+  completely, for every RimWorld/HugsLib/RIMMSQOL settings mechanism, not just
+  the ones checked for by name).
+- Consequently: no empty settings page, no MainButtons shortcut, visible or
+  hidden, exists or could exist. Both required absences are verified.
+- No player configuration is needed or possible: the only "configuration"
+  surface is documented in README.md — deleting one file under `Mod/Patches/`
+  undoes that mod's corrections, deleting the folder undoes all of them. That is
+  a file-system mechanism, not an in-game settings UI, and PUBLISHING.md/
+  MOD_SETTINGS.md do not ask data-only mods to grow one where none is useful.
+
+## Translation audit — 2026-09-17, autonomous follow-up
+
+`localization`, `translation_en`, `translation_fr`: all three `not_applicable`,
+independently established, same caveat on `workflow_stage` as above.
+
+- Inventory command: `grep -oE '<value><[a-zA-Z]+>' Mod/Patches/*.xml`, cross-checked
+  by counting `<value>`, `<techLevel>` and `Operation Class="..."` occurrences
+  across all 29 patch files: 163 `PatchOperationConditional` operations, 326
+  `<value>` tags, 326 `<techLevel>` tags — an exact match, and every single
+  `Operation Class` in the tree is `PatchOperationConditional`. No other field
+  (`label`, `description`, or anything else) is ever written by any patch.
+- `About.xml` carries no `Keyed` folder, no `DefInjected` folder, and (per the
+  above) no C# — so no `.Translate()` call, no interpolated string, no
+  runtime-generated text exists anywhere in this mod's own code.
+- The only thing this mod ever changes is the `techLevel` enum value on other
+  mods' existing defs. `techLevel`'s display string (`Neolithic`, `Medieval`,
+  `Industrial`, etc.) is owned and already localized by the base game in both
+  English and French; this mod does not introduce, override or duplicate that
+  text anywhere.
+- Conclusion: this mod adds or changes no player-facing text of its own. The
+  `<url>`/description source-code link added this session is About metadata,
+  explicitly outside the in-game translation gate per TRANSLATIONS.md.
 
 ### Reservations (non-blocking)
 
