@@ -21,7 +21,7 @@ remaining:
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
   - unverified: no automated C# test harness exists (no C# to test); no pickles/Gherkin scenarios written yet — not yet justified as not_applicable, just not done
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-17, Tests/Check-Patches.ps1 (XML tests) written and run: green (29 files, 163 corrections, 0 problems) after fixing a false-positive in the checker itself, not in zal.alchemy.xml
+updated:      2026-09-17, re-audited after brrainz.zombieland addition by another session: 30 files, 166 corrections, checker still green, settings_audit/localization re-verified not_applicable on the current tree
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -229,6 +229,43 @@ residual change both times): a deliberately mismatched replace/add pair, and
 (during the false-positive episode) the lowercase-xpath case itself. Both were
 caught when they should have been; only the second one turned out not to be a
 real defect once checked against the actual installed source.
+
+## Re-audit after brrainz.zombieland addition — 2026-09-17
+
+A separate local session (commit `28c5d0d`, "Add brrainz.zombieland tech-level
+corrections", `Co-Authored-By: Claude Opus 5`) added a 30th correction file while
+this audit was in progress. Everything above this section describes the mod as it
+stood at 29 files/163 corrections; **current totals are 30 files, 166
+corrections.** Re-verified rather than assumed unchanged:
+
+- `Mod/About/About.xml` still declares `<url>` and the description's closing
+  GitHub link — the other session's commit message notes cherrypick's
+  regeneration of `About.xml` had dropped both, and restored them by hand.
+  Confirmed present by direct read of the file.
+- `Mod/Patches/brrainz.zombieland.xml` (3 corrections: `Thumper`, `ZombieSerumSimple`,
+  `ZombieShocker`) matches the same generated shape as every other file: header
+  comment, `PatchOperationConditional`/`Replace`/`Add`, `ThingDef` xpaths, only
+  `<techLevel>` ever set.
+- `Tests/Check-Patches.ps1` rerun: **30 files, 166 corrections, 30 loadAfter
+  entries, 0 problems — still green.**
+- `settings_audit` and `localization`/`translation_en`/`translation_fr`: their
+  `not_applicable` basis was re-checked against the full current tree rather than
+  left on the stale 163-tag count, per TRANSLATIONS.md/MOD_SETTINGS.md's rule to
+  revalidate after a relevant change. Full tree still holds no `Source/`, no
+  `Assemblies/`, no C# anywhere; every `<value>` across all 30 files is still a
+  `<techLevel>` and nothing else (332 `<value>`/`<techLevel>` tags, exact parity).
+  Both verdicts stand unchanged, now against the current tree.
+- Dependency-class check (only vanilla `PatchOperationAdd`/`Replace`/`Conditional`,
+  no framework-namespaced `Class`) reconfirmed across all 30 files.
+- `README.md`, `ATTRIBUTION.md`, `CHANGELOG.md` already updated by the other
+  session's commit to name `brrainz.zombieland` and the new "30 source mods"
+  count; not further edited here.
+- `TESTING.md`'s framing counts (30 corrected mods, 166 corrections) updated to
+  match; no new scenario was needed since `brrainz.zombieland.xml` introduces no
+  shape TESTING.md's existing 8 scenarios don't already cover.
+
+No transition changes as a result: `workflow_stage` stays `horsMonoRepo`, still
+blocked on ModIcon/Preview generation (2026-09-20) ahead of `preOptions`.
 
 ### Reservations (non-blocking)
 

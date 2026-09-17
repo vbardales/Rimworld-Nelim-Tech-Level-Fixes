@@ -9,7 +9,7 @@ list tracks that distinction; do not read this file as a report of things observ
 
 ## Before starting
 
-- RimWorld 1.6, `TechLevelFixes` active, alongside as many of the 29 corrected mods
+- RimWorld 1.6, `TechLevelFixes` active, alongside as many of the 30 corrected mods
   as practical for the session. Scenarios below name specific ones; the full list is
   in `README.md` and `ATTRIBUTION.md`.
 - Development mode on, so a bad patch shows up as a red `XML error` line instead of
@@ -20,17 +20,19 @@ list tracks that distinction; do not read this file as a report of things observ
   **Inspect** tool, click the thing, expand `def` in the field tree that opens, and
   read `techLevel` there. This reads the live def value, after every patch has run —
   the value this mod is responsible for.
-- 163 corrections total across 29 patch files, from 1 (ten mods) to 36
-  (`zal.ancientamulets.xml`). `README.md` lists the full 29; the scenarios below use
-  a representative slice, not all of them.
+- 166 corrections total across 30 patch files, from 1 (ten mods) to 36
+  (`zal.ancientamulets.xml`). `README.md` lists the full 30; the scenarios below use
+  a representative slice, not all of them. `brrainz.zombieland.xml` (added
+  2026-09-17, 3 corrections) follows the exact same shape as everything else here
+  and needs no scenario of its own.
 
 ## 1. It loads, and nothing complains
 
-1. Start or load a colony with `TechLevelFixes` and every one of the 29 corrected
+1. Start or load a colony with `TechLevelFixes` and every one of the 30 corrected
    mods active.
 
 **Pass:** no red line naming `nelim.techlevelfixes`, no `PatchOperation ... failed`,
-no `Could not resolve cross-reference` pointing at any of the 163 corrected
+no `Could not resolve cross-reference` pointing at any of the 166 corrected
 `defName`s.
 
 **Fail:** any such line. Note which file's `defName` it names — the comment at the
@@ -108,7 +110,7 @@ files.
 1. Delete the entire `Mod/Patches/` folder from the installed copy and reload.
 
 **Pass:** no error (the folder is optional content, not a declared dependency of
-anything). Every one of the 163 corrections reverts to its source mod's own value.
+anything). Every one of the 166 corrections reverts to its source mod's own value.
 Restore the folder afterwards.
 
 ## 7. Load order: this mod's value wins
@@ -151,7 +153,7 @@ the save referenced a def unique to it — it has none, so this should be silent
 
 ## What to watch across every scenario
 
-- The exact wording of any red XML error, and which of the 29 patch files' comment
+- The exact wording of any red XML error, and which of the 30 patch files' comment
   block names the source mod it points at.
 - Whether a `PatchOperationAdd` ever fires against a field that already exists
   (scenario 3) — the sign that an upstream mod added its own `techLevel` since the
