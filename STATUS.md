@@ -9,7 +9,7 @@ repo:         rimworld-nelim-tech-level-fixes
 visibility:   public
 detached:     yes
 stage:        port
-workflow_stage: dansMonoRepo
+workflow_stage: horsMonoRepo
 licence:      original
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none
@@ -19,27 +19,31 @@ workshop:
 remaining:
   - unverified: Mod/About/ModIcon.png and Mod/About/Preview.png absent
   - unverified: About.xml has no <url> and the description has no closing "Source code on GitHub" link
-  - unverified: .gitignore and .gitattributes absent
   - unverified: settings_audit not run; MOD_SETTINGS.md gate not reached
   - unverified: localization/translation_en/translation_fr not run; TRANSLATIONS.md gate not reached
   - unverified: no functional/automated/pickles/XML test scenarios written or run
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-17, README/ATTRIBUTION/LICENSE/CHANGELOG added, duplicated into Mod/, committed and pushed
+updated:      2026-09-17, .gitignore and .gitattributes added, committed and pushed
 ---
 
 # Nelim's Tech Level Fixes — status
 
 ## Workflow audit — 2026-09-17
 
-**Decision: (no prior status) -> `dansMonoRepo`.** This is the first STATUS.md this
-mod has ever had, so there is no previous declared stage to correct — the audit
-establishes a baseline from the actual repository and filesystem state, not from a
-claim in a file. `workflow_stage` tracks the nine-step chain audited here
-(`dansMonoRepo -> horsMonoRepo -> ModIcon générée -> Preview générée -> preOptions
--> options -> l10n -> preTest -> done -> tested`); `stage` keeps this project's own
-vocabulary (`port`, `showcase`, `preTest`, `done`, `tested`, `published`) for
-continuity with every other mod's STATUS.md. `port` is the closest existing value:
-the patch content itself is finished, nothing downstream of it has been done.
+**Decision: (no prior status) -> `dansMonoRepo` -> `horsMonoRepo`.** This is the
+first STATUS.md this mod has ever had, so there was no previous declared stage to
+correct — the initial audit on 2026-09-17 established a baseline of `dansMonoRepo`
+from the actual repository and filesystem state, not from a claim in a file. In the
+same session, at the user's explicit direction, the repository, decisions and
+documentation this transition requires were created (see below), and the
+`horsMonoRepo` transition is now validated. `workflow_stage` tracks the nine-step
+chain audited here (`dansMonoRepo -> horsMonoRepo -> ModIcon générée -> Preview
+générée -> preOptions -> options -> l10n -> preTest -> done -> tested`); `stage`
+keeps this project's own vocabulary (`port`, `showcase`, `preTest`, `done`,
+`tested`, `published`) for continuity with every other mod's STATUS.md. `port`
+remains the closest existing value: the patch content itself is finished, and
+none of the downstream gates (showcase images, settings, localization, tests)
+has started.
 
 ### Audited revision and scope
 
@@ -63,7 +67,7 @@ the patch content itself is finished, nothing downstream of it has been done.
 
 | Transition destination | Result | Evidence |
 | --- | --- | --- |
-| horsMonoRepo | Not yet fully validated | As of 2026-09-17: GitHub repository `vbardales/rimworld-nelim-tech-level-fixes` created (public, user-validated exception to the "Nelim-prefixed = private" default), remote `origin` configured, commits pushed (`e34adc4`, `74538b6`). STATUS.md exists. README.md, ATTRIBUTION.md, LICENSE (MIT) and CHANGELOG.md exist in English at the repository root, with LICENSE and ATTRIBUTION.md duplicated into `Mod/`. `packageId` (`nelim.techlevelfixes`), the displayed name (`Nelim's Tech Level Fixes`), the folder name (`TechLevelFixes`) and the repository name are mutually coherent. Still missing: `.gitignore` and `.gitattributes`. |
+| horsMonoRepo | Validated | As of 2026-09-17: GitHub repository `vbardales/rimworld-nelim-tech-level-fixes` created (public, user-validated exception to the "Nelim-prefixed = private" default), remote `origin` configured, commits pushed. STATUS.md exists. README.md, ATTRIBUTION.md, LICENSE (MIT) and CHANGELOG.md exist in English at the repository root, with LICENSE and ATTRIBUTION.md duplicated into `Mod/`. `.gitignore` and `.gitattributes` added. `packageId` (`nelim.techlevelfixes`), the displayed name (`Nelim's Tech Level Fixes`), the folder name (`TechLevelFixes`) and the repository name are mutually coherent. |
 | ModIcon generated | Not reached | Blocked behind horsMonoRepo. No `Mod/About/ModIcon.png` exists in the tree. |
 | Preview generated | Not reached | Blocked behind horsMonoRepo. No `Mod/About/Preview.png` exists in the tree. |
 | preOptions | Not reached | Blocked behind horsMonoRepo. `About.xml`'s `<description>` does not end with a `[url=...]Source code on GitHub[/url]` link (no repository to link to yet), and there is no repository to check naming/prefix conventions against beyond the About name itself. |
@@ -99,20 +103,20 @@ from the files, not a substitute for the visibility/licence decision itself,
 which also determines whether a `(prohibited)` or no suffix applies, and is left
 to the user to record in STATUS.md.
 
-### Remaining mandatory work before `dansMonoRepo -> horsMonoRepo`
+### `dansMonoRepo -> horsMonoRepo`: now validated
 
-Completed since the initial 2026-09-17 audit, at the user's explicit request:
+Completed on 2026-09-17, at the user's explicit request, across this session:
 GitHub repository created and pushed to; visibility (`public`) and licence
 (`original`) decided and recorded, including the user-validated one-off
 exception to the "Nelim-prefixed mod = private" default; README.md,
 ATTRIBUTION.md, LICENSE and CHANGELOG.md written in English, with LICENSE and
-ATTRIBUTION.md duplicated into `Mod/`.
+ATTRIBUTION.md duplicated into `Mod/`; `.gitignore` and `.gitattributes` added.
 
-Still outstanding:
+### Remaining mandatory work before `horsMonoRepo -> ModIcon générée`
 
-- Add `.gitignore` (`.build/`, `Source/obj/`, `Source/bin/`, `.vs/`, `.idea/`,
-  `*.user`) and `.gitattributes` (`* text=auto`, PNG/DLL as `binary`) — neither
-  exists yet, though this mod currently ships no binaries or build output.
+- Generate and install `Mod/About/ModIcon.png` at the expected dimensions and
+  format. No image has been generated in this session (the audit and this
+  follow-up work were documentation/repository work only).
 
 ### Reservations (non-blocking)
 
