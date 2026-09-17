@@ -105,9 +105,18 @@ foreach ($file in $patchFiles) {
             continue
         }
 
+        # The def-type tag itself (ThingDef, thingDef, ResearchProjectDef, ...) is deliberately
+        # NOT restricted to a fixed casing here. RimWorld's own def loader resolves a Def type
+        # case-insensitively - confirmed against the installed Alchemy (Continued) source, which
+        # declares "AlchemyBench" under a lowercase <thingDef> and loads it as a normal ThingDef
+        # regardless. A patch's xpath still has to match the literal casing of the SOURCE FILE,
+        # because XPath itself (unlike the def loader) is case-sensitive at the DOM level - so the
+        # right invariant is not "always ThingDef", it is "every xpath referencing the same def in
+        # the same operation uses the same casing", checked below via exact string equality against
+        # the captured $outerXpath, not by re-deriving it from a fixed list.
         $outerXpath = $op.xpath
-        if ($outerXpath -cnotmatch '^/Defs/(ThingDef|ResearchProjectDef)\[defName="([^"]+)"\]$') {
-            $problems.Add("$($file.Name): outer xpath `"$outerXpath`" does not match /Defs/(ThingDef|ResearchProjectDef)[defName=`"...`"] case-sensitively")
+        if ($outerXpath -notmatch '^/Defs/([A-Za-z]+)\[defName="([^"]+)"\]$') {
+            $problems.Add("$($file.Name): outer xpath `"$outerXpath`" does not match /Defs/<DefType>[defName=`"...`"]")
             continue
         }
         $defName = $Matches[2]
