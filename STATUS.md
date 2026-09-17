@@ -17,7 +17,6 @@ showcase:
 tested_on:
 workshop:
 remaining:
-  - unverified: README.md, ATTRIBUTION.md, LICENSE, CHANGELOG.md absent from the repository root and from Mod/
   - unverified: Mod/About/ModIcon.png and Mod/About/Preview.png absent
   - unverified: About.xml has no <url> and the description has no closing "Source code on GitHub" link
   - unverified: .gitignore and .gitattributes absent
@@ -25,7 +24,7 @@ remaining:
   - unverified: localization/translation_en/translation_fr not run; TRANSLATIONS.md gate not reached
   - unverified: no functional/automated/pickles/XML test scenarios written or run
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-17, GitHub repository created (public), remote configured, initial commit pushed
+updated:      2026-09-17, README/ATTRIBUTION/LICENSE/CHANGELOG added, duplicated into Mod/, committed and pushed
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -64,7 +63,7 @@ the patch content itself is finished, nothing downstream of it has been done.
 
 | Transition destination | Result | Evidence |
 | --- | --- | --- |
-| horsMonoRepo | Not validated | Standalone git repo exists, but no GitHub repository, no remote, nothing pushed (verified via `gh repo list` and `git remote -v`). No STATUS.md existed before this audit. Visibility and licence status are undecided. No README, ATTRIBUTION, LICENSE or CHANGELOG exist. `packageId` (`nelim.techlevelfixes`), the displayed name (`Nelim's Tech Level Fixes`) and the folder name (`TechLevelFixes`) are mutually coherent, but this single criterion cannot carry the transition on its own. |
+| horsMonoRepo | Not yet fully validated | As of 2026-09-17: GitHub repository `vbardales/rimworld-nelim-tech-level-fixes` created (public, user-validated exception to the "Nelim-prefixed = private" default), remote `origin` configured, commits pushed (`e34adc4`, `74538b6`). STATUS.md exists. README.md, ATTRIBUTION.md, LICENSE (MIT) and CHANGELOG.md exist in English at the repository root, with LICENSE and ATTRIBUTION.md duplicated into `Mod/`. `packageId` (`nelim.techlevelfixes`), the displayed name (`Nelim's Tech Level Fixes`), the folder name (`TechLevelFixes`) and the repository name are mutually coherent. Still missing: `.gitignore` and `.gitattributes`. |
 | ModIcon generated | Not reached | Blocked behind horsMonoRepo. No `Mod/About/ModIcon.png` exists in the tree. |
 | Preview generated | Not reached | Blocked behind horsMonoRepo. No `Mod/About/Preview.png` exists in the tree. |
 | preOptions | Not reached | Blocked behind horsMonoRepo. `About.xml`'s `<description>` does not end with a `[url=...]Source code on GitHub[/url]` link (no repository to link to yet), and there is no repository to check naming/prefix conventions against beyond the About name itself. |
@@ -102,19 +101,18 @@ to the user to record in STATUS.md.
 
 ### Remaining mandatory work before `dansMonoRepo -> horsMonoRepo`
 
-- Create a GitHub repository, configure it as this repo's remote, and push the
-  existing commit (or a fresh one).
-- Decide and record `visibility` (private/public) and `licence`
-  (`open`/`alive`/`forbidden`/`silent`/`original`) in this STATUS.md, consistent
-  with the established rights (see above — `original` is supported by inspection,
-  but the decision itself, and any resulting naming suffix, is not this audit's
-  call to make).
-- Write README.md, ATTRIBUTION.md, LICENSE (matching the licence decision) and
-  CHANGELOG.md in English, with the required copies inside `Mod/` where
-  PUBLISHING.md calls for them.
+Completed since the initial 2026-09-17 audit, at the user's explicit request:
+GitHub repository created and pushed to; visibility (`public`) and licence
+(`original`) decided and recorded, including the user-validated one-off
+exception to the "Nelim-prefixed mod = private" default; README.md,
+ATTRIBUTION.md, LICENSE and CHANGELOG.md written in English, with LICENSE and
+ATTRIBUTION.md duplicated into `Mod/`.
+
+Still outstanding:
+
 - Add `.gitignore` (`.build/`, `Source/obj/`, `Source/bin/`, `.vs/`, `.idea/`,
-  `*.user`) and `.gitattributes` (`* text=auto`, PNG/DLL as `binary`) — currently
-  neither exists, though this mod currently ships no binaries or build output.
+  `*.user`) and `.gitattributes` (`* text=auto`, PNG/DLL as `binary`) — neither
+  exists yet, though this mod currently ships no binaries or build output.
 
 ### Reservations (non-blocking)
 
