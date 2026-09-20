@@ -17,13 +17,13 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - defect: three corrections were arbitrated against a starting tech level the source mod no longer has, found 2026-09-20 by the unit tests (see "Stale starting levels"). Apparel_BlueScreenBelt (Mlie.AdvancedRaiders) and AMU_AmuletBarkeep (zal.ancientamulets) are recorded as having had none but now inherit Medieval; Animal_Sarcophagus (overpl.AnimalSarcophagus) is recorded as Medieval but now inherits nothing. The corrections themselves still apply; what has moved is the ground they were decided on, so cherrypick should look at those three again. Not hand-editable: the files are generated.
-  - unverified: preTest - most of the 30 source mods are not installed on this machine, so their packageIds in loadAfter and their corrected defNames cannot be checked against real mod data. The installed set is moving: 8 mods were found in the morning of 2026-09-20 and 7 by the evening, starter.beeer and zal.alchemy having lost their Workshop folders since 2026-09-17. Every defName of every mod that was installed did resolve. Needs those mods available locally, not a fix
-  - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
-  - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios, cut back on 2026-09-20 to what only a live game shows) has never been run: it needs a RimWorld the audit must not start, and it names defs from four source mods that have to be in the modlist for the run to mean anything
+  - defect: three corrections no longer reproduce the starting tech level they were arbitrated against, found 2026-09-20 by the unit tests (see "Stale starting levels"). Apparel_BlueScreenBelt (Mlie.AdvancedRaiders) and AMU_AmuletBarkeep (zal.ancientamulets) are recorded as having had none but now inherit Medieval; Animal_Sarcophagus (overpl.AnimalSarcophagus) is recorded as Medieval but now inherits nothing. The corrections themselves still apply. Cause open between the source mods changing and the modlist changing - the user removed mods above neolithic on or before 2026-09-20 - and the tests compare against one source mod in isolation, which cannot tell the two apart. For cherrypick, not a hand edit: the files are generated.
+  - unverified: preTest - most of the 30 source mods are not installed on this machine, so their packageIds in loadAfter and their corrected defNames cannot be checked against real mod data. This is deliberate, not an accident: the user is removing mods above neolithic, which is why 8 were found in the morning of 2026-09-20 and 7 by the evening. Every defName of every mod that was installed did resolve. Checking the rest needs those mods reinstalled, which is not something to ask for on the strength of an audit
+  - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game. The user stated on 2026-09-20 that no in-game test is planned for now, so this is deferred by decision rather than pending
+  - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios, cut back on 2026-09-20 to what only a live game shows) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It also names defs from four source mods, two of which are no longer installed, so it would need them back to mean anything
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def check ran for the 7 installed on 2026-09-20, and reports the rest as SKIP rather than passing them
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, shipped ATTRIBUTION.md resynchronised with the root copy (it had drifted since 2026-09-17) and both duplicated files now checked on every run; unit tests still report the three stale arbitrations
+updated:      2026-09-20, recorded that the absent source mods are a deliberate removal of above-neolithic content and that in-game testing is deferred by the user; the three stale arbitrations may follow from that same removal
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -320,6 +320,19 @@ and declares no techLevel of its own, inheriting it from `ASC_ManualBase` — wh
 establishes that cherrypick records the inherited value, and it now passes. `Animal_Sarcophagus`
 declares none in any of its four version folders and its parent `BuildingBase` declares none
 either, so `Medieval` cannot be reached from the current source at all.
+
+**A second explanation, which arrived after the finding.** The user removes mods whose content
+sits above neolithic, and had done so by 2026-09-20 — that is why the installed count fell from
+8 to 7 during the day, and why `zal.alchemy` and `starter.beeer` went missing since 2026-09-17.
+cherrypick records the level a def had **in the modlist it ran against**, so a mod that used to
+patch one of these fields and has since been removed would produce exactly this. For
+`Animal_Sarcophagus` that fits well: it declares no techLevel in any of its four version folders
+and `BuildingBase` declares none either, so `Medieval` is unreachable from that mod alone and
+must have come from somewhere else in the old list.
+
+These unit tests compare against one source mod in isolation, which cannot tell "the source
+changed" from "the list changed". Both mean the arbitration rests on ground that has moved, but
+they call for different answers, and only a cherrypick pass over the current list can say which.
 
 **What this does and does not mean.** The corrections still apply cleanly — the add and replace
 branches and the real-def checks all pass for these three. What has moved is the ground the
