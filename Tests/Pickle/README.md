@@ -19,7 +19,9 @@ the feature file, so nothing test-related ships in the Workshop folder.
 |---|---|
 | the mod is loaded and says nothing | whether the game loaded this mod at all, and whether it logged anything doing so |
 | it loads after the mods it corrects | `loadAfter` is a request; only the running game shows the order it settled on |
-| a correction survives the whole modlist (add, replace, research) | the unit tests apply **this mod's** patches to **one source mod's** defs in isolation. A game applies every active mod's patches to one combined document. If a third mod sets the same field later, only this shows it. |
+| a def that had no level anywhere gets one | the combined document holds every active mod's patches, not just this one's; if a third mod writes the same field later, only a real load shows it |
+| a def that declared its own level has it replaced | same, for the other branch |
+| **an inherited level is overridden, not merely shadowed** | the one the unit tests structurally cannot reach. These amulets inherit `Medieval` from `AmuletBase` and declare nothing, so the patch *adds* a node beside an inherited value. Which of the two the loaded def reports is decided when the game resolves `ParentName` — **after** patching. A headless test sees the node appear; only the game says it won. |
 
 Five scenarios, a handful of defs. Spot checks on the real pipeline, not a second inventory.
 
@@ -41,9 +43,11 @@ live def, so it reports the value the game ended up with.
 
 3. Enable it below Nelim's Tech Level Fixes and Pickle.
 
-The scenarios name defs from Alpha Books, Ancient Amulets, Glitter-Craft and Alchemy, so those
-four mods have to be in the modlist for the run to mean anything. A scenario whose mod is absent
-fails on the def, which is the run missing a mod rather than a broken correction.
+The scenarios name defs from Alpha Books, Ancient Amulets and Additional Tools, so those three
+mods have to be in the modlist for the run to mean anything. All three were installed on
+2026-09-20; the file previously named Glitter-Craft and Alchemy, which have since been removed,
+and would have failed for that reason alone. A scenario whose mod is absent fails on the def,
+which is the run missing a mod rather than a broken correction.
 
 ## Run
 
