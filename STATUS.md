@@ -22,7 +22,7 @@ remaining:
   - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It is at least runnable now - retargeted on 2026-09-20 onto Alpha Books, Additional Tools and Ancient Amulets, all installed, after it was found to name two mods that had been removed
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, done blocked: the Pickle lock is held by another session and the shared WSL harness does not stage loadAfter mods, which is everything this mod patches; question raised with the headless-mode session
+updated:      2026-09-20, Pickle staged and launched headless in the WSL game; blocked on a launcher quoting fault that truncates the run filter, reported to the session that owns it
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -338,32 +338,43 @@ competes with this mod and neither explains the `Animal_Sarcophagus` value recor
 This covers the installed mods only, and one field on three defs. It is not a general proof that
 nothing ever overrides a correction; the Pickle suite is where that would show, in a real load.
 
-## Blocked on one thing: the Pickle suite has never run
+## The Pickle suite: staged, launched, not yet played — 2026-09-20
 
-`preTest -> done` needs four kinds of test, and three pass: functional scenarios written
+`preTest -> done` needs four kinds of test and three pass: functional scenarios written
 (`TESTING.md`), automated green (`Tests/Run.ps1`, 107 passed), XML green
-(`Tests/Check-Patches.ps1`). The pickles gate is the one left, and it cannot be waived: its five
-scenarios were chosen precisely because a headless test cannot reach them, so "not applicable"
-would be false.
+(`Tests/Check-Patches.ps1`). The pickles gate is the one left. It cannot be waived: the five
+scenarios exist precisely because a headless test cannot reach them.
 
-**Nothing was launched on 2026-09-20.** `Get-Process RimWorldWin64`: not running. But
-`%LOCALAPPDATA%imworld-pickle-run.lock` exists and is **held open by a live process** — opening
-it for read fails with a sharing violation — so another session holds it. AUDIT.md: an audit that
-cannot take the lock launches nothing, says so, and moves to the off-game checks.
+**What changed today.** A WSL copy of RimWorld now exists for tests, and AUDIT.md authorises a
+session to launch it — headless under `xvfb-run`, so it takes nobody's screen, which was the
+objection to Pickle in the first place. The entry point is
+`scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes`: it takes the machine-wide lock, refuses if
+anything is running, archives the previous report, stages and launches.
 
-**And the suite would not pass under the shared harness even with the lock.**
-`scripts/stage-pickle-wsl.sh` stages the mod, its companion, Harmony, the DLCs, RimLogging,
-Pickle, and the **modDependencies of the mod under test** — with an explicit comment that
-`loadAfter` is not copied because "it names mods the suite must not depend on anyway". This mod
-declares no dependencies by design and everything it corrects sits in `loadAfter`, so the staged
-list would contain nothing it patches: every def assertion and both load-order assertions would
-fail for want of a source mod, not for a defect. `wsl-deps.map` does not help; reading it, it
-only overrides packageId-to-workshop-folder for mods already being copied.
+**The harness gap is closed.** `Tests/Pickle/wsl-deps.map` now names the three mods the scenarios
+assert on, and the staging script stages *and activates* them. Fourteen mods staged, including
+Alpha Books, Additional Tools and Ancient Amulets. The three workshop ids were read from the
+installed `About.xml` files rather than copied from the message that offered them.
 
-That is a mismatch between this class of mod and the shared harness, not something to paper over
-by trimming the suite until it passes. Put to the session that owns the headless work on
-2026-09-20; awaiting its answer before changing either the suite or the script.
+**Two launcher faults found, one fixed here.**
 
+1. The companion mod was called *Nelim's Tech Level Fixes - Pickle tests*. The apostrophe reaches
+   bash unescaped and the launch dies with `unexpected EOF while looking for matching '`, before
+   the game starts. Renamed to *TechLevelFixes - Pickle tests* — the companion is never published,
+   so its name is free; the shipped mod keeps its own.
+2. With that fixed the game starts, Pickle loads and sees the suite, and then:
+
+       System.InvalidOperationException: pickle: filter 'TechLevelFixes' matched no scenarios.
+         1 features in TechLevelFixes - Pickle tests: 01-loading.feature
+
+   The filter arrived truncated at the first space. `stage-pickle-wsl.sh` prints the correct
+   quoted command, so the loss happens in the PowerShell wrapper rebuilding it across
+   `wsl.exe -- bash -lc`. That belongs to the shared tooling, not to this repository, and was
+   reported rather than worked around: renaming the suite to a single word would hide a fault that
+   reaches every suite whose display name has a space.
+
+So the run is one quoting fix away, and nothing about the mod is implicated. The lock was free
+each time and returned each time; nothing of this repository's was left running.
 ## Patches outlive their mods, on purpose
 
 Stated by the user on 2026-09-20: the patches and recorded values for mods that are not currently

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Nelim's Tech Level Fixes - Pickle tests</name>
+  <name>TechLevelFixes - Pickle tests</name>
   <author>Nelim</author>
   <packageId>nelim.techlevelfixes.pickletests</packageId>
   <supportedVersions>
