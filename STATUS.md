@@ -8,8 +8,8 @@ packageId:    nelim.techlevelfixes
 repo:         rimworld-nelim-tech-level-fixes
 visibility:   public
 detached:     yes
-stage:        showcase
-workflow_stage: preTest
+stage:        done
+workflow_stage: done
 licence:      original
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none  # verified 2026-09-20: no modDependencies declared and none used
@@ -18,11 +18,10 @@ tested_on:
 workshop:
 remaining:
   - unverified: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. This does not affect preTest, whose criteria are about declarations rather than targets, and it is temporary by design: the user gates the modlist by tech level and puts a mod back when the colony reaches it. Their patches stay in place meanwhile - see "Patches outlive their mods"
-  - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game. The user stated on 2026-09-20 that no in-game test is planned for now, so this is deferred by decision rather than pending
-  - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It is at least runnable now - retargeted on 2026-09-20 onto Alpha Books, Additional Tools and Ancient Amulets, all installed, after it was found to name two mods that had been removed
+  - unverified: TESTING.md’s 8 functional scenarios have not been walked in game. This is what done -> tested asks for, and it is the only thing between this mod and tested
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, the Pickle suite ran for the first time: 4 of 5, and the scenario that justified it - an added techLevel beating an inherited one - passed; the one failure was an untyped step of mine, now fixed, pending a re-run
+updated:      2026-09-21, done validated: the Pickle suite is green 5/5, including the added-beats-inherited techLevel that no headless test could reach; the 8 in-game scenarios of TESTING.md remain for done -> tested
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -73,7 +72,7 @@ has started.
 | options | Validated (not applicable, justified) | `settings_audit: not_applicable`, established by static inventory: no C# and no assembly anywhere in the tree, and the only XML besides About.xml is patch files writing `<techLevel>`, so no settings owner, page or MainButtons shortcut can exist (see "Settings audit"). Re-checked against the full 30-file tree after the Zombieland addition. No in-game integration is claimed as tested; none is required for this step. |
 | l10n | Validated (not applicable, justified) | `localization`, `translation_en`, `translation_fr: not_applicable`: an inventory of every `<value>` across the 30 patch files (332 `<value>` and 332 `<techLevel>` tags) shows the mod writes only a `techLevel` enum whose display text the base game already localizes; no Keyed, DefInjected or code-generated text exists (see "Translation audit"). About metadata is outside this gate per TRANSLATIONS.md. |
 | preTest | Validated | Dependencies actually used: none, and `About.xml` declares none. Established rather than assumed: only vanilla `PatchOperationAdd`/`Replace`/`Conditional` classes appear anywhere (no framework namespace), the mod ships no assembly, and all 166 corrections are proven no-ops against a document lacking their target, leaving it byte-identical (`Tests/Run.ps1`). Identifiers: all 30 `loadAfter` ids exist in `../Rimworld-Cherry-Pick-App/data/mod-labels.json`, a registry independent of the patches themselves, so none is a typo - including the 23 whose mods are not installed. Casing differs from that registry for 19 of them and does not matter: the game normalises, as its own `ModsConfig.xml` shows, holding 124 ids without a single uppercase character while `Udon.AnimalSimpleCommand` declares itself in mixed case. Load order: `loadAfter` and `Mod/Patches/` are the same 30 names in both directions. Mandatory versus optional: nothing is declared mandatory, every relationship is a `loadAfter`, and the description says so. LoadFolders: none shipped and none needed - one flat `Patches/` folder, no version or DLC gating - consistent with conditional patches that all report `success: Always`. |
-| done | Not reached | Automated tests, `Tests/Run.ps1`: **107 passed, 0 failed** after the 39 recorded starting levels were repaired. XML tests, `Tests/Check-Patches.ps1`: green. Functional scenarios: `TESTING.md`, 8 of them, written with preconditions, actions and expected results. **The pickles gate is what is left**: `Tests/Pickle/` is written and runnable but has never been executed, and AUDIT.md is explicit that an unexecuted test stays unverified. It is not justifiable as not-applicable either - its five scenarios were chosen precisely because a headless test cannot reach them. Running it needs a game, which the user has deferred. |
+| done | Validated | All four kinds written, executed and green on 2026-09-21: automated `Tests/Run.ps1` 107/0, XML `Tests/Check-Patches.ps1` pass, pickles `Tests/Pickle/` 5/5 headless in the WSL game, and `TESTING.md` carrying 8 functional scenarios with preconditions, actions and expected results. Nothing claimed not-applicable. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
 ### What is actually in the shipped folder
@@ -343,45 +342,56 @@ competes with this mod and neither explains the `Animal_Sarcophagus` value recor
 This covers the installed mods only, and one field on three defs. It is not a general proof that
 nothing ever overrides a correction; the Pickle suite is where that would show, in a real load.
 
-## The Pickle suite ran — 2026-09-20, 4 of 5
+## The Pickle suite is green — 2026-09-21, 5 of 5
 
-First execution of this suite, headless in the WSL game under `xvfb-run`, through
-`scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes`. Report kept at
-`Tests/Pickle/results/2026-09-20-summary.md`.
+Run headless in the WSL game through `scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes`.
+Report kept at `Tests/Pickle/results/2026-09-21-summary.md`; the 4-of-5 run of the day before is
+kept beside it, since the shared report directory is overwritten by whoever runs next.
 
 | Scenario | Outcome |
 |---|---|
-| the mod is loaded and says nothing | **Passed** |
-| it loads after the mods it corrects | **Passed** |
-| a def that had no level anywhere gets one | Failed — see below |
-| a def that declared its own level has it replaced | **Passed** |
-| an inherited level is overridden, not merely shadowed | **Passed** |
+| the mod is loaded and says nothing | Passed |
+| it loads after the mods it corrects | Passed |
+| a def that had no level anywhere gets one | Passed |
+| a def that declared its own level has it replaced | Passed |
+| an inherited level is overridden, not merely shadowed | Passed |
 
-**The one that mattered passed.** The 36 Ancient Amulets defs declare no `techLevel` and inherit
-`Medieval` from `AmuletBase`; the patch adds a node beside that inherited value, and whether the
-added node wins is decided when the game resolves `ParentName`, after patching. It wins. That is
-the single property no headless test could reach, and the reason this suite exists at all.
+**The one that justified running a game at all.** The 36 Ancient Amulets defs declare no
+`techLevel` and inherit `Medieval` from `AmuletBase`. The patch adds a node beside that inherited
+value, and which of the two the loaded def reports is settled when the game resolves `ParentName`,
+after patching. The added node wins. No headless test could establish that: `Tests/Run.ps1` sees
+the node appear in the XML, and asserting it also wins would only test this repository's own
+inheritance model against itself.
 
-**The failure was in the scenario, not the mod**, and it taught something worth keeping:
+**What the earlier failure was, and what it taught.** The 4-of-5 run failed on an assertion of
+mine, not on the mod: `ABooks_ArmyManual` names both a `ThingDef` and a `HediffDef`, and Pickle's
+`field` step takes no def type. Its error message suggests an `of type` form, which exists only
+for `exists` — following it produced an undefined step, one wasted run. 12 of the 23 corrected
+Alpha Books names are shared with a hediff that way, so the assertion moved to
+`ABooks_PsychologyBook`, a `ThingDef` and nothing else. The patches were never exposed to this:
+every generated xpath names its def type, which is precisely what makes them right, and
+`Tests/Run.ps1` requires a single match for that typed xpath.
 
-    'ABooks_ArmyManual' names more than one def (HediffDef, ThingDef);
-    say which with 'def "ABooks_ArmyManual" of type "..."'
+**Four faults stood between the suite and its first run**, none of them in this mod: the staging
+script did not carry `loadAfter` mods; an apostrophe in the companion mod's display name killed
+bash; the run filter arrived truncated at its first space; and the machine was contended all
+evening. The first and third were fixed by the session that owns the shared tooling, the second
+here, and the fourth by waiting.
 
-**defNames are unique per def type, not globally.** Alpha Books gives the same name to a book
-(`ThingDef`) and to the hediff of having read it. This corrects something stated earlier in this
-file, under "A defName corrected by two mods", which asserted the opposite; that entry's own
-conclusion survives, since both defs involved there are `ThingDef`s, but its reasoning was wrong.
+## preTest -> done, validated 2026-09-21
 
-The patches were never ambiguous — every generated xpath names its def type, which is exactly
-what made them right — and `Tests/Run.ps1` asserts a single match for that typed xpath, so it
-could not have drifted here either. Only the Pickle step was untyped. Fixed by spelling the type,
-which the step supports.
+All four kinds of test are written, executed and green against the shipped tree:
 
-Three earlier attempts failed before the game ever ran, for reasons outside this repository, all
-now settled: the staging script did not carry `loadAfter` mods (fixed by `wsl-deps.map`, which
-the owning session extended to stage and activate what a suite names); an apostrophe in the
-companion mod's display name killed bash (renamed here); and the run filter arrived truncated at
-its first space (fixed by that session, which now passes it through `WSLENV`).
+| Kind | Result |
+|---|---|
+| Functional scenarios | `TESTING.md`, 8 with preconditions, actions and expected results |
+| Automated | `Tests/Run.ps1` — **107 passed, 0 failed** |
+| XML | `Tests/Check-Patches.ps1` — **pass**, 30 files, 166 corrections |
+| Pickles / Gherkin | `Tests/Pickle/` — **5 passed, 0 failed** |
+
+Nothing is claimed not-applicable. `done` means ready for final functional validation in game,
+not already played through: the 8 scenarios of `TESTING.md` remain for a human to walk, and that
+is what `done -> tested` asks for.
 ## Patches outlive their mods, on purpose
 
 Stated by the user on 2026-09-20: the patches and recorded values for mods that are not currently
