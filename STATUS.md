@@ -19,10 +19,10 @@ workshop:
 remaining:
   - unverified: preTest - 22 of the 30 source mods are not installed on this machine on 2026-09-20 (the Workshop copy of Alchemy (Continued), present on 2026-09-17, is gone), so their packageIds in loadAfter and their 86 corrected defNames could not be checked against real mod data; only 8 mods (80 defNames) were, all resolved. Needs those mods available locally, not a fix
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
-  - unverified: the Pickle suite (Tests/Pickle/, 30 scenarios, 166 assertions) has never been run: it needs a RimWorld the audit must not start, and a run is only fully green with all 30 corrected mods enabled, of which 8 are installed here on 2026-09-20
-  - unverified: no automated C# test harness exists (no C# to test)
+  - unverified: the Pickle suite (Tests/Pickle/, 30 scenarios, 166 assertions) has never been run: it needs a RimWorld the audit must not start, and a run is only fully green with all 30 corrected mods enabled
+  - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def check ran for the 7 installed on 2026-09-20, and reports the rest as SKIP rather than passing them
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, read AUDIT.md at 8a0056f0 and corrected what it showed: the earlier "pickles" claim was a static substitute, replaced by a real Pickle suite under Tests/Pickle/, written and not run
+updated:      2026-09-20, unit tests added and green (100 passed, 41 s): RimWorld patch operations run headless over the shipped XML, which is what the Pickle suite was standing in for
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -73,7 +73,7 @@ has started.
 | options | Validated (not applicable, justified) | `settings_audit: not_applicable`, established by static inventory: no C# and no assembly anywhere in the tree, and the only XML besides About.xml is patch files writing `<techLevel>`, so no settings owner, page or MainButtons shortcut can exist (see "Settings audit"). Re-checked against the full 30-file tree after the Zombieland addition. No in-game integration is claimed as tested; none is required for this step. |
 | l10n | Validated (not applicable, justified) | `localization`, `translation_en`, `translation_fr: not_applicable`: an inventory of every `<value>` across the 30 patch files (332 `<value>` and 332 `<techLevel>` tags) shows the mod writes only a `techLevel` enum whose display text the base game already localizes; no Keyed, DefInjected or code-generated text exists (see "Translation audit"). About metadata is outside this gate per TRANSLATIONS.md. |
 | preTest | Not verified | The declarations are coherent as far as checkable: no `modDependencies`, 30 `loadAfter` entries matching the 30 patch files exactly, every patch guarded by a `success` of `Always`, no `LoadFolders.xml` needed, only vanilla patch classes. But on 2026-09-20 only 8 of the 30 source mods are installed here; for those, all 80 corrected defNames resolve and the packageIds match. For the other 22 mods, the packageIds and 86 defNames could not be verified against real data during this audit (see "Dependency check"). A mandatory criterion that cannot be verified now, not a defect found. |
-| done | Not reached | `TESTING.md` has 8 functional scenarios, written 2026-09-17, none run in game. XML tests, `Tests/Check-Patches.ps1`: written and green (30 files, 166 corrections). Pickle tests, `Tests/Pickle/`: written 2026-09-20, **never executed** — they run inside RimWorld, which this session does not start. No automated C# harness exists (no C# to test). Two of the four test kinds therefore remain unverified. |
+| done | Not reached | Automated tests, `Tests/Run.ps1`: written 2026-09-20 and **green — 100 passed, 0 failed**, in 41 seconds (see "Unit tests"). XML tests, `Tests/Check-Patches.ps1`: green (30 files, 166 corrections). Pickle tests, `Tests/Pickle/`: written 2026-09-20, **never executed** — they need a RimWorld this session must not start. `TESTING.md` has 8 functional scenarios, none run in game. So two of the four kinds pass and two remain unverified, both for want of a game run. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
 ### What is actually in the shipped folder
@@ -287,6 +287,55 @@ than a problem. Verified negatively: flipping one of the two to `Medieval` in a 
 produced `defName "ASC_ManualLeader" is corrected by several source mods with different values`,
 and the copy was restored (`git status` clean). The check is green on the real tree, with the
 note "1 defName(s) corrected by more than one source mod, all in agreement".
+
+## Unit tests — 2026-09-20, green
+
+`Tests/Run.ps1` builds and runs `Tests/TechLevelFixes.Tests.csproj`: **100 passed, 0 failed,
+41 seconds**, against the working tree. Written after the user’s correction that unit tests
+come first and Pickle does not replace them, for two concrete reasons — a Pickle run takes over
+the machine with real pointer input, and it takes minutes.
+
+**What is genuinely under test.** The suite builds the shipped `<Operation>` blocks into
+RimWorld’s own `PatchOperationConditional` / `Replace` / `Add` objects by reflection and calls
+`Apply`. The operations, their xpaths, their branch structure and their execution are the
+game’s; only the documents are ours. Per source mod:
+
+- the **replace** branch, from a fixture whose techLevel is deliberately never the answer;
+- the **add** branch, from a fixture with no techLevel, checking the rest of the def survives;
+- a **missing target**, checking `Apply` reports no failure and leaves the document byte-identical
+  — the executable form of README.md’s promise that a correction whose item is missing does nothing;
+- for the source mods installed, the operations against that mod’s **real def XML**, assembled
+  from the folders 1.6 would actually load. This is the check that would catch a renamed defName
+  or an xpath whose casing no longer matches upstream.
+
+`PatchOperation.Apply` opens a `DeepProfiler` section that needs the game’s infrastructure, so
+the profiler is Harmony-patched to a no-op for the run. That is the only thing bent to make these
+headless, and it is outside the operations themselves.
+
+**A tautology found and removed.** The first version drew both the operation and the expected
+value from the same file, so flipping a correction’s techLevel in a working copy still passed:
+it only asserted that the patch does what the patch says. The generated files also carry a
+`defName : from -> to` comment, which is written independently of the XML below it, so the suite
+now asserts the comment and the XML agree. Verified: the same flip is now caught as
+`sarg.alphabooks/ABooks_AdventuringLogs: comment and XML disagree`. A renamed defName is caught
+too, against real data: `Apparel_BlueScreenBeltX should exist exactly once ... got <0>`.
+
+**A check that was tried and dropped, deliberately.** Comparing the comment’s recorded *starting*
+level against the installed mod looked like the way to detect corrections arbitrated against data
+that has since moved. It cannot work here. cherrypick records the **effective** techLevel — after
+ParentName inheritance, and as it stood in the full modlist cherrypick ran against, where other
+mods’ patches may already have set it. Resolving inheritance against vanilla and the mod’s own
+abstract bases removed some mismatches and introduced others in the opposite direction
+(`Apparel_BlueScreenBelt` and `AMU_AmuletBarkeep` recorded as absent but resolving to `Medieval`;
+`Animal_Sarcophagus` the reverse). Since the oracle cannot be reproduced outside the modlist that
+produced it, the check was removed rather than left crying wolf. It also cost 65 of the run’s
+106 seconds. **Open question for the user**: whether those recorded `from` values are still
+meant to match today’s sources.
+
+**Scope limit, not a pass.** The real-def check ran for the 7 source mods installed on this
+machine on 2026-09-20 and prints `SKIP` with a reason for the other 23, which are covered by
+fixtures only. The installed set is moving: `starter.beeer` and `zal.alchemy` were present on
+2026-09-17 and their Workshop folders are gone today.
 
 ## Pickle tests — written 2026-09-20, corrected from a false claim
 

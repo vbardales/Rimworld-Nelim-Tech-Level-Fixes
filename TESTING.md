@@ -7,12 +7,18 @@ is no C# anywhere in the tree). Every scenario below has been **written**, none 
 **run**. `STATUS.md`'s `remaining` list tracks that distinction; do not read this file as
 a report of things observed.
 
-**Scenarios 1 to 4 and 7 are also played by Pickle**, in `Tests/Pickle/` — the same
-checks, asserted inside the running game against the live defs, one scenario per corrected
-mod. Prefer that suite for those five: it covers all 166 corrections instead of the handful
-spot-checked by hand below, and it needs no manual inspection of a def's fields. It has not
-been run either. Scenarios 5, 6 and 8 stay manual: they change the modlist or the files on
-disk, which a scenario running inside the game cannot do to itself.
+**Scenarios 1 to 4 and 7 are covered first by the unit tests**, `Tests/Run.ps1`: they run
+RimWorld’s own patch operations over the shipped XML with no game running, cover all 166
+corrections rather than the handful spot-checked by hand below, and finish in well under a
+minute. Run those on every change.
+
+The same five are also written as Pickle scenarios in `Tests/Pickle/`, which asserts them
+against the live defs inside a running game. That is the stronger evidence but the expensive
+one: a Pickle run takes over the machine and takes minutes, so it is for confirming a release,
+not for iterating. It has not been run.
+
+Scenarios 5, 6 and 8 stay manual: they change the modlist or the files on disk, which neither
+a unit test nor a scenario running inside the game can do to itself.
 
 ## Before starting
 
