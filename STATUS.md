@@ -21,7 +21,7 @@ remaining:
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
   - unverified: no automated C# test harness exists (no C# to test)
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, ModIcon re-cropped to remove the lettering (128x128, 18,907 bytes); preOptions, options, l10n validated; preTest blocked on unverifiable ids/defNames of 22 uninstalled source mods
+updated:      2026-09-20, ModIcon restored to the whole-image 128x128 reduction (lettering kept, 19,025 bytes) after a mistaken crop; preOptions, options, l10n validated; preTest blocked on unverifiable ids/defNames of 22 uninstalled source mods
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -66,7 +66,7 @@ has started.
 | Transition destination | Result | Evidence |
 | --- | --- | --- |
 | horsMonoRepo | Validated | As of 2026-09-17: GitHub repository `vbardales/rimworld-nelim-tech-level-fixes` created (public, user-validated exception to the "Nelim-prefixed = private" default), remote `origin` configured, commits pushed. STATUS.md exists. README.md, ATTRIBUTION.md, LICENSE (MIT) and CHANGELOG.md exist in English at the repository root, with LICENSE and ATTRIBUTION.md duplicated into `Mod/`. `.gitignore` and `.gitattributes` added. `packageId` (`nelim.techlevelfixes`), the displayed name (`Nelim's Tech Level Fixes`), the folder name (`TechLevelFixes`) and the repository name are mutually coherent. |
-| ModIcon generated | Validated | Development is finished (30 generated patch files, no build applicable: no C#). `Mod/About/ModIcon.png` is a 128x128 PNG, 18,907 bytes, produced on 2026-09-20 from the user's raw 1254x1254 generation (kept as `Art/ModIcon-source.png`, byte-identical to what was dropped in). First reduced whole (19,025 bytes), then re-cropped the same day at the user's request to drop the lettering "TECH LEVEL FIXES" (see "Icon re-crop"). Directly inspected at 128 px and at a 32 px copy enlarged 6x: the winking orange mascot, its gear, the ponytail and the wrench stay identifiable at 32 px, larger than before, and no lettering remains. The first raw drop (1254x1254, 1,114,566 bytes) was a defect and is superseded. |
+| ModIcon generated | Validated | Development is finished (30 generated patch files, no build applicable: no C#). `Mod/About/ModIcon.png` is a 128x128 PNG, 19,025 bytes, produced on 2026-09-20 from the user's raw 1254x1254 generation (kept as `Art/ModIcon-source.png`, byte-identical to what was dropped in), the whole image reduced with the lettering "TECH LEVEL FIXES" kept, as the user wants. A crop without the lettering was tried and reverted the same day (see "Icon re-crop, reverted"). Directly inspected at 128 px and at a 32 px copy enlarged 6x: the winking orange mascot and its gear stay identifiable at 32 px; the lettering does not (see reservations). The first raw drop (1254x1254, 1,114,566 bytes) was a defect and is superseded. |
 | Preview generated | Validated | `Mod/About/Preview.png` is a 896x504 (16:9) PNG, 868,710 bytes, under both the 900 KB target and the 1 MB hard limit. It is the top 1536x864 band of the user's raw 1536x1024 generation (kept unchanged as `Art/Preview.png`), reduced with high-quality bicubic resampling; the crop removes only floor at the bottom. Directly inspected at full size and at a 268 px thumbnail: high oblique camera, tiled floor, one lamp pool, one dark settler from behind, four objects still identifiable at 268 px; no camera defect observed, no readable text. No overlay yet: title and badge belong to preOptions. The first raw drop (1536x1024, 2,070,420 bytes) was a defect and is superseded. |
 | preOptions | Validated | Preview adjusted on 2026-09-20 (see "Preview overlay"): accent `#3AAEF0` (blue family) is clearly separate from the secondary ink `#E0A870` (warm brown family), 172 degrees apart in hue, checked visually at 896x504 and at a 268 px thumbnail. Description is in English and ends, after the feature text, with exactly `[url=https://github.com/vbardales/rimworld-nelim-tech-level-fixes]Source code on GitHub[/url]` as its last element; that target equals the `origin` remote and the `<url>` field, and `gh repo view` confirmed the repository exists and is public. Naming: `Nelim's` is the prefix (reduced to 65% in secondary ink), `Tech Level Fixes` keeps 100% in primary ink; no `Renew`/`Extended`/`Plus` suffix applies to an original mod, and the title has no connecting word to reduce. No `(prohibited)`/`(unofficial)` tag applies (public, licence `original`). |
 | options | Validated (not applicable, justified) | `settings_audit: not_applicable`, established by static inventory: no C# and no assembly anywhere in the tree, and the only XML besides About.xml is patch files writing `<techLevel>`, so no settings owner, page or MainButtons shortcut can exist (see "Settings audit"). Re-checked against the full 30-file tree after the Zombieland addition. No in-game integration is claimed as tested; none is required for this step. |
@@ -355,17 +355,15 @@ thumbnail (inspection copies live in the ignored scratchpad, not the repo).
 Result: `ModIcon générée` and `Preview générée` **validated**, so
 `workflow_stage` is now `Preview générée`.
 
-### Icon re-crop — 2026-09-20, at the user's request ("juste retaille-la")
+### Icon re-crop, reverted — 2026-09-20
 
-Measured on `Art/ModIcon-source.png` (1254x1254): the background is a flat
-`rgb(9,2,0)` at all four corners and along the top edge; the mascot, gear, wrench
-and sparkle span columns 188-1130 and rows 106-975; rows 980-1005 are empty; the
-lettering occupies rows 1008-1115. The icon is now a 1062 px square, source
-columns 128-1189, rows 46-994, so the content has an equal 60 px margin on each
-side, then reduced to 128x128 with bicubic resampling. The rows below 994 are the
-plain background colour where the lettering was, so nothing but background was
-replaced; the source image is unchanged. Only `Mod/About/ModIcon.png` and this
-file changed. No new image was generated.
+A crop of `Art/ModIcon-source.png` that removed the lettering (1062 px square,
+source columns 128-1189, rows 46-994, plain background `rgb(9,2,0)` below) was
+made and committed as `0f6cd5b`, after reading "juste retaille-la" as "crop it".
+The user meant the opposite: keep the lettering and only reduce the weight. The
+file was restored byte for byte from the earlier whole-image reduction
+(`d3fba62`, 19,025 bytes). The source was never modified. Lesson for this mod:
+"retaille" here meant resize, not crop.
 
 ### Preview overlay — 2026-09-20, at the user's request (title and badge, then summary)
 
@@ -439,10 +437,12 @@ their packageIds.
 
 ### Reservations (non-blocking, not required to pass)
 
-- (Resolved 2026-09-20, see "Icon re-crop".) The first icon carried the words
-  "TECH LEVEL FIXES", illegible at 32 px and against the icon block of
-  STYLE_RIMWORLD.md, which asks for no text. The original with its lettering is
-  still `Art/ModIcon-source.png`.
+- The icon carries the words "TECH LEVEL FIXES", which the user chose to keep. The
+  icon block of STYLE_RIMWORLD.md asks for no text, and at 32 px the lettering is
+  illegible (a smudged strip under the mascot) while the mascot's head and wink
+  remain identifiable and the wrench beside the head is lost. A visual doubt with
+  a concrete reason, not a defect against a mandatory criterion, and an accepted
+  choice.
 - The Preview is on the dark side (mostly cold-brown floor), as STYLE_RIMWORLD.md
   itself notes of the whole family.
 
