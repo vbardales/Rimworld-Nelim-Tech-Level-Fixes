@@ -9,20 +9,20 @@ repo:         rimworld-nelim-tech-level-fixes
 visibility:   public
 detached:     yes
 stage:        showcase
-workflow_stage: l10n
+workflow_stage: preTest
 licence:      original
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
-dependencies: none
+dependencies: none  # verified 2026-09-20: no modDependencies declared and none used
 showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - unverified: preTest - most of the 30 source mods are not installed on this machine, so their packageIds in loadAfter and their corrected defNames cannot be checked against real mod data. Temporary and by design: the user gates the modlist by tech level and puts a mod back when the colony reaches it, so those mods and their checks return on their own schedule. Every defName of every mod that was installed did resolve. Their patches stay in place meanwhile - see "Patches outlive their mods"
+  - unverified: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. This does not affect preTest, whose criteria are about declarations rather than targets, and it is temporary by design: the user gates the modlist by tech level and puts a mod back when the colony reaches it. Their patches stay in place meanwhile - see "Patches outlive their mods"
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game. The user stated on 2026-09-20 that no in-game test is planned for now, so this is deferred by decision rather than pending
   - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It is at least runnable now - retargeted on 2026-09-20 onto Alpha Books, Additional Tools and Ancient Amulets, all installed, after it was found to name two mods that had been removed
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, recorded that patches for uninstalled mods are kept on purpose - the modlist is gated by tech level and those mods come back - so the gap they leave in checking is not content to prune
+updated:      2026-09-20, preTest validated: dependencies, identifiers, load order and LoadFolders all established, the 30 loadAfter ids corroborated against an independent registry; done now waits only on the Pickle suite being run
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -72,8 +72,8 @@ has started.
 | preOptions | Validated | Preview adjusted on 2026-09-20 (see "Preview overlay"): accent `#3AAEF0` (blue family) is clearly separate from the secondary ink `#E0A870` (warm brown family), 172 degrees apart in hue, checked visually at 896x504 and at a 268 px thumbnail. Description is in English and ends, after the feature text, with exactly `[url=https://github.com/vbardales/rimworld-nelim-tech-level-fixes]Source code on GitHub[/url]` as its last element; that target equals the `origin` remote and the `<url>` field, and `gh repo view` confirmed the repository exists and is public. Naming: `Nelim's` is the prefix (reduced to 65% in secondary ink), `Tech Level Fixes` keeps 100% in primary ink; no `Renew`/`Extended`/`Plus` suffix applies to an original mod, and the title has no connecting word to reduce. No `(prohibited)`/`(unofficial)` tag applies (public, licence `original`). |
 | options | Validated (not applicable, justified) | `settings_audit: not_applicable`, established by static inventory: no C# and no assembly anywhere in the tree, and the only XML besides About.xml is patch files writing `<techLevel>`, so no settings owner, page or MainButtons shortcut can exist (see "Settings audit"). Re-checked against the full 30-file tree after the Zombieland addition. No in-game integration is claimed as tested; none is required for this step. |
 | l10n | Validated (not applicable, justified) | `localization`, `translation_en`, `translation_fr: not_applicable`: an inventory of every `<value>` across the 30 patch files (332 `<value>` and 332 `<techLevel>` tags) shows the mod writes only a `techLevel` enum whose display text the base game already localizes; no Keyed, DefInjected or code-generated text exists (see "Translation audit"). About metadata is outside this gate per TRANSLATIONS.md. |
-| preTest | Not verified | The declarations are coherent as far as checkable: no `modDependencies`, 30 `loadAfter` entries matching the 30 patch files exactly, every patch guarded by a `success` of `Always`, no `LoadFolders.xml` needed, only vanilla patch classes. But on 2026-09-20 only 8 of the 30 source mods are installed here; for those, all 80 corrected defNames resolve and the packageIds match. For the other 22 mods, the packageIds and 86 defNames could not be verified against real data during this audit (see "Dependency check"). A mandatory criterion that cannot be verified now, not a defect found. |
-| done | Not reached | Automated tests, `Tests/Run.ps1`: written 2026-09-20, **104 passed, 3 failed** in 44 seconds — the three failures are a real finding about the corrections, not about the harness (see "Stale starting levels"). XML tests, `Tests/Check-Patches.ps1`: green (30 files, 166 corrections). Pickle tests, `Tests/Pickle/`: written 2026-09-20, **never executed** — they need a RimWorld this session must not start. `TESTING.md` has 8 functional scenarios, none run in game. So two of the four kinds pass and two remain unverified, both for want of a game run. |
+| preTest | Validated | Dependencies actually used: none, and `About.xml` declares none. Established rather than assumed: only vanilla `PatchOperationAdd`/`Replace`/`Conditional` classes appear anywhere (no framework namespace), the mod ships no assembly, and all 166 corrections are proven no-ops against a document lacking their target, leaving it byte-identical (`Tests/Run.ps1`). Identifiers: all 30 `loadAfter` ids exist in `../Rimworld-Cherry-Pick-App/data/mod-labels.json`, a registry independent of the patches themselves, so none is a typo - including the 23 whose mods are not installed. Casing differs from that registry for 19 of them and does not matter: the game normalises, as its own `ModsConfig.xml` shows, holding 124 ids without a single uppercase character while `Udon.AnimalSimpleCommand` declares itself in mixed case. Load order: `loadAfter` and `Mod/Patches/` are the same 30 names in both directions. Mandatory versus optional: nothing is declared mandatory, every relationship is a `loadAfter`, and the description says so. LoadFolders: none shipped and none needed - one flat `Patches/` folder, no version or DLC gating - consistent with conditional patches that all report `success: Always`. |
+| done | Not reached | Automated tests, `Tests/Run.ps1`: **107 passed, 0 failed** after the 39 recorded starting levels were repaired. XML tests, `Tests/Check-Patches.ps1`: green. Functional scenarios: `TESTING.md`, 8 of them, written with preconditions, actions and expected results. **The pickles gate is what is left**: `Tests/Pickle/` is written and runnable but has never been executed, and AUDIT.md is explicit that an unexecuted test stays unverified. It is not justifiable as not-applicable either - its five scenarios were chosen precisely because a headless test cannot reach them. Running it needs a game, which the user has deferred. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
 ### What is actually in the shipped folder
@@ -300,6 +300,31 @@ than a problem. Verified negatively: flipping one of the two to `Medieval` in a 
 produced `defName "ASC_ManualLeader" is corrected by several source mods with different values`,
 and the copy was restored (`git status` clean). The check is green on the real tree, with the
 note "1 defName(s) corrected by more than one source mod, all in agreement".
+
+## preTest — validated 2026-09-20
+
+The blocker recorded earlier that day was misread. It said the 23 uninstalled mods made preTest
+unverifiable, but that conflated two different things: whether the **declarations** are right,
+which is what this transition asks, and whether each correction's **target** exists, which is not.
+The second stays open and is recorded in `remaining`; the first can be settled for all 30.
+
+- **Dependencies actually used: none, and none declared.** Not assumed: no assembly ships, only
+  vanilla `PatchOperationAdd`/`Replace`/`Conditional` classes appear in any file, and every one of
+  the 166 corrections is proven a no-op against a document without its target, returning it
+  byte-identical (`Tests/Run.ps1`).
+- **Identifiers: all 30 exist.** Checked against
+  `../Rimworld-Cherry-Pick-App/data/mod-labels.json`, a classification of the installed corpus
+  that is independent of these patch files, so a typo shared between a filename and its
+  `loadAfter` entry would still show. None is missing, including the 23 whose mods are gone.
+- **Casing does not matter, and this is evidence rather than lore.** That registry stores ids
+  lowercased, so 19 of the 30 differ from it in case. RimWorld normalises: its own
+  `ModsConfig.xml` holds 124 ids without a single uppercase letter, while `Udon.AnimalSimpleCommand`
+  declares itself in mixed case in its `About.xml`. The game writes back what it parsed, lowercased.
+- **Load order, and mandatory versus optional.** `loadAfter` and `Mod/Patches/` are the same 30
+  names in both directions. Nothing is declared mandatory, which is correct: no mod is required,
+  and the description says so.
+- **LoadFolders: none, and none needed.** One flat `Patches/` folder, no version or DLC gating,
+  consistent with conditional patches that all report `success: Always`.
 
 ## Patches outlive their mods, on purpose
 
