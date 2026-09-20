@@ -288,10 +288,15 @@ for 165 distinct defNames. The repeat is `ASC_ManualLeader`, corrected by both
 `cedaro.animalcommander.xml` (Animal Commander) and `Udon.AnimalSimpleCommand.xml` (Animal
 Simple Command) — the `ASC_` prefix and the shared defName suggest one continues the other.
 
-**Not a defect: both corrections set `Neolithic`.** defNames are global in RimWorld, so if both
-mods are enabled the one loading last owns the def; since the two corrections agree, the final
-techLevel is the same either way. If they ever disagreed, the result would silently depend on
-the mod order the player happens to have.
+**Not a defect: both corrections set `Neolithic`.** Both are `ThingDef`s of that name, and a
+defName is unique within a def type, so if both mods are enabled the one loading last owns it.
+Since the two corrections agree, the final techLevel is the same either way; had they disagreed,
+the result would silently depend on the mod order the player happens to have.
+
+(This paragraph first said defNames are global. They are not — they are unique per def type, as
+the Pickle run of 2026-09-20 established when `ABooks_ArmyManual` turned out to be both a
+`ThingDef` and a `HediffDef`. The conclusion above survives because both defs here are
+`ThingDef`s, but the reason given for it was wrong.)
 
 `Tests/Check-Patches.ps1` only looked for duplicate defNames *within* one file, so it could not
 have seen this. It now also groups corrections by defName *across* files and fails when a shared
