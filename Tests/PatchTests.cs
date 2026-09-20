@@ -330,15 +330,22 @@ internal static class PatchTests
             {
                 var combined = CombinedDefs(folder);
                 var byName = ByName(combined);
+                // Every mismatch, not just the first: these cluster by source mod - all 36 of
+                // Ancient Amulets disagree the same way - and stopping at the first made the
+                // finding look like three defs when it is three dozen.
+                var drifted = new List<string>();
                 foreach (var c in group)
                 {
                     if (c.CommentTo == null) continue;
                     var def = combined.SelectSingleNode("/Defs/" + c.DefType + "[defName=\"" + c.DefName + "\"]") as XmlElement;
-                    Require(def != null, c.DefName + ": not found in the installed mod");
-                    Equal(c.CommentFrom, EffectiveTechLevel(def, byName),
-                        c.DefName + ": the source mod's effective techLevel no longer matches what this " +
-                        "correction was arbitrated against (recorded as " + (c.CommentFrom ?? "absent") + ")");
+                    if (def == null) { drifted.Add(c.DefName + ": not found in the installed mod"); continue; }
+                    var now = EffectiveTechLevel(def, byName);
+                    if (now != c.CommentFrom)
+                        drifted.Add(c.DefName + ": recorded " + (c.CommentFrom ?? "none") + ", now " + (now ?? "none"));
                 }
+                Require(drifted.Count == 0, drifted.Count + " of " + group.Count() +
+                    " corrections were arbitrated against a starting level this mod no longer has:" +
+                    Environment.NewLine + "  " + string.Join(Environment.NewLine + "  ", drifted));
             });
 
         }

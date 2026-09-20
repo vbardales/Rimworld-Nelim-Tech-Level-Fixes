@@ -17,13 +17,13 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - defect: three corrections no longer reproduce the starting tech level they were arbitrated against, found 2026-09-20 by the unit tests (see "Stale starting levels"). Apparel_BlueScreenBelt (Mlie.AdvancedRaiders) and AMU_AmuletBarkeep (zal.ancientamulets) are recorded as having had none but now inherit Medieval; Animal_Sarcophagus (overpl.AnimalSarcophagus) is recorded as Medieval but now inherits nothing. The corrections themselves still apply. Cause open between the source mods changing and the modlist changing - the user removed mods above neolithic on or before 2026-09-20 - and the tests compare against one source mod in isolation, which cannot tell the two apart. For cherrypick, not a hand edit: the files are generated.
+  - defect: 39 of the 78 checkable corrections no longer reproduce the starting tech level they were arbitrated against, confirmed 2026-09-20 by cherrypick’s own scan of the current list (see "Stale starting levels"). All 36 of zal.ancientamulets, both of overpl.AnimalSarcophagus, the single one of Mlie.AdvancedRaiders; the other four installed mods agree exactly. The corrections still apply - it is the ground they were decided on that moved. Regenerating them is not possible with the tool as it stands: cherrypick has no generate command, and the picker README lists "la génération du mod" as still to come.
   - unverified: preTest - most of the 30 source mods are not installed on this machine, so their packageIds in loadAfter and their corrected defNames cannot be checked against real mod data. This is deliberate, not an accident: the user is removing mods above neolithic, which is why 8 were found in the morning of 2026-09-20 and 7 by the evening. Every defName of every mod that was installed did resolve. Checking the rest needs those mods reinstalled, which is not something to ask for on the strength of an audit
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game. The user stated on 2026-09-20 that no in-game test is planned for now, so this is deferred by decision rather than pending
   - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios, cut back on 2026-09-20 to what only a live game shows) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It also names defs from four source mods, two of which are no longer installed, so it would need them back to mean anything
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def check ran for the 7 installed on 2026-09-20, and reports the rest as SKIP rather than passing them
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, recorded that the absent source mods are a deliberate removal of above-neolithic content and that in-game testing is deferred by the user; the three stale arbitrations may follow from that same removal
+updated:      2026-09-20, cherrypick re-scanned on the current list: 39 of 78 checkable corrections were arbitrated against a starting level it no longer reports; the tool has no generate command, so nothing was rebuilt
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -302,44 +302,51 @@ produced `defName "ASC_ManualLeader" is corrected by several source mods with di
 and the copy was restored (`git status` clean). The check is green on the real tree, with the
 note "1 defName(s) corrected by more than one source mod, all in agreement".
 
-## Stale starting levels — found 2026-09-20 by the unit tests
+## Stale starting levels — measured against cherrypick itself, 2026-09-20
 
 Each generated correction carries a `defName : from -> to` comment recording the level the def
-had when cherrypick arbitrated it. The user confirmed on 2026-09-20 that those recorded values
-are meant to match the sources as they stand, so the unit tests check them. Three do not:
+had when cherrypick arbitrated it. The user confirmed those values are meant to match current
+sources, and then asked for cherrypick to be re-run on the current list.
 
-| defName | source mod | recorded | today |
-|---|---|---|---|
-| `Apparel_BlueScreenBelt` | `Mlie.AdvancedRaiders` | none | `Medieval` |
-| `AMU_AmuletBarkeep` | `zal.ancientamulets` | none | `Medieval` |
-| `Animal_Sarcophagus` | `overpl.AnimalSarcophagus` | `Medieval` | none |
+**Re-running it means `scan`, not regeneration.** The engine at
+`../Rimworld-Cherry-Pick-App/engine` offers `list`, `scan`, `view`, `close` and `toggle`. There
+is no generate command; `picker/README.md` still lists *la génération du mod* under what is to
+come. So the patch files under `Mod/Patches/` cannot be rebuilt by the tool today, and nothing
+here was rewritten. What the tool can do is report the level each def resolves to now, which is
+exactly the oracle these corrections were written against.
 
-"Today" is the **effective** level, resolved through `ParentName` the way the game does, against
-the installed copy. That resolution is not a guess: `ASC_ManualDefend` is recorded as `Archotech`
-and declares no techLevel of its own, inheriting it from `ASC_ManualBase` — which is what
-establishes that cherrypick records the inherited value, and it now passes. `Animal_Sarcophagus`
-declares none in any of its four version folders and its parent `BuildingBase` declares none
-either, so `Medieval` cannot be reached from the current source at all.
+`dotnet engine/bin/Release/net8.0/cherrypick.dll scan <packageId>` over the seven installed
+source mods, compared against the recorded values:
 
-**A second explanation, which arrived after the finding.** The user removes mods whose content
-sits above neolithic, and had done so by 2026-09-20 — that is why the installed count fell from
-8 to 7 during the day, and why `zal.alchemy` and `starter.beeer` went missing since 2026-09-17.
-cherrypick records the level a def had **in the modlist it ran against**, so a mod that used to
-patch one of these fields and has since been removed would produce exactly this. For
-`Animal_Sarcophagus` that fits well: it declares no techLevel in any of its four version folders
-and `BuildingBase` declares none either, so `Medieval` is unreachable from that mod alone and
-must have come from somewhere else in the old list.
+| source mod | corrections | agree |
+|---|---|---|
+| `LadyElizabeth.AdditionalToolsMod` | 6 | all |
+| `Romyashi.AncientJunkLoot` | 6 | all |
+| `sarg.alphabooks` | 23 | all |
+| `Udon.AnimalSimpleCommand` | 4 | all |
+| `Mlie.AdvancedRaiders` | 1 | **none** |
+| `overpl.AnimalSarcophagus` | 2 | **none** |
+| `zal.ancientamulets` | 36 | **none** |
 
-These unit tests compare against one source mod in isolation, which cannot tell "the source
-changed" from "the list changed". Both mean the arbitration rests on ground that has moved, but
-they call for different answers, and only a cherrypick pass over the current list can say which.
+**39 of 78 checkable corrections disagree**, and they cluster by mod rather than scattering.
 
-**What this does and does not mean.** The corrections still apply cleanly — the add and replace
-branches and the real-def checks all pass for these three. What has moved is the ground the
-arbitration stood on: each was decided against a source that has since changed, so the chosen
-level may no longer be the right answer. That is a judgement for cherrypick, not a patch to
-hand-edit; every file says so in its own header. The tests are left failing rather than
-relaxed, so the finding stays visible.
+**Two shapes, and only one of them has an explanation.** The 37 that read *recorded none, now
+Medieval* are all defs that inherit their level: cherrypick reports `TechLevelFrom` as
+`AmuletBase` for the amulets and `ApparelNoQualityBase` for the belt. A generation pass that
+read the def’s own XML rather than the resolved value would record exactly that, which points at
+those files predating the inheritance resolution the picker now advertises. The two
+`Animal_Sarcophagus` entries run the other way — *recorded Medieval, now none* — and that fits
+neither: the def declares no level in any of its four version folders, and `BuildingBase` gives
+it none either, so `Medieval` is unreachable from the current data by any route.
+
+**The harness agrees with the tool, def for def.** Every value in the "now" column above was
+produced independently by `Tests/Run.ps1`, resolving `ParentName` itself, before cherrypick was
+consulted. The two match on all 78. That is worth more than either alone: the unit tests can be
+trusted as a standing check without the engine, and the engine confirms they are not measuring
+their own assumptions.
+
+The tests are left failing rather than relaxed. They now list every drifted def per mod instead
+of stopping at the first, which is what turned "three defs" into three dozen.
 
 ## Unit tests — 2026-09-20
 
