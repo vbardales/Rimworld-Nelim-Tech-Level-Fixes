@@ -22,9 +22,12 @@
     - the same defName corrected twice in one file;
     - a patch file whose source mod (its own filename, the source mod's packageId) is not
       declared in About.xml's <loadAfter>, or a <loadAfter> entry with no patch file - the
-      two are supposed to be exactly the same 29 names, checked here instead of by eye.
+      two are supposed to be exactly the same set of names, checked here instead of by eye;
+    - LICENSE or ATTRIBUTION.md drifting between the repository root and the copy inside Mod/,
+      which is the one Steam ships.
 
-  Pure XML parsing, no RimWorld installation or assembly reference needed.
+  Pure XML parsing, no RimWorld installation or assembly reference needed. What the patches do
+  once applied is the unit tests' job, in Tests/Run.ps1.
 
 .EXAMPLE
   pwsh -File Tests/Check-Patches.ps1
@@ -195,6 +198,23 @@ foreach ($entry in $byDefName.GetEnumerator()) {
         $disagreeingDefNames++
         $where = ($entry.Value | ForEach-Object { "$($_.File)=$($_.Value)" }) -join ', '
         $problems.Add("defName `"$($entry.Key)`" is corrected by several source mods with different values: $where")
+    }
+}
+
+# LICENSE and ATTRIBUTION.md exist twice on purpose: once at the root for the repository, once
+# inside Mod/ because Steam ships that folder as it stands and the MIT notice has to travel with
+# the distribution. PUBLISHING.md warns that the two copies drift without a sound, and they did:
+# on 2026-09-20 the shipped ATTRIBUTION still said 29 mods and omitted brrainz.zombieland, three
+# days after the root copy was updated. This is the sound.
+foreach ($duplicated in @('LICENSE', 'ATTRIBUTION.md')) {
+    $rootCopy = Join-Path $RepoRoot $duplicated
+    $shippedCopy = Join-Path $RepoRoot "Mod/$duplicated"
+    if (-not (Test-Path $rootCopy)) { $problems.Add("$duplicated is missing from the repository root"); continue }
+    if (-not (Test-Path $shippedCopy)) { $problems.Add("$duplicated is missing from Mod/, which is what Steam ships"); continue }
+    $rootHash = (Get-FileHash -Algorithm SHA256 $rootCopy).Hash
+    $shippedHash = (Get-FileHash -Algorithm SHA256 $shippedCopy).Hash
+    if ($rootHash -ne $shippedHash) {
+        $problems.Add("$duplicated differs between the repository root and Mod/: the shipped copy is what subscribers get, so recopy it after every edit")
     }
 }
 

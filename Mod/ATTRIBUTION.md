@@ -9,7 +9,7 @@ description or other creative content from any corrected mod is reproduced here.
 
 ## Mods this one corrects
 
-The 29 mods below are the *targets* of a correction, not a source this mod is derived from or
+The 30 mods below are the *targets* of a correction, not a source this mod is derived from or
 studied. Each is referenced only by its `packageId` and the `defName`s of the items it defines;
 this mod does not ship, alter or redistribute any of their files.
 
@@ -18,6 +18,7 @@ this mod does not ship, alter or redistribute any of their files.
 - `Ali.CraftingTable`
 - `AmateurLLTechBox.AmatuerLLsToys.0001`
 - `AR13S.AnimalCaps`
+- `brrainz.zombieland`
 - `cedaro.animalcommander`
 - `Dipsy.Diapers`
 - `hlx.UltratechAlteredCarbon`

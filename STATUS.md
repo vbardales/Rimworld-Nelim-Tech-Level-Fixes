@@ -23,7 +23,7 @@ remaining:
   - unverified: the Pickle suite (Tests/Pickle/, 30 scenarios, 166 assertions) has never been run: it needs a RimWorld the audit must not start, and a run is only fully green with all 30 corrected mods enabled
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def check ran for the 7 installed on 2026-09-20, and reports the rest as SKIP rather than passing them
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, unit tests find three corrections arbitrated against starting levels their source mods no longer have; Pickle suite cut to what only a live game shows, per AUDIT.md d89fcce1
+updated:      2026-09-20, shipped ATTRIBUTION.md resynchronised with the root copy (it had drifted since 2026-09-17) and both duplicated files now checked on every run; unit tests still report the three stale arbitrations
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -268,6 +268,19 @@ corrections.** Re-verified rather than assumed unchanged:
 
 No transition changes as a result: `workflow_stage` stays `horsMonoRepo`, still
 blocked on ModIcon/Preview generation (2026-09-20) ahead of `preOptions`.
+
+## The shipped ATTRIBUTION had drifted — found and fixed 2026-09-20
+
+`LICENSE` and `ATTRIBUTION.md` exist twice on purpose: at the repository root, and inside `Mod/`
+because Steam ships that folder as it stands. PUBLISHING.md warns that the two copies
+desynchronise without a sound. They had: the Zombieland addition of 2026-09-17 updated the root
+copy to 30 mods, and `Mod/ATTRIBUTION.md` still said 29 and omitted `brrainz.zombieland`. Three
+days in which the file every subscriber would receive was wrong about what the mod corrects.
+
+Recopied, and the two copies now hash identically. `Tests/Check-Patches.ps1` compares both
+duplicated files by SHA-256 on every run, so the next drift fails a test instead of waiting for
+someone to notice: verified by appending a line to the shipped copy and watching it fail, then
+restoring it.
 
 ## A defName corrected by two mods — found 2026-09-20
 
