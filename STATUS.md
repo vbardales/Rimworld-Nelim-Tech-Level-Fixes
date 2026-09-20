@@ -8,8 +8,8 @@ packageId:    nelim.techlevelfixes
 repo:         rimworld-nelim-tech-level-fixes
 visibility:   public
 detached:     yes
-stage:        port
-workflow_stage: horsMonoRepo
+stage:        showcase
+workflow_stage: Preview générée
 licence:      original
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none
@@ -17,13 +17,11 @@ showcase:
 tested_on:
 workshop:
 remaining:
-  - defect: Mod/About/ModIcon.png is 1254x1254 / 1,114,566 bytes (expected 128x128, ~30 KB) - raw generated source dropped in place, not yet reduced
-  - defect: Mod/About/Preview.png is 1536x1024 (3:2) / 2,070,420 bytes (expected 896x504 16:9, under 1 MB, hard limit) - raw generated source dropped in place, not yet cropped/reduced
-  - unverified: raw originals not yet preserved under Art/ (STYLE_RIMWORLD.md keeps the source next to the shipped file); both images are untracked in git and must not be committed at this size, since Steam ships Mod/ as is
+  - feature: preOptions - engrave the Preview overlay (title with `Nelim's` as reduced secondary-ink prefix, summary, accent rule, 1.6 badge), save the palette to Art/preview-palette.json, and check the English description and naming conventions
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
   - unverified: no automated C# test harness exists (no C# to test)
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, images audited: ModIcon and Preview present but raw (1254x1254, 1536x1024 / 2 MB), not yet within spec; stage stays horsMonoRepo
+updated:      2026-09-20, ModIcon (128x128) and Preview (896x504) resized from the raw generations, sources kept in Art/; workflow_stage Preview générée
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -68,9 +66,9 @@ has started.
 | Transition destination | Result | Evidence |
 | --- | --- | --- |
 | horsMonoRepo | Validated | As of 2026-09-17: GitHub repository `vbardales/rimworld-nelim-tech-level-fixes` created (public, user-validated exception to the "Nelim-prefixed = private" default), remote `origin` configured, commits pushed. STATUS.md exists. README.md, ATTRIBUTION.md, LICENSE (MIT) and CHANGELOG.md exist in English at the repository root, with LICENSE and ATTRIBUTION.md duplicated into `Mod/`. `.gitignore` and `.gitattributes` added. `packageId` (`nelim.techlevelfixes`), the displayed name (`Nelim's Tech Level Fixes`), the folder name (`TechLevelFixes`) and the repository name are mutually coherent. |
-| ModIcon generated | Not validated (defect) | As of 2026-09-20 `Mod/About/ModIcon.png` exists but is 1254x1254, 1,114,566 bytes: not the required 128x128 / ~30 KB, so "installed at the expected dimensions and format" is not met. Directly inspected: orange winking mascot with ponytail, gear, circuit traces, wrench and sparkle on a near-black ground - on-style, but it also carries the words "TECH LEVEL FIXES" (see reservations). |
-| Preview generated | Not validated (defect) | As of 2026-09-20 `Mod/About/Preview.png` exists but is 1536x1024 (3:2) and 2,070,420 bytes: neither the 16:9 / 896x504 format nor the under-1 MB limit is met. Directly inspected: high oblique camera, tiled floor, single warm lamp pool, brown dominant family, one dark colonist seen from behind, four objects from crude to advanced, blue-striped crate; no camera defect observed, no readable text, no overlay yet (title/badge belong to the preOptions step). |
-| preOptions | Not reached | Blocked behind horsMonoRepo. `About.xml`'s `<description>` does not end with a `[url=...]Source code on GitHub[/url]` link (no repository to link to yet), and there is no repository to check naming/prefix conventions against beyond the About name itself. |
+| ModIcon generated | Validated | Development is finished (30 generated patch files, no build applicable: no C#). `Mod/About/ModIcon.png` is a 128x128 PNG, 19,025 bytes, produced on 2026-09-20 from the user's raw 1254x1254 generation (kept as `Art/ModIcon-source.png`, byte-identical to what was dropped in). Directly inspected at 128 px and at a 32 px copy enlarged 6x: the winking orange mascot and its gear stay identifiable at 32 px; the lettering does not (see reservations). The first raw drop (1254x1254, 1,114,566 bytes) was a defect and is superseded. |
+| Preview generated | Validated | `Mod/About/Preview.png` is a 896x504 (16:9) PNG, 868,710 bytes, under both the 900 KB target and the 1 MB hard limit. It is the top 1536x864 band of the user's raw 1536x1024 generation (kept unchanged as `Art/Preview.png`), reduced with high-quality bicubic resampling; the crop removes only floor at the bottom. Directly inspected at full size and at a 268 px thumbnail: high oblique camera, tiled floor, one lamp pool, one dark settler from behind, four objects still identifiable at 268 px; no camera defect observed, no readable text. No overlay yet: title and badge belong to preOptions. The first raw drop (1536x1024, 2,070,420 bytes) was a defect and is superseded. |
+| preOptions | Not reached | Requires the engraved overlay with an accent colour distinct from the secondary ink (palette in `Art/preview-palette.json`), the English description, and prefix/suffix and connecting-word handling per the naming conventions. `About.xml`'s description already ends with the `[url=...]Source code on GitHub[/url]` link and `<url>` matches the remote. None of the overlay work exists yet. |
 | options | Not reached | `settings_audit` unchecked; gate not entered. |
 | l10n | Not reached | `localization`, `translation_en`, `translation_fr` unchecked; gate not entered. |
 | preTest | Not reached | Not applicable yet: no LoadFolders.xml is shipped, and there is nothing to audit for dependency declarations beyond the existing `loadAfter` list, which is out of scope until the earlier gates pass. |
@@ -112,12 +110,11 @@ exception to the "Nelim-prefixed mod = private" default; README.md,
 ATTRIBUTION.md, LICENSE and CHANGELOG.md written in English, with LICENSE and
 ATTRIBUTION.md duplicated into `Mod/`; `.gitignore` and `.gitattributes` added.
 
-### Remaining mandatory work before `horsMonoRepo -> ModIcon générée`
+### Historical: before `horsMonoRepo -> ModIcon générée` (superseded 2026-09-20, see "Resize")
 
 - Generate and install `Mod/About/ModIcon.png` at the expected dimensions and
-  format. No image has been generated in this session (the audit and this
-  follow-up work were documentation/repository work only); the user will
-  generate both `ModIcon.png` and `Preview.png` on 2026-09-20.
+  format. No image was generated by this session; the user generated both
+  `ModIcon.png` and `Preview.png` on 2026-09-20.
   `../PROMPT_TECHLEVELFIXES.md` (parent `rimworld` folder, outside this
   repository, moved there 2026-09-20) holds the Preview
   prompt prepared on 2026-09-17.
@@ -336,34 +333,52 @@ generated, resized or moved by this audit, and nothing was committed.
   the allowed maximum). The two accents look clearly distinct from each other.
   No comparison with a live RimWorld capture was made or required.
 
-Consequence: `ModIcon générée` and `Preview générée` are **not validated**, so
-`workflow_stage` stays `horsMonoRepo`.
+Consequence at the time: `ModIcon générée` and `Preview générée` were **not
+validated**, and `workflow_stage` stayed `horsMonoRepo`.
 
-### Work strictly needed to pass `horsMonoRepo -> ModIcon générée -> Preview générée`
+### Resize — 2026-09-20, same day, at the user's request
 
-1. Keep the raw originals under `Art/` (`Art/ModIcon.png`, `Art/Preview.png`)
-   as the sources STYLE_RIMWORLD.md asks to preserve.
-2. Reduce `Mod/About/ModIcon.png` to 128x128, ~20-30 KB.
-3. Crop `Mod/About/Preview.png` to 16:9 and reduce it to 896x504, under 1 MB
-   (STYLE_RIMWORLD.md targets under 900 KB). The title/version overlay is the
-   next step (`preOptions`), not this one.
+The two defects above were corrected without generating anything new:
+
+1. The raw originals were copied, byte-identical (SHA-256 compared against the
+   files dropped in), to `Art/ModIcon-source.png` and `Art/Preview.png`
+   (STYLE_RIMWORLD.md keeps the overlay-free source in `Art/`).
+2. `Mod/About/ModIcon.png`: whole 1254x1254 square reduced to **128x128**,
+   19,025 bytes.
+3. `Mod/About/Preview.png`: top 1536x864 band (16:9) reduced to **896x504**,
+   868,710 bytes. Cropping from the top keeps the lamp, the bench and the settler;
+   only floor is lost. A middle or bottom crop would have cut the lamp.
+
+Both done with `System.Drawing`, high-quality bicubic, 24-bit PNG. Inspected
+after the fact at full size, plus a 32 px icon copy and a 268 px preview
+thumbnail (inspection copies live in the ignored scratchpad, not the repo).
+Result: `ModIcon générée` and `Preview générée` **validated**, so
+`workflow_stage` is now `Preview générée`.
+
+### Work strictly needed to pass `Preview générée -> preOptions`
+
+The engraved overlay per STYLE_RIMWORLD.md (palette drawn from `Art/Preview.png`,
+saved to `Art/preview-palette.json`; title with `Nelim's` as a 65% secondary-ink
+prefix; accent rule; summary line; `1.6` badge; contrast at least 4.5:1;
+checked at 896x504 and 268 px), written into `Mod/About/Preview.png` while
+`Art/Preview.png` stays untouched. Plus the English-description and naming
+check. Not started.
 
 ### Reservations (non-blocking, not required to pass)
 
 - The icon carries the words "TECH LEVEL FIXES". The icon block of
-  STYLE_RIMWORLD.md asks for no text, and at 32 px in the mod list the lettering
-  will not be legible, whereas the mascot and the gear will. This is a visual
-  doubt with a concrete reason, not a defect against a mandatory criterion; the
-  user may prefer to regenerate or to keep it.
+  STYLE_RIMWORLD.md asks for no text. At 32 px the lettering is confirmed
+  illegible (a smudged strip under the mascot), while the mascot's head and wink
+  remain identifiable; the wrench beside the head is lost at that size. This is a
+  visual doubt with a concrete reason, not a defect against a mandatory
+  criterion; the user may prefer to regenerate the icon without text.
 - The Preview is on the dark side (mostly cold-brown floor), as STYLE_RIMWORLD.md
-  itself notes of the whole family. The 1536x1024 crop to 16:9 will lose the top
-  or bottom band; the lamp, the bench and the settler sit in the upper third, so
-  a crop that removes floor at the bottom keeps the subject.
+  itself notes of the whole family.
 
 ### Reservations (non-blocking)
 
-- No visual defect can be reported for ModIcon/Preview because neither file
-  exists yet; this is an absence, not a constatation of a bad image.
+- (2026-09-17, superseded 2026-09-20: both images now exist and were inspected;
+  see "Images audit" and "Resize" above.)
 - The `loadAfter` list is long (29 entries) but every one is declared optional in
   the description; `dependencies: none` reflects that as read. Confirmed
   2026-09-17: every patch operation across the tree uses only the vanilla
