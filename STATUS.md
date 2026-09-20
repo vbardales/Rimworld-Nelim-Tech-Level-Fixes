@@ -22,7 +22,7 @@ remaining:
   - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It is at least runnable now - retargeted on 2026-09-20 onto Alpha Books, Additional Tools and Ancient Amulets, all installed, after it was found to name two mods that had been removed
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, Pickle staged and launched headless in the WSL game; blocked on a launcher quoting fault that truncates the run filter, reported to the session that owns it
+updated:      2026-09-20, the Pickle suite ran for the first time: 4 of 5, and the scenario that justified it - an added techLevel beating an inherited one - passed; the one failure was an untyped step of mine, now fixed, pending a re-run
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -338,43 +338,45 @@ competes with this mod and neither explains the `Animal_Sarcophagus` value recor
 This covers the installed mods only, and one field on three defs. It is not a general proof that
 nothing ever overrides a correction; the Pickle suite is where that would show, in a real load.
 
-## The Pickle suite: staged, launched, not yet played — 2026-09-20
+## The Pickle suite ran — 2026-09-20, 4 of 5
 
-`preTest -> done` needs four kinds of test and three pass: functional scenarios written
-(`TESTING.md`), automated green (`Tests/Run.ps1`, 107 passed), XML green
-(`Tests/Check-Patches.ps1`). The pickles gate is the one left. It cannot be waived: the five
-scenarios exist precisely because a headless test cannot reach them.
+First execution of this suite, headless in the WSL game under `xvfb-run`, through
+`scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes`. Report kept at
+`Tests/Pickle/results/2026-09-20-summary.md`.
 
-**What changed today.** A WSL copy of RimWorld now exists for tests, and AUDIT.md authorises a
-session to launch it — headless under `xvfb-run`, so it takes nobody's screen, which was the
-objection to Pickle in the first place. The entry point is
-`scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes`: it takes the machine-wide lock, refuses if
-anything is running, archives the previous report, stages and launches.
+| Scenario | Outcome |
+|---|---|
+| the mod is loaded and says nothing | **Passed** |
+| it loads after the mods it corrects | **Passed** |
+| a def that had no level anywhere gets one | Failed — see below |
+| a def that declared its own level has it replaced | **Passed** |
+| an inherited level is overridden, not merely shadowed | **Passed** |
 
-**The harness gap is closed.** `Tests/Pickle/wsl-deps.map` now names the three mods the scenarios
-assert on, and the staging script stages *and activates* them. Fourteen mods staged, including
-Alpha Books, Additional Tools and Ancient Amulets. The three workshop ids were read from the
-installed `About.xml` files rather than copied from the message that offered them.
+**The one that mattered passed.** The 36 Ancient Amulets defs declare no `techLevel` and inherit
+`Medieval` from `AmuletBase`; the patch adds a node beside that inherited value, and whether the
+added node wins is decided when the game resolves `ParentName`, after patching. It wins. That is
+the single property no headless test could reach, and the reason this suite exists at all.
 
-**Two launcher faults found, one fixed here.**
+**The failure was in the scenario, not the mod**, and it taught something worth keeping:
 
-1. The companion mod was called *Nelim's Tech Level Fixes - Pickle tests*. The apostrophe reaches
-   bash unescaped and the launch dies with `unexpected EOF while looking for matching '`, before
-   the game starts. Renamed to *TechLevelFixes - Pickle tests* — the companion is never published,
-   so its name is free; the shipped mod keeps its own.
-2. With that fixed the game starts, Pickle loads and sees the suite, and then:
+    'ABooks_ArmyManual' names more than one def (HediffDef, ThingDef);
+    say which with 'def "ABooks_ArmyManual" of type "..."'
 
-       System.InvalidOperationException: pickle: filter 'TechLevelFixes' matched no scenarios.
-         1 features in TechLevelFixes - Pickle tests: 01-loading.feature
+**defNames are unique per def type, not globally.** Alpha Books gives the same name to a book
+(`ThingDef`) and to the hediff of having read it. This corrects something stated earlier in this
+file, under "A defName corrected by two mods", which asserted the opposite; that entry's own
+conclusion survives, since both defs involved there are `ThingDef`s, but its reasoning was wrong.
 
-   The filter arrived truncated at the first space. `stage-pickle-wsl.sh` prints the correct
-   quoted command, so the loss happens in the PowerShell wrapper rebuilding it across
-   `wsl.exe -- bash -lc`. That belongs to the shared tooling, not to this repository, and was
-   reported rather than worked around: renaming the suite to a single word would hide a fault that
-   reaches every suite whose display name has a space.
+The patches were never ambiguous — every generated xpath names its def type, which is exactly
+what made them right — and `Tests/Run.ps1` asserts a single match for that typed xpath, so it
+could not have drifted here either. Only the Pickle step was untyped. Fixed by spelling the type,
+which the step supports.
 
-So the run is one quoting fix away, and nothing about the mod is implicated. The lock was free
-each time and returned each time; nothing of this repository's was left running.
+Three earlier attempts failed before the game ever ran, for reasons outside this repository, all
+now settled: the staging script did not carry `loadAfter` mods (fixed by `wsl-deps.map`, which
+the owning session extended to stage and activate what a suite names); an apostrophe in the
+companion mod's display name killed bash (renamed here); and the run filter arrived truncated at
+its first space (fixed by that session, which now passes it through `WSLENV`).
 ## Patches outlive their mods, on purpose
 
 Stated by the user on 2026-09-20: the patches and recorded values for mods that are not currently

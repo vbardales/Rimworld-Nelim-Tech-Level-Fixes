@@ -26,8 +26,12 @@ Feature: Nelim's Tech Level Fixes in a real modlist
 
   Scenario: a def that had no level anywhere gets one
     # Alpha Books declares no techLevel and inherits none, so the add branch fires into a gap.
-    Then def "ABooks_AdventuringLogs" field "techLevel" is "Medieval"
-    And def "ABooks_ArmyManual" field "techLevel" is "Industrial"
+    #
+    # The type is spelled out because defNames are unique per def type, not globally:
+    # "ABooks_ArmyManual" is both a ThingDef and a HediffDef here, and an untyped step refuses to
+    # guess. The patches were never ambiguous - their xpath names the type - but this step was.
+    Then def "ABooks_AdventuringLogs" of type "ThingDef" field "techLevel" is "Medieval"
+    And def "ABooks_ArmyManual" of type "ThingDef" field "techLevel" is "Industrial"
 
   Scenario: a def that declared its own level has it replaced
     # Additional Tools writes Industrial on this one itself, so the replace branch fires.
