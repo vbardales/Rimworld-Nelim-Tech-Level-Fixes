@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Tech Level Fixes preview</title>
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; width: 896px; height: 504px; overflow: hidden; }
+body { font-family: "Segoe UI", system-ui, sans-serif; }
+.frame { position: relative; width: 896px; height: 504px; background: url("Preview.png") center top/cover no-repeat; }
+.frame::after { content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgb(var(--veil-rgb) / .86) 0%, rgb(var(--veil-rgb) / 0) 74%); }
+.text { position: absolute; z-index: 1; left: 50px; top: 54px;
+  color: var(--inkPrimary); text-shadow: 0 3px 10px rgba(0,0,0,.75); }
+h1 { margin: 0; padding: 0; max-width: 290px; font-size: 46px; font-weight: 600; line-height: 1.1; letter-spacing: 0; }
+h1 .prefix { font-size: .65em; color: var(--inkSecondary); }
+.badge { position: absolute; z-index: 2; right: 0; top: 0; width: 80px; height: 80px;
+  background: var(--accent); clip-path: polygon(0 0,100% 0,100% 100%); }
+.version { position: absolute; z-index: 3; left: 869px; top: 27px;
+  transform: translate(-50%,-50%) rotate(45deg); font-size: 26px; font-weight: 700; line-height: 1;
+  color: var(--badgeInk); text-shadow: none; }
+.no-text .text, .no-text .version { visibility: hidden; }
+</style>
+<div class="frame">
+  <div class="text"><h1></h1></div><div class="badge"></div><div class="version"></div>
+</div>
+<script>
+window.previewReady = (async () => {
+  const palette = await (await fetch('preview-palette.json')).json();
+  for (const [key, value] of Object.entries(palette)) document.documentElement.style.setProperty('--' + key, value);
+  document.documentElement.style.setProperty('--veil-rgb', palette.veil.slice(1).match(/../g).map(v => parseInt(v,16)).join(' '));
+  const xml = new DOMParser().parseFromString(await (await fetch('../Mod/About/About.xml')).text(), 'text/xml');
+  const name = xml.querySelector('name').textContent;
+  const heading = document.querySelector('h1');
+  const prefix = name.match(/^Nelim['’]s/);
+  if (prefix) {
+    const span = document.createElement('span'); span.className = 'prefix'; span.textContent = prefix[0];
+    heading.append(span, document.createTextNode(name.slice(prefix[0].length)));
+  } else heading.textContent = name;
+  const versions = [...xml.querySelectorAll('supportedVersions > li')].map(n=>n.textContent.trim()).filter(v=>/^\d+\.\d+(\.\d+)?$/.test(v));
+  versions.sort((a,b)=>{const x=a.split('.').map(Number),y=b.split('.').map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){const d=(y[i]||0)-(x[i]||0);if(d)return d;}return 0;});
+  if (!versions.length) throw new Error('No stable supported version');
+  document.querySelector('.version').textContent = versions[0];
+  await document.fonts.ready;
+  const source = new Image(); source.src = 'Preview.png'; await source.decode();
+  return {palette, version: versions[0], title: name};
+})();
+</script></html>

@@ -9,19 +9,20 @@ repo:         rimworld-nelim-tech-level-fixes
 visibility:   public
 detached:     yes
 stage:        showcase
-workflow_stage: Preview générée
+workflow_stage: l10n
 licence:      original
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none
-showcase:
+showcase:     partial
 tested_on:
 workshop:
 remaining:
-  - feature: preOptions - engrave the Preview overlay (title with `Nelim's` as reduced secondary-ink prefix, summary, accent rule, 1.6 badge), save the palette to Art/preview-palette.json, and check the English description and naming conventions
+  - feature: optional, not required by any transition - the Preview carries the title and the 1.6 badge only, as asked; the one-line summary and the accent rule that STYLE_RIMWORLD.md places under the title are not engraved (`showcase: partial`)
+  - unverified: preTest - 22 of the 30 source mods are not installed on this machine on 2026-09-20 (the Workshop copy of Alchemy (Continued), present on 2026-09-17, is gone), so their packageIds in loadAfter and their 86 corrected defNames could not be checked against real mod data; only 8 mods (80 defNames) were, all resolved. Needs those mods available locally, not a fix
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
   - unverified: no automated C# test harness exists (no C# to test)
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, ModIcon (128x128) and Preview (896x504) resized from the raw generations, sources kept in Art/; workflow_stage Preview générée
+updated:      2026-09-20, Preview overlay engraved (title + 1.6 badge); preOptions, options, l10n validated; preTest blocked on unverifiable ids/defNames of 22 uninstalled source mods
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -68,10 +69,10 @@ has started.
 | horsMonoRepo | Validated | As of 2026-09-17: GitHub repository `vbardales/rimworld-nelim-tech-level-fixes` created (public, user-validated exception to the "Nelim-prefixed = private" default), remote `origin` configured, commits pushed. STATUS.md exists. README.md, ATTRIBUTION.md, LICENSE (MIT) and CHANGELOG.md exist in English at the repository root, with LICENSE and ATTRIBUTION.md duplicated into `Mod/`. `.gitignore` and `.gitattributes` added. `packageId` (`nelim.techlevelfixes`), the displayed name (`Nelim's Tech Level Fixes`), the folder name (`TechLevelFixes`) and the repository name are mutually coherent. |
 | ModIcon generated | Validated | Development is finished (30 generated patch files, no build applicable: no C#). `Mod/About/ModIcon.png` is a 128x128 PNG, 19,025 bytes, produced on 2026-09-20 from the user's raw 1254x1254 generation (kept as `Art/ModIcon-source.png`, byte-identical to what was dropped in). Directly inspected at 128 px and at a 32 px copy enlarged 6x: the winking orange mascot and its gear stay identifiable at 32 px; the lettering does not (see reservations). The first raw drop (1254x1254, 1,114,566 bytes) was a defect and is superseded. |
 | Preview generated | Validated | `Mod/About/Preview.png` is a 896x504 (16:9) PNG, 868,710 bytes, under both the 900 KB target and the 1 MB hard limit. It is the top 1536x864 band of the user's raw 1536x1024 generation (kept unchanged as `Art/Preview.png`), reduced with high-quality bicubic resampling; the crop removes only floor at the bottom. Directly inspected at full size and at a 268 px thumbnail: high oblique camera, tiled floor, one lamp pool, one dark settler from behind, four objects still identifiable at 268 px; no camera defect observed, no readable text. No overlay yet: title and badge belong to preOptions. The first raw drop (1536x1024, 2,070,420 bytes) was a defect and is superseded. |
-| preOptions | Not reached | Requires the engraved overlay with an accent colour distinct from the secondary ink (palette in `Art/preview-palette.json`), the English description, and prefix/suffix and connecting-word handling per the naming conventions. `About.xml`'s description already ends with the `[url=...]Source code on GitHub[/url]` link and `<url>` matches the remote. None of the overlay work exists yet. |
-| options | Not reached | `settings_audit` unchecked; gate not entered. |
-| l10n | Not reached | `localization`, `translation_en`, `translation_fr` unchecked; gate not entered. |
-| preTest | Not reached | Not applicable yet: no LoadFolders.xml is shipped, and there is nothing to audit for dependency declarations beyond the existing `loadAfter` list, which is out of scope until the earlier gates pass. |
+| preOptions | Validated | Preview adjusted on 2026-09-20 (see "Preview overlay"): accent `#3AAEF0` (blue family) is clearly separate from the secondary ink `#E0A870` (warm brown family), 172 degrees apart in hue, checked visually at 896x504 and at a 268 px thumbnail. Description is in English and ends, after the feature text, with exactly `[url=https://github.com/vbardales/rimworld-nelim-tech-level-fixes]Source code on GitHub[/url]` as its last element; that target equals the `origin` remote and the `<url>` field, and `gh repo view` confirmed the repository exists and is public. Naming: `Nelim's` is the prefix (reduced to 65% in secondary ink), `Tech Level Fixes` keeps 100% in primary ink; no `Renew`/`Extended`/`Plus` suffix applies to an original mod, and the title has no connecting word to reduce. No `(prohibited)`/`(unofficial)` tag applies (public, licence `original`). |
+| options | Validated (not applicable, justified) | `settings_audit: not_applicable`, established by static inventory: no C# and no assembly anywhere in the tree, and the only XML besides About.xml is patch files writing `<techLevel>`, so no settings owner, page or MainButtons shortcut can exist (see "Settings audit"). Re-checked against the full 30-file tree after the Zombieland addition. No in-game integration is claimed as tested; none is required for this step. |
+| l10n | Validated (not applicable, justified) | `localization`, `translation_en`, `translation_fr: not_applicable`: an inventory of every `<value>` across the 30 patch files (332 `<value>` and 332 `<techLevel>` tags) shows the mod writes only a `techLevel` enum whose display text the base game already localizes; no Keyed, DefInjected or code-generated text exists (see "Translation audit"). About metadata is outside this gate per TRANSLATIONS.md. |
+| preTest | Not verified | The declarations are coherent as far as checkable: no `modDependencies`, 30 `loadAfter` entries matching the 30 patch files exactly, every patch guarded by a `success` of `Always`, no `LoadFolders.xml` needed, only vanilla patch classes. But on 2026-09-20 only 8 of the 30 source mods are installed here; for those, all 80 corrected defNames resolve and the packageIds match. For the other 22 mods, the packageIds and 86 defNames could not be verified against real data during this audit (see "Dependency check"). A mandatory criterion that cannot be verified now, not a defect found. |
 | done | Not reached | `TESTING.md` has 8 functional scenarios, written 2026-09-17, none run in game. `Tests/Check-Patches.ps1` (XML tests) and `Tests/techlevelfixes.feature` + `Tests/Run-Gherkin.ps1` (pickles/Gherkin) are both written and green as of 2026-09-17 (30 files, 166 corrections). No automated C# harness exists (no C# to test). The in-game half of "done" — actually walking TESTING.md's 8 scenarios — remains outstanding. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
@@ -355,14 +356,61 @@ thumbnail (inspection copies live in the ignored scratchpad, not the repo).
 Result: `ModIcon générée` and `Preview générée` **validated**, so
 `workflow_stage` is now `Preview générée`.
 
-### Work strictly needed to pass `Preview générée -> preOptions`
+### Preview overlay — 2026-09-20, at the user's request ("grave le titre et le badge")
 
-The engraved overlay per STYLE_RIMWORLD.md (palette drawn from `Art/Preview.png`,
-saved to `Art/preview-palette.json`; title with `Nelim's` as a 65% secondary-ink
-prefix; accent rule; summary line; `1.6` badge; contrast at least 4.5:1;
-checked at 896x504 and 268 px), written into `Mod/About/Preview.png` while
-`Art/Preview.png` stays untouched. Plus the English-description and naming
-check. Not started.
+Composition, palette and renderer live in `Art/`: `preview.html`,
+`preview-palette.json` (the single palette, five hex fields, not duplicated here),
+`render-preview.cjs`, and the last QA report `preview-qa.json`. Rendered with
+headless Chrome through playwright and sharp, taken from an existing install
+under `qi-gong/app/node_modules` via `NODE_PATH`; nothing was installed. The
+final `Mod/About/Preview.png` is regenerated from `Art/Preview.png` (untouched)
+by `node Art/render-preview.cjs`.
+
+- What guided the palette, measured on `Art/Preview.png`: the veil is the mean of
+  the stone floor and wood in the title zone, `rgb(56,47,42)`, desaturated one
+  notch; the secondary ink comes from the dominant family, hues 0-30 degrees,
+  which covers 42.5% of the sampled frame (the brown floor and wood), lightened
+  to `#E0A870`; the accent is the blue family of the striped crate, which is the
+  only cold hue carried by a subject detail (0.6% of the frame). The stripe
+  itself measures as a muted blue-grey, about `rgb(55,67,77)`, so the accent is
+  that hue with its saturation and lightness raised to `#3AAEF0`. The brightest
+  region, the lamp, is amber and close to the secondary, so it was not used.
+- Layout: title 46 px, weight 600, on two lines (`Nelim's Tech` / `Level Fixes`)
+  from a 290 px width, at 50 px left and 54 px top. One line at 46 px ran into
+  the lamp glow and the objects on the bench (worst contrast 1.88:1), so the
+  natural two-line wrap was chosen over shrinking below 46 px, as the guide
+  prefers. `Nelim's` is a direct span at 65% in the secondary ink. No tag (public,
+  licence `original`). Badge: 80 px triangle in the accent, `1.6` in `#17120E`,
+  rotated 45 degrees, the value read from the highest stable `supportedVersions`
+  in the shipped About.xml.
+- Fonts actually used, confirmed through Chrome's platform-font report: Segoe UI
+  Semibold for the title and the prefix, Segoe UI Bold for the version, no
+  fallback. The capture waits for `document.fonts.ready` and the source image.
+- Measured on a background-only render, over the whole text rectangles rather
+  than four corners: title 5.35:1, prefix 5.55:1, badge digits on the accent
+  7.52:1, all above 4.5:1. The title stays 24 px or more away from the badge
+  (it ends near x=340, the badge starts at x=816) and no text leaves the frame.
+- Result: 896x504, 728,168 bytes (under the 900 KB target and the 1 MB limit).
+  Inspected at full size and at 268 px: title and version identifiable, no
+  overlap, no clipped glyph, the four objects and the settler unobscured.
+- Not engraved, because the request was title and badge: the accent rule and the
+  one-line summary. This is why `showcase` is `partial`. No transition requires
+  them.
+
+### Dependency check — 2026-09-20, read-only
+
+Against the installed Workshop copies and `RimWorld/Mods` (8,352 packageIds
+indexed): 8 of the 30 `loadAfter` ids were found (`LadyElizabeth.AdditionalToolsMod`,
+`Mlie.AdvancedRaiders`, `overpl.AnimalSarcophagus`, `Romyashi.AncientJunkLoot`,
+`sarg.alphabooks`, `starter.beeer`, `Udon.AnimalSimpleCommand`,
+`zal.ancientamulets`), and for those, all 80 corrected `defName`s were found in the
+mod's own XML. The other 22 mods are not installed on this machine today, so
+their ids and 86 `defName`s stay unverified. Notably `zal.alchemy`, whose Workshop
+copy (3132057783) was there on 2026-09-17 and was used to settle the lowercase
+`thingDef` question, is no longer present. Recorded as `unverified` in
+`remaining`, not as a defect. To pass `l10n -> preTest`: make those 22 mods
+available locally and rerun the same check, or accept another source of truth for
+their packageIds.
 
 ### Reservations (non-blocking, not required to pass)
 
