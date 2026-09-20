@@ -19,10 +19,10 @@ workshop:
 remaining:
   - unverified: preTest - most of the 30 source mods are not installed on this machine, so their packageIds in loadAfter and their corrected defNames cannot be checked against real mod data. This is deliberate, not an accident: the user is removing mods above neolithic, which is why 8 were found in the morning of 2026-09-20 and 7 by the evening. Every defName of every mod that was installed did resolve. Checking the rest needs those mods reinstalled, which is not something to ask for on the strength of an audit
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game. The user stated on 2026-09-20 that no in-game test is planned for now, so this is deferred by decision rather than pending
-  - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios, cut back on 2026-09-20 to what only a live game shows) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It also names defs from four source mods, two of which are no longer installed, so it would need them back to mean anything
+  - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It is at least runnable now - retargeted on 2026-09-20 onto Alpha Books, Additional Tools and Ancient Amulets, all installed, after it was found to name two mods that had been removed
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, the 39 drifted starting levels repaired by hand at the user’s instruction (comments only, operations untouched); unit tests 107 passed 0 failed, XML suite passing, cherrypick scan agrees
+updated:      2026-09-20, Pickle scenarios retargeted onto installed mods (they named two removed ones) and narrowed to the inherited-override case, the only thing the unit tests structurally cannot reach
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -433,11 +433,21 @@ machine. The unit tests of the same day prove all 166 corrections headless in un
 the generated feature and its generator were removed.
 
 **What is left**, `Tests/Pickle/`, five scenarios: the mod is loaded and logged nothing; the load
-order the game actually settled on; and spot checks on three corrections (add branch, replace
-branch, the single research project) in a **full modlist**, where every active mod’s patches meet
-in one document. That last is the real difference from the unit tests, which apply one mod’s
-patches to one mod’s defs in isolation; if a third mod sets the same field later, only a game
-shows it.
+order the game actually settled on; and three corrections checked in a **full modlist**, where
+every active mod's patches meet in one document.
+
+The third of those is the one that earns its keep, and it was only spotted while retargeting the
+file on 2026-09-20. The 36 Ancient Amulets corrections declare no `techLevel` of their own and
+**inherit** `Medieval` from `AmuletBase`, so the patch fires its add branch and places a node
+*beside* an inherited value. Which of the two the loaded def reports is settled when the game
+resolves `ParentName`, which happens **after** patching. A headless test can watch the node
+appear — and `Tests/Run.ps1` does — but it cannot say the node won; asserting that with this
+repository's own inheritance code would only test the model against itself. That is a live-game
+question, and now the only structural gap the unit tests leave.
+
+Retargeting was itself a repair: the file named Glitter-Craft and Alchemy, both since removed
+from the modlist, so it could not have run at all. Every assertion in it is now re-checked
+against the shipped patches.
 
 It compiles nothing: `mod is loaded`, `loads after`, `def field is` and `no errors were logged`
 are all built into Pickle, which is how a mod with no C# of its own can have a suite at all.
