@@ -6,7 +6,7 @@
      Corrections : 36 -->
 <Patch>
 
-  <!-- AMU_AmuletBarkeep : (aucun) -> Neolithic -->
+  <!-- AMU_AmuletBarkeep : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_AmuletBarkeep"]</xpath>
     <success>Always</success>
@@ -23,7 +23,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_AmuletBlacksmith : (aucun) -> Neolithic -->
+  <!-- AMU_AmuletBlacksmith : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_AmuletBlacksmith"]</xpath>
     <success>Always</success>
@@ -40,7 +40,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_AmuletForeman : (aucun) -> Neolithic -->
+  <!-- AMU_AmuletForeman : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_AmuletForeman"]</xpath>
     <success>Always</success>
@@ -57,7 +57,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_AmuletSilverTongue : (aucun) -> Neolithic -->
+  <!-- AMU_AmuletSilverTongue : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_AmuletSilverTongue"]</xpath>
     <success>Always</success>
@@ -74,7 +74,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_AmuletSoundMind : (aucun) -> Neolithic -->
+  <!-- AMU_AmuletSoundMind : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_AmuletSoundMind"]</xpath>
     <success>Always</success>
@@ -91,7 +91,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalArchitect : (aucun) -> Neolithic -->
+  <!-- AMU_MedalArchitect : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalArchitect"]</xpath>
     <success>Always</success>
@@ -108,7 +108,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalChef : (aucun) -> Neolithic -->
+  <!-- AMU_MedalChef : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalChef"]</xpath>
     <success>Always</success>
@@ -125,7 +125,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalCouturier : (aucun) -> Neolithic -->
+  <!-- AMU_MedalCouturier : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalCouturier"]</xpath>
     <success>Always</success>
@@ -142,7 +142,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalDoctor : (aucun) -> Neolithic -->
+  <!-- AMU_MedalDoctor : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalDoctor"]</xpath>
     <success>Always</success>
@@ -159,7 +159,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalFarmer : (aucun) -> Neolithic -->
+  <!-- AMU_MedalFarmer : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalFarmer"]</xpath>
     <success>Always</success>
@@ -176,7 +176,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalMarksman : (aucun) -> Neolithic -->
+  <!-- AMU_MedalMarksman : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalMarksman"]</xpath>
     <success>Always</success>
@@ -193,7 +193,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalMason : (aucun) -> Neolithic -->
+  <!-- AMU_MedalMason : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalMason"]</xpath>
     <success>Always</success>
@@ -210,7 +210,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalMiner : (aucun) -> Neolithic -->
+  <!-- AMU_MedalMiner : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalMiner"]</xpath>
     <success>Always</success>
@@ -227,7 +227,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalPugilist : (aucun) -> Neolithic -->
+  <!-- AMU_MedalPugilist : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalPugilist"]</xpath>
     <success>Always</success>
@@ -244,7 +244,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalResearcher : (aucun) -> Neolithic -->
+  <!-- AMU_MedalResearcher : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalResearcher"]</xpath>
     <success>Always</success>
@@ -261,7 +261,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalSculptor : (aucun) -> Neolithic -->
+  <!-- AMU_MedalSculptor : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalSculptor"]</xpath>
     <success>Always</success>
@@ -278,7 +278,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalSmith : (aucun) -> Neolithic -->
+  <!-- AMU_MedalSmith : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalSmith"]</xpath>
     <success>Always</success>
@@ -295,7 +295,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalSurgeon : (aucun) -> Neolithic -->
+  <!-- AMU_MedalSurgeon : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalSurgeon"]</xpath>
     <success>Always</success>
@@ -312,7 +312,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_MedalTamer : (aucun) -> Neolithic -->
+  <!-- AMU_MedalTamer : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_MedalTamer"]</xpath>
     <success>Always</success>
@@ -329,7 +329,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingArchitect : (aucun) -> Neolithic -->
+  <!-- AMU_RingArchitect : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingArchitect"]</xpath>
     <success>Always</success>
@@ -346,7 +346,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingBasicGold : (aucun) -> Neolithic -->
+  <!-- AMU_RingBasicGold : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingBasicGold"]</xpath>
     <success>Always</success>
@@ -363,7 +363,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingBasicSilver : (aucun) -> Neolithic -->
+  <!-- AMU_RingBasicSilver : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingBasicSilver"]</xpath>
     <success>Always</success>
@@ -380,7 +380,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingChef : (aucun) -> Neolithic -->
+  <!-- AMU_RingChef : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingChef"]</xpath>
     <success>Always</success>
@@ -397,7 +397,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingCouturier : (aucun) -> Neolithic -->
+  <!-- AMU_RingCouturier : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingCouturier"]</xpath>
     <success>Always</success>
@@ -414,7 +414,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingCustodian : (aucun) -> Neolithic -->
+  <!-- AMU_RingCustodian : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingCustodian"]</xpath>
     <success>Always</success>
@@ -431,7 +431,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingDoctor : (aucun) -> Neolithic -->
+  <!-- AMU_RingDoctor : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingDoctor"]</xpath>
     <success>Always</success>
@@ -448,7 +448,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingFarmer : (aucun) -> Neolithic -->
+  <!-- AMU_RingFarmer : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingFarmer"]</xpath>
     <success>Always</success>
@@ -465,7 +465,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingMarksman : (aucun) -> Neolithic -->
+  <!-- AMU_RingMarksman : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingMarksman"]</xpath>
     <success>Always</success>
@@ -482,7 +482,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingMason : (aucun) -> Neolithic -->
+  <!-- AMU_RingMason : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingMason"]</xpath>
     <success>Always</success>
@@ -499,7 +499,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingMiner : (aucun) -> Neolithic -->
+  <!-- AMU_RingMiner : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingMiner"]</xpath>
     <success>Always</success>
@@ -516,7 +516,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingPugilist : (aucun) -> Neolithic -->
+  <!-- AMU_RingPugilist : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingPugilist"]</xpath>
     <success>Always</success>
@@ -533,7 +533,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingResearcher : (aucun) -> Neolithic -->
+  <!-- AMU_RingResearcher : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingResearcher"]</xpath>
     <success>Always</success>
@@ -550,7 +550,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingSculptor : (aucun) -> Neolithic -->
+  <!-- AMU_RingSculptor : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingSculptor"]</xpath>
     <success>Always</success>
@@ -567,7 +567,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingSmith : (aucun) -> Neolithic -->
+  <!-- AMU_RingSmith : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingSmith"]</xpath>
     <success>Always</success>
@@ -584,7 +584,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingSurgeon : (aucun) -> Neolithic -->
+  <!-- AMU_RingSurgeon : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingSurgeon"]</xpath>
     <success>Always</success>
@@ -601,7 +601,7 @@
     </match>
   </Operation>
 
-  <!-- AMU_RingTamer : (aucun) -> Neolithic -->
+  <!-- AMU_RingTamer : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="AMU_RingTamer"]</xpath>
     <success>Always</success>

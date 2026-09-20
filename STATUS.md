@@ -17,13 +17,12 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - defect: 39 of the 78 checkable corrections no longer reproduce the starting tech level they were arbitrated against, confirmed 2026-09-20 by cherrypick’s own scan of the current list (see "Stale starting levels"). All 36 of zal.ancientamulets, both of overpl.AnimalSarcophagus, the single one of Mlie.AdvancedRaiders; the other four installed mods agree exactly. The corrections still apply - it is the ground they were decided on that moved. Regenerating them is not possible with the tool as it stands: cherrypick has no generate command, and the picker README lists "la génération du mod" as still to come.
   - unverified: preTest - most of the 30 source mods are not installed on this machine, so their packageIds in loadAfter and their corrected defNames cannot be checked against real mod data. This is deliberate, not an accident: the user is removing mods above neolithic, which is why 8 were found in the morning of 2026-09-20 and 7 by the evening. Every defName of every mod that was installed did resolve. Checking the rest needs those mods reinstalled, which is not something to ask for on the strength of an audit
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game. The user stated on 2026-09-20 that no in-game test is planned for now, so this is deferred by decision rather than pending
   - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios, cut back on 2026-09-20 to what only a live game shows) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It also names defs from four source mods, two of which are no longer installed, so it would need them back to mean anything
-  - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def check ran for the 7 installed on 2026-09-20, and reports the rest as SKIP rather than passing them
+  - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, cherrypick re-scanned on the current list: 39 of 78 checkable corrections were arbitrated against a starting level it no longer reports; the tool has no generate command, so nothing was rebuilt
+updated:      2026-09-20, the 39 drifted starting levels repaired by hand at the user’s instruction (comments only, operations untouched); unit tests 107 passed 0 failed, XML suite passing, cherrypick scan agrees
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -347,6 +346,30 @@ their own assumptions.
 
 The tests are left failing rather than relaxed. They now list every drifted def per mod instead
 of stopping at the first, which is what turned "three defs" into three dozen.
+
+### Repaired by hand, 2026-09-20
+
+At the user’s instruction, since the tool cannot regenerate. **Only the recorded `from` value in
+each comment was rewritten** — 39 comments across three files, nothing else. Verified two ways:
+the files differ from their previous state only on comment lines, and the operations below them
+are byte-identical.
+
+That the operations needed no change is the design working as intended. Each one already carries
+both branches, `PatchOperationReplace` when the def has a level and `PatchOperationAdd` when it
+does not, and the game picks between them at load time. So whether the def started with a level
+never affected the outcome; it only affected what the comment claimed. None of the 39 became a
+no-op either: the amulets now read `Medieval -> Neolithic` instead of `(aucun) -> Neolithic`, the
+belt `Medieval -> Industrial`, the two sarcophagi `(aucun) -> Neolithic`. Every correction still
+changes something.
+
+Both suites are green: unit tests **107 passed, 0 failed**; the XML suite passes. Re-checked
+against `cherrypick scan` afterwards as well — 39 re-checked, 0 still disagreeing — so the
+repair matches the engine, not just the harness that found the drift.
+
+**These files say they are generated and must not be hand-edited**, and that warning still holds
+for anyone else: the next cherrypick pass over these three mods will rewrite them whole, and
+should then produce these same values by itself, since it resolves inheritance. This edit is
+recorded here so that a later reader does not mistake it for generator output.
 
 ## Unit tests — 2026-09-20
 

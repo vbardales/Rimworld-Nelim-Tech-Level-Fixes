@@ -6,7 +6,7 @@
      Corrections : 1 -->
 <Patch>
 
-  <!-- Apparel_BlueScreenBelt : (aucun) -> Industrial -->
+  <!-- Apparel_BlueScreenBelt : Medieval -> Industrial -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Apparel_BlueScreenBelt"]</xpath>
     <success>Always</success>

@@ -6,7 +6,7 @@
      Corrections : 2 -->
 <Patch>
 
-  <!-- Animal_Sarcophagus : Medieval -> Neolithic -->
+  <!-- Animal_Sarcophagus : (aucun) -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Animal_Sarcophagus"]</xpath>
     <success>Always</success>
@@ -23,7 +23,7 @@
     </match>
   </Operation>
 
-  <!-- Animal_Sarcophagus_Large : Medieval -> Neolithic -->
+  <!-- Animal_Sarcophagus_Large : (aucun) -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Animal_Sarcophagus_Large"]</xpath>
     <success>Always</success>
