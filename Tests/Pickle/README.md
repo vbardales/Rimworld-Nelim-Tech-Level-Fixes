@@ -1,34 +1,34 @@
 # In-game scenarios, run by Pickle
 
-The corrections of this mod, checked inside a running RimWorld by
+A short suite, run inside a running RimWorld by
 [Pickle](https://github.com/RimWorks/Rimworld-Pickle) (`rimworks.pickle`, Workshop 3791648678).
 
+**Read `Tests/Run.ps1` first.** The unit tests apply these same patch operations headless, over
+all 166 corrections, in well under a minute. A Pickle run takes over the machine — real pointer,
+real clicks, screen occupied — and takes far longer, so nothing lives here that can be proved
+outside the game. That rule cost this suite its bulk: a generated feature asserting all 166
+corrections was written on 2026-09-20 and deleted the same day, because the unit tests prove
+exactly that and a scenario which restates one confiscates the machine for nothing.
+
 `Mod/` is a companion mod, **Nelim's Tech Level Fixes - Pickle tests**, never published. It holds
-the feature files, so nothing test-related ships in the Workshop folder.
+the feature file, so nothing test-related ships in the Workshop folder.
+
+## What is left, and why it needs the game
+
+| Scenario | Why a unit test cannot say it |
+|---|---|
+| the mod is loaded and says nothing | whether the game loaded this mod at all, and whether it logged anything doing so |
+| it loads after the mods it corrects | `loadAfter` is a request; only the running game shows the order it settled on |
+| a correction survives the whole modlist (add, replace, research) | the unit tests apply **this mod's** patches to **one source mod's** defs in isolation. A game applies every active mod's patches to one combined document. If a third mod sets the same field later, only this shows it. |
+
+Five scenarios, a handful of defs. Spot checks on the real pipeline, not a second inventory.
 
 ## No step assembly
 
-Unlike the other mods in this repository, this suite compiles nothing. Every assertion it makes
-is a built-in Pickle step:
-
-| Step | What it settles here |
-|---|---|
-| `mod "X" is loaded` | the corrected mod is in this run at all |
-| `mod "nelim.techlevelfixes" loads after "X"` | the `loadAfter` declaration took effect, so the correction ran last |
-| `def "X" field "techLevel" is "Y"` | the def carries the arbitrated value **after every patch has run** |
-
-That last one is the whole mod in one line. `field` reads a dotted path off the live def, so it
-reports the value the game ended up with, not the value the XML asked for. A correction that
-silently matched nothing fails here and nowhere else: the outer `PatchOperationConditional` of
-every generated patch reports `Always`, on purpose, so a missing target never raises an error.
-
-## The feature files
-
-- `01-loading.feature`, written by hand: the mod is loaded, nothing in the log.
-- `02-corrections.feature`, **generated** by `Tests/Pickle/Build-Features.ps1` from
-  `Mod/Patches/`: one scenario per corrected mod, 166 assertions over 30 mods. Rerun that script
-  after any cherrypick pass and commit the result; editing it by hand puts it out of step with
-  the patches it is supposed to check.
+This suite compiles nothing. Every step it uses is built into Pickle — `mod "X" is loaded`,
+`mod "X" loads after "Y"`, `def "X" field "techLevel" is "Y"`, `no errors were logged` — which is
+why a mod with no C# of its own can still have one. The `field` step reads a dotted path off the
+live def, so it reports the value the game ended up with.
 
 ## Setup, once
 
@@ -41,37 +41,22 @@ every generated patch reports `Always`, on purpose, so a missing target never ra
 
 3. Enable it below Nelim's Tech Level Fixes and Pickle.
 
-Pickle patches the game through Concord when Concord is loaded, and through Harmony otherwise. If
-Concord fails to start, clicking steps break - this suite has none, so it is unaffected either way.
-
-## Which mods have to be enabled
-
-Every scenario in `02-corrections.feature` needs its own corrected mod in the modlist. A scenario
-whose mod is absent fails on its first step, `mod "X" is loaded`, naming it. **That is the run
-missing a mod, not a broken correction**, and the whole reason the scenario opens with that line
-rather than going straight to a def that was never going to exist.
-
-A fully green run therefore means all 30 corrected mods enabled at once. On 2026-09-20 only 8 of
-them were installed on the development machine, so a run today would show 22 scenarios red for
-that reason alone.
+The scenarios name defs from Alpha Books, Ancient Amulets, Glitter-Craft and Alchemy, so those
+four mods have to be in the modlist for the run to mean anything. A scenario whose mod is absent
+fails on the def, which is the run missing a mod rather than a broken correction.
 
 ## Run
 
 - **In game**: dev mode on, debug actions menu, *Pickle*. Tick this suite, *Run selected*.
 - **Unattended**: `RimWorldWin64.exe "-pickle-run=Nelim's Tech Level Fixes - Pickle tests"`. The
   filter is the companion mod's name, exactly; without it Pickle also runs its own sample
-  features. Reports land in `PickleReports` beside the saves.
+  features.
 
 Never start a second RimWorld: one machine, one game, one runner. Take
-`%LOCALAPPDATA%\rimworld-pickle-run.lock` before any launch or driven run; `Run-Pickle.ps1` in
-ArchitectStudio is the reference script.
+`%LOCALAPPDATA%\rimworld-pickle-run.lock` before any launch or driven run, and move the previous
+report out of `PickleReports` first — a run overwrites it, captures included. `Run-Pickle.ps1` in
+ArchitectStudio is the reference script for both.
 
-## What this suite does not cover
+## Status
 
-- Uninstalling one correction or all of them (TESTING.md 5 and 6) and adding or removing the mod
-  from a save (TESTING.md 8): all three change the modlist or the files on disk, which a scenario
-  inside the running game cannot do to itself.
-- Whether a corrected tech level changes what actually turns up in raid loot or trader stock.
-  That is statistical, not a pass or fail.
-- Publication screenshots. This mod draws no window of its own, so there is nothing of its own to
-  capture; what a Workshop page should show for an invisible data mod is an open question.
+Never executed. Running it needs a RimWorld that the audit sessions must not start.

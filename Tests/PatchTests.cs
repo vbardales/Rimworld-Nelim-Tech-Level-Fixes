@@ -322,8 +322,141 @@ internal static class PatchTests
                 }
             });
 
+            // Each correction was arbitrated against the level the def had at the time, which the
+            // generated comment records. Those recorded values are meant to match the sources as
+            // they stand. When one does not, the correction was decided against data that has
+            // since moved - the source mod updated - and cherrypick should look at it again.
+            Test(group.Key + ": the recorded starting levels still match the installed mod", () =>
+            {
+                var combined = CombinedDefs(folder);
+                var byName = ByName(combined);
+                foreach (var c in group)
+                {
+                    if (c.CommentTo == null) continue;
+                    var def = combined.SelectSingleNode("/Defs/" + c.DefType + "[defName=\"" + c.DefName + "\"]") as XmlElement;
+                    Require(def != null, c.DefName + ": not found in the installed mod");
+                    Equal(c.CommentFrom, EffectiveTechLevel(def, byName),
+                        c.DefName + ": the source mod's effective techLevel no longer matches what this " +
+                        "correction was arbitrated against (recorded as " + (c.CommentFrom ?? "absent") + ")");
+                }
+            });
+
         }
     }
+
+    // RimWorld defs inherit through ParentName, and a def that declares no techLevel of its own
+    // still has one if an ancestor does - ASC_ManualDefend gets Archotech from ASC_ManualBase, and
+    // the generated comment records exactly that. So the recorded "from" value is the effective
+    // level, and checking it means resolving the chain, through the mod's own abstract bases and
+    // through vanilla's.
+    private sealed class Abstract
+    {
+        public string TechLevel;
+        public string ParentName;
+    }
+
+    private static Dictionary<string, Abstract> vanillaByName;
+
+    // Walking every vanilla def file costs about a minute, which is most of a run. The map is
+    // small - a name, a level, a parent - so it is cached beside the build output and reused until
+    // the game's data changes.
+    private static Dictionary<string, Abstract> VanillaAbstracts()
+    {
+        if (vanillaByName != null) return vanillaByName;
+        var data = Path.GetFullPath(Path.Combine(Program.Metadata("RimWorldManaged"), @"..\..\Data"));
+        var cache = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "vanilla-abstracts.xml");
+        var stamp = Directory.Exists(data) ? Directory.GetLastWriteTimeUtc(data).ToString("o") : "none";
+
+        if (File.Exists(cache))
+        {
+            var cached = new XmlDocument();
+            cached.Load(cache);
+            if (cached.DocumentElement.GetAttribute("stamp") == stamp)
+            {
+                vanillaByName = cached.DocumentElement.ChildNodes.OfType<XmlElement>().ToDictionary(
+                    e => e.GetAttribute("name"),
+                    e => new Abstract
+                    {
+                        TechLevel = e.GetAttribute("techLevel").Length == 0 ? null : e.GetAttribute("techLevel"),
+                        ParentName = e.GetAttribute("parent").Length == 0 ? null : e.GetAttribute("parent"),
+                    },
+                    StringComparer.Ordinal);
+                return vanillaByName;
+            }
+        }
+
+        vanillaByName = new Dictionary<string, Abstract>(StringComparer.Ordinal);
+        if (Directory.Exists(data))
+            foreach (var file in Directory.GetFiles(data, "*.xml", SearchOption.AllDirectories))
+            {
+                if (file.IndexOf(@"\Languages\", StringComparison.OrdinalIgnoreCase) >= 0) continue;
+                string text;
+                try { text = File.ReadAllText(file); } catch (IOException) { continue; }
+                if (text.IndexOf("Name=\"", StringComparison.Ordinal) < 0) continue;
+                XmlDocument doc;
+                try { doc = new XmlDocument(); doc.LoadXml(text); }
+                catch (XmlException) { continue; }
+                if (doc.DocumentElement == null || doc.DocumentElement.Name != "Defs") continue;
+                foreach (var def in doc.DocumentElement.ChildNodes.OfType<XmlElement>())
+                {
+                    var name = def.GetAttribute("Name");
+                    if (name.Length == 0 || vanillaByName.ContainsKey(name)) continue;
+                    vanillaByName[name] = new Abstract
+                    {
+                        TechLevel = def.SelectSingleNode("techLevel")?.InnerText,
+                        ParentName = def.GetAttribute("ParentName").Length == 0 ? null : def.GetAttribute("ParentName"),
+                    };
+                }
+            }
+
+        var output = new XmlDocument();
+        var root = output.CreateElement("abstracts");
+        root.SetAttribute("stamp", stamp);
+        output.AppendChild(root);
+        foreach (var entry in vanillaByName)
+        {
+            var element = output.CreateElement("a");
+            element.SetAttribute("name", entry.Key);
+            if (entry.Value.TechLevel != null) element.SetAttribute("techLevel", entry.Value.TechLevel);
+            if (entry.Value.ParentName != null) element.SetAttribute("parent", entry.Value.ParentName);
+            root.AppendChild(element);
+        }
+        output.Save(cache);
+        return vanillaByName;
+    }
+
+    private static string EffectiveTechLevel(XmlElement def, Dictionary<string, XmlElement> modByName)
+    {
+        var own = def.SelectSingleNode("techLevel");
+        if (own != null) return own.InnerText;
+        var parent = def.GetAttribute("ParentName");
+
+        // Up through the mod's own abstracts first, since a mod may shadow a vanilla name.
+        while (parent.Length > 0)
+        {
+            if (modByName.TryGetValue(parent, out var modParent))
+            {
+                var level = modParent.SelectSingleNode("techLevel");
+                if (level != null) return level.InnerText;
+                parent = modParent.GetAttribute("ParentName");
+                continue;
+            }
+            if (VanillaAbstracts().TryGetValue(parent, out var vanilla))
+            {
+                if (vanilla.TechLevel != null) return vanilla.TechLevel;
+                parent = vanilla.ParentName ?? "";
+                continue;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    private static Dictionary<string, XmlElement> ByName(XmlDocument combined) =>
+        combined.DocumentElement.ChildNodes.OfType<XmlElement>()
+            .Where(e => e.GetAttribute("Name").Length > 0)
+            .GroupBy(e => e.GetAttribute("Name"), StringComparer.Ordinal)
+            .ToDictionary(g => g.Key, g => g.First(), StringComparer.Ordinal);
 
     private static Dictionary<string, string> InstalledMods()
     {

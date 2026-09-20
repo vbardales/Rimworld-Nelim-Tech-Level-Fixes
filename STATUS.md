@@ -17,12 +17,13 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
+  - defect: three corrections were arbitrated against a starting tech level the source mod no longer has, found 2026-09-20 by the unit tests (see "Stale starting levels"). Apparel_BlueScreenBelt (Mlie.AdvancedRaiders) and AMU_AmuletBarkeep (zal.ancientamulets) are recorded as having had none but now inherit Medieval; Animal_Sarcophagus (overpl.AnimalSarcophagus) is recorded as Medieval but now inherits nothing. The corrections themselves still apply; what has moved is the ground they were decided on, so cherrypick should look at those three again. Not hand-editable: the files are generated.
   - unverified: preTest - 22 of the 30 source mods are not installed on this machine on 2026-09-20 (the Workshop copy of Alchemy (Continued), present on 2026-09-17, is gone), so their packageIds in loadAfter and their 86 corrected defNames could not be checked against real mod data; only 8 mods (80 defNames) were, all resolved. Needs those mods available locally, not a fix
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
   - unverified: the Pickle suite (Tests/Pickle/, 30 scenarios, 166 assertions) has never been run: it needs a RimWorld the audit must not start, and a run is only fully green with all 30 corrected mods enabled
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def check ran for the 7 installed on 2026-09-20, and reports the rest as SKIP rather than passing them
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, unit tests added and green (100 passed, 41 s): RimWorld patch operations run headless over the shipped XML, which is what the Pickle suite was standing in for
+updated:      2026-09-20, unit tests find three corrections arbitrated against starting levels their source mods no longer have; Pickle suite cut to what only a live game shows, per AUDIT.md d89fcce1
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -73,7 +74,7 @@ has started.
 | options | Validated (not applicable, justified) | `settings_audit: not_applicable`, established by static inventory: no C# and no assembly anywhere in the tree, and the only XML besides About.xml is patch files writing `<techLevel>`, so no settings owner, page or MainButtons shortcut can exist (see "Settings audit"). Re-checked against the full 30-file tree after the Zombieland addition. No in-game integration is claimed as tested; none is required for this step. |
 | l10n | Validated (not applicable, justified) | `localization`, `translation_en`, `translation_fr: not_applicable`: an inventory of every `<value>` across the 30 patch files (332 `<value>` and 332 `<techLevel>` tags) shows the mod writes only a `techLevel` enum whose display text the base game already localizes; no Keyed, DefInjected or code-generated text exists (see "Translation audit"). About metadata is outside this gate per TRANSLATIONS.md. |
 | preTest | Not verified | The declarations are coherent as far as checkable: no `modDependencies`, 30 `loadAfter` entries matching the 30 patch files exactly, every patch guarded by a `success` of `Always`, no `LoadFolders.xml` needed, only vanilla patch classes. But on 2026-09-20 only 8 of the 30 source mods are installed here; for those, all 80 corrected defNames resolve and the packageIds match. For the other 22 mods, the packageIds and 86 defNames could not be verified against real data during this audit (see "Dependency check"). A mandatory criterion that cannot be verified now, not a defect found. |
-| done | Not reached | Automated tests, `Tests/Run.ps1`: written 2026-09-20 and **green — 100 passed, 0 failed**, in 41 seconds (see "Unit tests"). XML tests, `Tests/Check-Patches.ps1`: green (30 files, 166 corrections). Pickle tests, `Tests/Pickle/`: written 2026-09-20, **never executed** — they need a RimWorld this session must not start. `TESTING.md` has 8 functional scenarios, none run in game. So two of the four kinds pass and two remain unverified, both for want of a game run. |
+| done | Not reached | Automated tests, `Tests/Run.ps1`: written 2026-09-20, **104 passed, 3 failed** in 44 seconds — the three failures are a real finding about the corrections, not about the harness (see "Stale starting levels"). XML tests, `Tests/Check-Patches.ps1`: green (30 files, 166 corrections). Pickle tests, `Tests/Pickle/`: written 2026-09-20, **never executed** — they need a RimWorld this session must not start. `TESTING.md` has 8 functional scenarios, none run in game. So two of the four kinds pass and two remain unverified, both for want of a game run. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
 ### What is actually in the shipped folder
@@ -288,10 +289,37 @@ produced `defName "ASC_ManualLeader" is corrected by several source mods with di
 and the copy was restored (`git status` clean). The check is green on the real tree, with the
 note "1 defName(s) corrected by more than one source mod, all in agreement".
 
-## Unit tests — 2026-09-20, green
+## Stale starting levels — found 2026-09-20 by the unit tests
 
-`Tests/Run.ps1` builds and runs `Tests/TechLevelFixes.Tests.csproj`: **100 passed, 0 failed,
-41 seconds**, against the working tree. Written after the user’s correction that unit tests
+Each generated correction carries a `defName : from -> to` comment recording the level the def
+had when cherrypick arbitrated it. The user confirmed on 2026-09-20 that those recorded values
+are meant to match the sources as they stand, so the unit tests check them. Three do not:
+
+| defName | source mod | recorded | today |
+|---|---|---|---|
+| `Apparel_BlueScreenBelt` | `Mlie.AdvancedRaiders` | none | `Medieval` |
+| `AMU_AmuletBarkeep` | `zal.ancientamulets` | none | `Medieval` |
+| `Animal_Sarcophagus` | `overpl.AnimalSarcophagus` | `Medieval` | none |
+
+"Today" is the **effective** level, resolved through `ParentName` the way the game does, against
+the installed copy. That resolution is not a guess: `ASC_ManualDefend` is recorded as `Archotech`
+and declares no techLevel of its own, inheriting it from `ASC_ManualBase` — which is what
+establishes that cherrypick records the inherited value, and it now passes. `Animal_Sarcophagus`
+declares none in any of its four version folders and its parent `BuildingBase` declares none
+either, so `Medieval` cannot be reached from the current source at all.
+
+**What this does and does not mean.** The corrections still apply cleanly — the add and replace
+branches and the real-def checks all pass for these three. What has moved is the ground the
+arbitration stood on: each was decided against a source that has since changed, so the chosen
+level may no longer be the right answer. That is a judgement for cherrypick, not a patch to
+hand-edit; every file says so in its own header. The tests are left failing rather than
+relaxed, so the finding stays visible.
+
+## Unit tests — 2026-09-20
+
+`Tests/Run.ps1` builds and runs `Tests/TechLevelFixes.Tests.csproj`: **104 passed, 3 failed,
+44 seconds**, against the working tree. The three failures are the finding above, not a fault in
+the harness. Written after the user’s correction that unit tests
 come first and Pickle does not replace them, for two concrete reasons — a Pickle run takes over
 the machine with real pointer input, and it takes minutes.
 
@@ -320,68 +348,45 @@ now asserts the comment and the XML agree. Verified: the same flip is now caught
 `sarg.alphabooks/ABooks_AdventuringLogs: comment and XML disagree`. A renamed defName is caught
 too, against real data: `Apparel_BlueScreenBeltX should exist exactly once ... got <0>`.
 
-**A check that was tried and dropped, deliberately.** Comparing the comment’s recorded *starting*
-level against the installed mod looked like the way to detect corrections arbitrated against data
-that has since moved. It cannot work here. cherrypick records the **effective** techLevel — after
-ParentName inheritance, and as it stood in the full modlist cherrypick ran against, where other
-mods’ patches may already have set it. Resolving inheritance against vanilla and the mod’s own
-abstract bases removed some mismatches and introduced others in the opposite direction
-(`Apparel_BlueScreenBelt` and `AMU_AmuletBarkeep` recorded as absent but resolving to `Medieval`;
-`Animal_Sarcophagus` the reverse). Since the oracle cannot be reproduced outside the modlist that
-produced it, the check was removed rather than left crying wolf. It also cost 65 of the run’s
-106 seconds. **Open question for the user**: whether those recorded `from` values are still
-meant to match today’s sources.
+**The starting-level check, dropped then restored.** Comparing the comment’s recorded *starting*
+level against the installed mod was written, then removed as unreproducible, then restored once
+the user confirmed those values must match current sources. It resolves `ParentName` the way the
+game does, through the mod’s own abstract bases first and vanilla’s after. Walking every vanilla
+def file for that map cost 65 of the run’s 106 seconds, so the map — a name, a level, a parent —
+is cached beside the build output and rebuilt only when the game’s data changes; the run is back
+to 44 seconds. It currently reports the three corrections above.
 
 **Scope limit, not a pass.** The real-def check ran for the 7 source mods installed on this
 machine on 2026-09-20 and prints `SKIP` with a reason for the other 23, which are covered by
 fixtures only. The installed set is moving: `starter.beeer` and `zal.alchemy` were present on
 2026-09-17 and their Workshop folders are gone today.
 
-## Pickle tests — written 2026-09-20, corrected from a false claim
+## Pickle tests — written, then cut back 2026-09-20
 
-**What this section said before, and why it was wrong.** On 2026-09-17 this file claimed the
-pickles/Gherkin gate was "written and green", on the strength of `Tests/techlevelfixes.feature`
-and a `Tests/Run-Gherkin.ps1` of my own, justified by "no Cucumber/SpecFlow/Reqnroll is
-installed". That justification was made without knowing what this project means by pickles.
-Reading `../AUDIT.md` at `8a0056f0` on 2026-09-20, at the user's prompting, settled it:
-**Pickle is a real RimWorld mod** (`rimworks.pickle`, Workshop 3791648678) that plays Gherkin
-scenarios inside the running game, with a dashboard on `localhost:27750`, a run lock, and
-`junit.xml` reports. It is installed on this machine. My PowerShell script was a static XML
-checker wearing Gherkin syntax; it asserted nothing in game and duplicated
-`Tests/Check-Patches.ps1` exactly. Calling it the pickles gate was wrong, so both files were
-deleted (recoverable at `80f3e48`) and the real suite written instead.
+**First a false claim, corrected.** On 2026-09-17 this file claimed the pickles gate was written
+and green, on the strength of a `Run-Gherkin.ps1` of my own. Reading `../AUDIT.md` settled that
+Pickle is a real RimWorld mod playing Gherkin inside the running game; my script was a static XML
+checker in Gherkin syntax, duplicating `Tests/Check-Patches.ps1`. Deleted (recoverable at
+`80f3e48`), and a real suite written in its place.
 
-**The suite**, `Tests/Pickle/`, with `Tests/Pickle/README.md` for setup and running:
+**Then most of that suite deleted too.** The replacement generated one scenario per corrected mod
+from `Mod/Patches/`: 30 scenarios, 166 assertions. `AUDIT.md` at `d89fcce1` then made the rule
+explicit — keep in Gherkin only what a running game alone can show, and a scenario restating what
+a unit test proves *is to be deleted, not kept just in case*, because every run confiscates the
+machine. The unit tests of the same day prove all 166 corrections headless in under a minute, so
+the generated feature and its generator were removed.
 
-- `Mod/` is a companion mod, `nelim.techlevelfixes.pickletests`, never published, depending on
-  this mod and on Pickle. Nothing test-related sits in the shipped `Mod/` folder.
-- **It compiles nothing.** Unlike every other Pickle suite in this repository it needs no step
-  assembly, because three built-in Pickle steps cover this mod entirely: `mod "X" is loaded`,
-  `mod "nelim.techlevelfixes" loads after "X"`, and `def "X" field "techLevel" is "Y"`. Verified
-  against Pickle's own `Pickle/Features/def-steps.feature` and `mod-steps.feature` in the
-  installed copy, which demonstrate the dotted-path field read and the load-order assertions.
-- That third step is the one that matters: it reads the field off the **live def, after every
-  patch has run**, which is precisely the value this mod owns and the one thing no static check
-  can establish. A correction whose xpath matched nothing fails there and nowhere else, since
-  every generated patch reports `success: Always` by design.
-- `01-loading.feature` is written by hand. `02-corrections.feature` is **generated** by
-  `Tests/Pickle/Build-Features.ps1` from `Mod/Patches/`: 30 scenarios, one per corrected mod,
-  166 assertions, regenerated after each cherrypick pass. Hand-written assertions would have gone
-  stale at the Zombieland addition of 2026-09-17, which moved every count in this repository.
-- Each scenario opens with `Then mod "X" is loaded` so that an absent source mod fails there,
-  naming itself, instead of failing on a def that was never going to exist.
+**What is left**, `Tests/Pickle/`, five scenarios: the mod is loaded and logged nothing; the load
+order the game actually settled on; and spot checks on three corrections (add branch, replace
+branch, the single research project) in a **full modlist**, where every active mod’s patches meet
+in one document. That last is the real difference from the unit tests, which apply one mod’s
+patches to one mod’s defs in isolation; if a third mod sets the same field later, only a game
+shows it.
 
-**Not executed, and this is the honest state of the gate.** Running it means starting or driving
-RimWorld, which this session must not do; AUDIT.md's absolute rule and the single-runner lock
-both apply. A fully green run also needs all 30 corrected mods enabled at once, and 8 were
-installed here on 2026-09-20. So `preTest -> done` keeps two of its four test kinds unverified:
-the Pickle suite (written, never run) and the in-game functional scenarios of `TESTING.md`.
-Per AUDIT.md, code that exists is not a test that passed.
+It compiles nothing: `mod is loaded`, `loads after`, `def field is` and `no errors were logged`
+are all built into Pickle, which is how a mod with no C# of its own can have a suite at all.
 
-**Publication screenshots**, which Pickle also serves: this mod draws no window of its own, and
-`techLevel` is a field the game reads rather than displays, so there is no interface of this
-mod's to capture. No shots feature was written, and inventing one would be the artificial test
-AUDIT.md forbids. What a Workshop page should show for an invisible data mod is left to the user.
+**Never executed.** Running it needs a RimWorld the audit must not start.
 
 ### Reservations (non-blocking)
 
