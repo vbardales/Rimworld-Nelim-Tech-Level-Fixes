@@ -20,6 +20,10 @@ The mod loads after every mod it corrects, declared in `About.xml`'s `loadAfter`
 patches have already run. None of them is a dependency: a correction whose target item is missing
 simply does nothing.
 
+That is deliberate, not merely tolerant. A modlist changes — a mod is taken out for a playthrough,
+or added back later — and the corrections are written once and wait. You can leave every patch
+file in place whether or not the mod it corrects is currently enabled.
+
 ## Mods corrected in this release
 
 30 source mods, one file each under `Mod/Patches/`:

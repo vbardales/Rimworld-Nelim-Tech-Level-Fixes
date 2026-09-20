@@ -17,12 +17,12 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - unverified: preTest - most of the 30 source mods are not installed on this machine, so their packageIds in loadAfter and their corrected defNames cannot be checked against real mod data. This is deliberate, not an accident: the user is removing mods above neolithic, which is why 8 were found in the morning of 2026-09-20 and 7 by the evening. Every defName of every mod that was installed did resolve. Checking the rest needs those mods reinstalled, which is not something to ask for on the strength of an audit
+  - unverified: preTest - most of the 30 source mods are not installed on this machine, so their packageIds in loadAfter and their corrected defNames cannot be checked against real mod data. Temporary and by design: the user gates the modlist by tech level and puts a mod back when the colony reaches it, so those mods and their checks return on their own schedule. Every defName of every mod that was installed did resolve. Their patches stay in place meanwhile - see "Patches outlive their mods"
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game. The user stated on 2026-09-20 that no in-game test is planned for now, so this is deferred by decision rather than pending
   - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It is at least runnable now - retargeted on 2026-09-20 onto Alpha Books, Additional Tools and Ancient Amulets, all installed, after it was found to name two mods that had been removed
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, Pickle scenarios retargeted onto installed mods (they named two removed ones) and narrowed to the inherited-override case, the only thing the unit tests structurally cannot reach
+updated:      2026-09-20, recorded that patches for uninstalled mods are kept on purpose - the modlist is gated by tech level and those mods come back - so the gap they leave in checking is not content to prune
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -300,6 +300,24 @@ than a problem. Verified negatively: flipping one of the two to `Medieval` in a 
 produced `defName "ASC_ManualLeader" is corrected by several source mods with different values`,
 and the copy was restored (`git status` clean). The check is green on the real tree, with the
 note "1 defName(s) corrected by more than one source mod, all in agreement".
+
+## Patches outlive their mods, on purpose
+
+Stated by the user on 2026-09-20: the patches and recorded values for mods that are not currently
+installed are **kept**, because those mods go back in when the playthrough reaches the tech level
+they belong to. The modlist is gated by tech level and moves over time; this mod's corrections are
+written once and wait.
+
+So "23 of the 30 source mods are not installed" is not content to prune, and an audit must not
+propose pruning it — an earlier version of this session did, wrongly. It is a checking gap that
+closes by itself when a mod comes back.
+
+This also makes one property load-bearing rather than incidental. Every generated operation is a
+`PatchOperationConditional` reporting `success: Always`, so a correction whose target is absent
+does nothing and says nothing. That is what lets thirty files sit in the folder while most of
+their mods are out of the list. `Tests/Run.ps1` exercises it for all 166 corrections, against a
+document that does not contain the def, asserting both that `Apply` reports no failure and that
+the document comes back byte-identical.
 
 ## Stale starting levels — measured against cherrypick itself, 2026-09-20
 
