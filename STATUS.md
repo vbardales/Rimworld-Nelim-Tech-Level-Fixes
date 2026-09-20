@@ -22,7 +22,7 @@ remaining:
   - unverified: the Pickle suite (Tests/Pickle/, 5 scenarios) has never been run: it needs a RimWorld the audit must not start, and the user has deferred in-game testing. It is at least runnable now - retargeted on 2026-09-20 onto Alpha Books, Additional Tools and Ancient Amulets, all installed, after it was found to name two mods that had been removed
   - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, preTest validated: dependencies, identifiers, load order and LoadFolders all established, the 30 loadAfter ids corroborated against an independent registry; done now waits only on the Pickle suite being run
+updated:      2026-09-20, done blocked: the Pickle lock is held by another session and the shared WSL harness does not stage loadAfter mods, which is everything this mod patches; question raised with the headless-mode session
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -325,6 +325,44 @@ The second stays open and is recorded in `remaining`; the first can be settled f
   and the description says so.
 - **LoadFolders: none, and none needed.** One flat `Patches/` folder, no version or DLC gating,
   consistent with conditional patches that all report `success: Always`.
+
+## No other installed mod competes for these fields — checked 2026-09-20
+
+TESTING.md scenario 7 worries that a third mod patching the same `techLevel` later in the load
+order would silently win. Searched every installed mod's XML for the three defs that had drifted.
+Two do patch them: `ferny.BetterArchitect` (through its bundled Animal Sarcophagus patch) and
+`zal.mausoleum`. Both touch `designationCategory` only, neither touches `techLevel`, so neither
+competes with this mod and neither explains the `Animal_Sarcophagus` value recorded as
+`Medieval`. That value still matches nothing in the current data.
+
+This covers the installed mods only, and one field on three defs. It is not a general proof that
+nothing ever overrides a correction; the Pickle suite is where that would show, in a real load.
+
+## Blocked on one thing: the Pickle suite has never run
+
+`preTest -> done` needs four kinds of test, and three pass: functional scenarios written
+(`TESTING.md`), automated green (`Tests/Run.ps1`, 107 passed), XML green
+(`Tests/Check-Patches.ps1`). The pickles gate is the one left, and it cannot be waived: its five
+scenarios were chosen precisely because a headless test cannot reach them, so "not applicable"
+would be false.
+
+**Nothing was launched on 2026-09-20.** `Get-Process RimWorldWin64`: not running. But
+`%LOCALAPPDATA%imworld-pickle-run.lock` exists and is **held open by a live process** — opening
+it for read fails with a sharing violation — so another session holds it. AUDIT.md: an audit that
+cannot take the lock launches nothing, says so, and moves to the off-game checks.
+
+**And the suite would not pass under the shared harness even with the lock.**
+`scripts/stage-pickle-wsl.sh` stages the mod, its companion, Harmony, the DLCs, RimLogging,
+Pickle, and the **modDependencies of the mod under test** — with an explicit comment that
+`loadAfter` is not copied because "it names mods the suite must not depend on anyway". This mod
+declares no dependencies by design and everything it corrects sits in `loadAfter`, so the staged
+list would contain nothing it patches: every def assertion and both load-order assertions would
+fail for want of a source mod, not for a defect. `wsl-deps.map` does not help; reading it, it
+only overrides packageId-to-workshop-folder for mods already being copied.
+
+That is a mismatch between this class of mod and the shared harness, not something to paper over
+by trimming the suite until it passes. Put to the session that owns the headless work on
+2026-09-20; awaiting its answer before changing either the suite or the script.
 
 ## Patches outlive their mods, on purpose
 
