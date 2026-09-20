@@ -13,16 +13,15 @@ workflow_stage: l10n
 licence:      original
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none
-showcase:     partial
+showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - feature: optional, not required by any transition - the Preview carries the title and the 1.6 badge only, as asked; the one-line summary and the accent rule that STYLE_RIMWORLD.md places under the title are not engraved (`showcase: partial`)
   - unverified: preTest - 22 of the 30 source mods are not installed on this machine on 2026-09-20 (the Workshop copy of Alchemy (Continued), present on 2026-09-17, is gone), so their packageIds in loadAfter and their 86 corrected defNames could not be checked against real mod data; only 8 mods (80 defNames) were, all resolved. Needs those mods available locally, not a fix
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
   - unverified: no automated C# test harness exists (no C# to test)
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, Preview overlay engraved (title + 1.6 badge); preOptions, options, l10n validated; preTest blocked on unverifiable ids/defNames of 22 uninstalled source mods
+updated:      2026-09-20, Preview overlay completed at the bottom left (title, rule, summary, 1.6 badge); preOptions, options, l10n validated; preTest blocked on unverifiable ids/defNames of 22 uninstalled source mods
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -356,7 +355,7 @@ thumbnail (inspection copies live in the ignored scratchpad, not the repo).
 Result: `ModIcon générée` and `Preview générée` **validated**, so
 `workflow_stage` is now `Preview générée`.
 
-### Preview overlay — 2026-09-20, at the user's request ("grave le titre et le badge")
+### Preview overlay — 2026-09-20, at the user's request (title and badge, then summary)
 
 Composition, palette and renderer live in `Art/`: `preview.html`,
 `preview-palette.json` (the single palette, five hex fields, not duplicated here),
@@ -366,36 +365,50 @@ under `qi-gong/app/node_modules` via `NODE_PATH`; nothing was installed. The
 final `Mod/About/Preview.png` is regenerated from `Art/Preview.png` (untouched)
 by `node Art/render-preview.cjs`.
 
-- What guided the palette, measured on `Art/Preview.png`: the veil is the mean of
-  the stone floor and wood in the title zone, `rgb(56,47,42)`, desaturated one
-  notch; the secondary ink comes from the dominant family, hues 0-30 degrees,
-  which covers 42.5% of the sampled frame (the brown floor and wood), lightened
-  to `#E0A870`; the accent is the blue family of the striped crate, which is the
-  only cold hue carried by a subject detail (0.6% of the frame). The stripe
-  itself measures as a muted blue-grey, about `rgb(55,67,77)`, so the accent is
-  that hue with its saturation and lightness raised to `#3AAEF0`. The brightest
-  region, the lamp, is amber and close to the secondary, so it was not used.
-- Layout: title 46 px, weight 600, on two lines (`Nelim's Tech` / `Level Fixes`)
-  from a 290 px width, at 50 px left and 54 px top. One line at 46 px ran into
-  the lamp glow and the objects on the bench (worst contrast 1.88:1), so the
-  natural two-line wrap was chosen over shrinking below 46 px, as the guide
-  prefers. `Nelim's` is a direct span at 65% in the secondary ink. No tag (public,
-  licence `original`). Badge: 80 px triangle in the accent, `1.6` in `#17120E`,
-  rotated 45 degrees, the value read from the highest stable `supportedVersions`
-  in the shipped About.xml.
+- What guided the palette, measured on `Art/Preview.png`: the secondary ink comes
+  from the dominant family, hues 0-30 degrees, which covers 42.5% of the sampled
+  frame (the brown floor and wood), lightened to `#E0A870`; the accent is the blue
+  family of the striped crate, the only cold hue carried by a subject detail
+  (0.6% of the frame). The stripe itself measures as a muted blue-grey, about
+  `rgb(55,67,77)`, so the accent is that hue with its saturation and lightness
+  raised to `#3AAEF0`. The lamp is amber and close to the secondary, so it was not
+  used. The veil is the mean of the floor where the text finally sits, the
+  bottom-left zone, `rgb(69,56,48)`, desaturated one notch to `#443A33`.
+- Placement, changed on the user's suggestion: the whole block (title, accent rule,
+  summary) sits at the **bottom left**, 50 px from the left and 54 px from the
+  bottom, not at the top left as STYLE_RIMWORLD.md prescribes. In this image the
+  subject occupies the upper half and the bottom is a wide empty floor, so that is
+  the calm zone; at the top left the title collided with the lamp glow and the
+  bench objects (worst contrast 1.88:1 on one line). Consequences: the title is
+  back to one line at 46 px, weight 600; the summary is back to the guide's 430 px
+  width, 21 px, 400, two lines; the rule is 58x3 px in the accent, 20 px below the
+  title and 16 px above the summary. The badge stays top right (fixed geometry):
+  80 px triangle in the accent, `1.6` in `#17120E` rotated 45 degrees, the value
+  read from the highest stable `supportedVersions` in the shipped About.xml.
+- Veil, a deliberate deviation: the guide's dark veil is a circle fading from .86
+  to 0 at 74% of the diagonal. Mirrored to the bottom-left corner it left the
+  title at 3.21:1 (prefix 4.32:1), because the lamp pool reaches that height. It
+  is now `radial-gradient(ellipse 940px 460px at 0% 100%, .92 to .88 at 55% to 0)`,
+  holding its alpha over the text block, which is the same idea the guide already
+  applies to light veils. The bench, the objects and the settler are outside its
+  reach; it does darken the bottom-left floor and the barrels at the left edge.
+- `Nelim's` is a direct span at 65% in the secondary ink. No tag (public, licence
+  `original`). Summary text: "Corrects the tech level of items added by other
+  mods." It carries no count on purpose: this is a compatibility mod, so any
+  number would describe other mods' state (STYLE_RIMWORLD.md, rule of counts).
 - Fonts actually used, confirmed through Chrome's platform-font report: Segoe UI
-  Semibold for the title and the prefix, Segoe UI Bold for the version, no
-  fallback. The capture waits for `document.fonts.ready` and the source image.
+  Semibold for the title and the prefix, Segoe UI, weight 400 for the summary,
+  Segoe UI Bold for the version, no fallback. The capture waits for
+  `document.fonts.ready` and the source image.
 - Measured on a background-only render, over the whole text rectangles rather
-  than four corners: title 5.35:1, prefix 5.55:1, badge digits on the accent
-  7.52:1, all above 4.5:1. The title stays 24 px or more away from the badge
-  (it ends near x=340, the badge starts at x=816) and no text leaves the frame.
-- Result: 896x504, 728,168 bytes (under the 900 KB target and the 1 MB limit).
-  Inspected at full size and at 268 px: title and version identifiable, no
-  overlap, no clipped glyph, the four objects and the settler unobscured.
-- Not engraved, because the request was title and badge: the accent rule and the
-  one-line summary. This is why `showcase` is `partial`. No transition requires
-  them.
+  than four corners: title 5.60:1, prefix 4.99:1, summary 8.89:1, badge digits on
+  the accent 7.52:1, all above 4.5:1. The title ends near x=490 and the badge starts
+  at x=816, well over 24 px apart, and no text leaves the frame.
+- Result: 896x504, 648,828 bytes (under the 900 KB target and the 1 MB limit).
+  Inspected at full size and at 268 px: title, rule and badge identifiable, no
+  overlap, no clipped glyph, the four objects and the settler unobscured. The
+  summary is not legible at 268 px, which the guide accepts as a choice.
+- `showcase: complete`: title, badge, rule and summary are all engraved.
 
 ### Dependency check — 2026-09-20, read-only
 

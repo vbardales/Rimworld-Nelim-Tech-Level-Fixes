@@ -21,7 +21,7 @@ const hue = ([r,g,b]) => { r/=255; g/=255; b/=255; const mx=Math.max(r,g,b), d=m
     const cdp = await page.context().newCDPSession(page); await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
     const {root:dom} = await cdp.send('DOM.getDocument');
     const fonts = {}, bounds = {};
-    for (const selector of ['h1','h1 .prefix','.version']) {
+    for (const selector of ['h1','h1 .prefix','p','.rule','.version']) {
       const {nodeId} = await cdp.send('DOM.querySelector',{nodeId:dom.nodeId,selector});
       if (!nodeId) continue;
       fonts[selector] = (await cdp.send('CSS.getPlatformFontsForNode',{nodeId})).fonts;
@@ -36,7 +36,7 @@ const hue = ([r,g,b]) => { r/=255; g/=255; b/=255; const mx=Math.max(r,g,b), d=m
     await sharp(background).toFile(path.join(qa,'background.png'));
     const {data,info} = await sharp(background).removeAlpha().raw().toBuffer({resolveWithObject:true});
     const contrast = {};
-    for (const selector of ['h1','h1 .prefix']) {
+    for (const selector of ['h1','h1 .prefix','p']) {
       const b=bounds[selector], ink=lum(rgb(config.palette[selector==='h1 .prefix'?'inkSecondary':'inkPrimary']));
       let minimum=Infinity;
       for(let y=Math.floor(b.y);y<Math.ceil(b.y+b.height);y++) for(let x=Math.floor(b.x);x<Math.ceil(b.x+b.width);x++) {

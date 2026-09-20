@@ -1,6 +1,6 @@
 {
   "palette": {
-    "veil": "#39322D",
+    "veil": "#443A33",
     "inkPrimary": "#F2ECE1",
     "inkSecondary": "#E0A870",
     "accent": "#3AAEF0",
@@ -14,7 +14,7 @@
         "familyName": "Segoe UI Semibold",
         "postScriptName": "SegoeUI-Semibold",
         "isCustomFont": false,
-        "glyphCount": 23
+        "glyphCount": 24
       }
     ],
     "h1 .prefix": [
@@ -25,6 +25,15 @@
         "glyphCount": 7
       }
     ],
+    "p": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI",
+        "isCustomFont": false,
+        "glyphCount": 52
+      }
+    ],
+    ".rule": [],
     ".version": [
       {
         "familyName": "Segoe UI",
@@ -37,15 +46,27 @@
   "bounds": {
     "h1": {
       "x": 50,
-      "y": 54,
-      "width": 290,
-      "height": 101.1875
+      "y": 299.53125,
+      "width": 440.28125,
+      "height": 50.59375
     },
     "h1 .prefix": {
       "x": 50,
-      "y": 66,
+      "y": 311.53125,
       "width": 100.34375,
       "height": 40
+    },
+    "p": {
+      "x": 50,
+      "y": 389.125,
+      "width": 430,
+      "height": 60.875
+    },
+    ".rule": {
+      "x": 50,
+      "y": 370.125,
+      "width": 58,
+      "height": 3
     },
     ".version": {
       "x": 846.7371826171875,
@@ -55,8 +76,9 @@
     }
   },
   "contrast": {
-    "h1": 5.345750744285358,
-    "h1 .prefix": 5.546073583497785,
+    "h1": 5.5950903194145445,
+    "h1 .prefix": 4.986111208627202,
+    "p": 8.893738220060643,
     ".version": 7.520249209587912
   },
   "separation": {
@@ -65,5 +87,5 @@
     "hueGap": 172,
     "luminanceContrastSecondaryVsAccent": 1.1780257963231084
   },
-  "bytes": 728168
+  "bytes": 648828
 }
