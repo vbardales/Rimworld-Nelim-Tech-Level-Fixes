@@ -52,6 +52,7 @@ if ($patchFiles.Count -eq 0) {
 
 $patchDefNames = 0
 $sourcesSeen = New-Object System.Collections.Generic.HashSet[string]
+$corrections = New-Object System.Collections.Generic.List[object]
 
 foreach ($file in $patchFiles) {
     $sourceName = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
@@ -168,6 +169,32 @@ foreach ($file in $patchFiles) {
         } elseif ($ValidTechLevels -cnotcontains $replaceValue) {
             $problems.Add("$($file.Name)/$defName`: techLevel `"$replaceValue`" is not one of: $($ValidTechLevels -join ', ')")
         }
+
+        $corrections.Add([pscustomobject]@{ File = $file.Name; DefName = $defName; Value = $replaceValue })
+    }
+}
+
+# Two source mods can legitimately declare the same defName - a continuation and the mod it
+# continues, typically - and then both get a correction file naming it. defNames are global in
+# RimWorld, so whichever mod loads last owns the def; the corrections must therefore agree, or the
+# final techLevel depends on the player's mod order. Same value across files is fine and expected
+# (ASC_ManualLeader, on 2026-09-20, in cedaro.animalcommander and Udon.AnimalSimpleCommand, both
+# Neolithic); different values are a real ambiguity and fail here.
+$byDefName = @{}
+foreach ($c in $corrections) {
+    if (-not $byDefName.ContainsKey($c.DefName)) { $byDefName[$c.DefName] = New-Object System.Collections.Generic.List[object] }
+    $byDefName[$c.DefName].Add($c)
+}
+$sharedDefNames = 0
+$disagreeingDefNames = 0
+foreach ($entry in $byDefName.GetEnumerator()) {
+    if ($entry.Value.Count -lt 2) { continue }
+    $sharedDefNames++
+    $values = @($entry.Value | ForEach-Object { $_.Value } | Sort-Object -Unique)
+    if ($values.Count -gt 1) {
+        $disagreeingDefNames++
+        $where = ($entry.Value | ForEach-Object { "$($_.File)=$($_.Value)" }) -join ', '
+        $problems.Add("defName `"$($entry.Key)`" is corrected by several source mods with different values: $where")
     }
 }
 
@@ -188,6 +215,10 @@ foreach ($entry in $loadAfter) {
 }
 
 Write-Host "Checked $($patchFiles.Count) patch files, $patchDefNames corrections, $($loadAfter.Count) loadAfter entries."
+if ($sharedDefNames -gt 0) {
+    $verdict = if ($disagreeingDefNames -gt 0) { "$disagreeingDefNames of them disagreeing" } else { 'all in agreement' }
+    Write-Host "$sharedDefNames defName(s) corrected by more than one source mod, $verdict."
+}
 
 if ($problems.Count -gt 0) {
     Write-Host ''

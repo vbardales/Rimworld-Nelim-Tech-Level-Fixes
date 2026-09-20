@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Tech Level Fixes - Pickle tests</name>
+  <author>Nelim</author>
+  <packageId>nelim.techlevelfixes.pickletests</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>In-game functional tests for Nelim's Tech Level Fixes, run by Pickle. Development only: never published.
+
+The scenarios only read defs, so they change nothing in the game and need no save. A scenario whose corrected mod is not in the modlist fails on its first step, naming that mod.</description>
+  <modDependencies>
+    <li>
+      <packageId>nelim.techlevelfixes</packageId>
+      <displayName>Nelim's Tech Level Fixes</displayName>
+    </li>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>nelim.techlevelfixes</li>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>

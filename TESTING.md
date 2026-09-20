@@ -2,10 +2,17 @@
 
 Not shipped: it lives beside `Mod/`, never inside it, so Steam never receives it.
 
-This mod ships no assembly and no automated test harness exists yet (see STATUS.md's
-`settings_audit`/`localization` notes: there is no C# anywhere in the tree). Every
-scenario below has been **written**, none has been **run**. `STATUS.md`'s `remaining`
-list tracks that distinction; do not read this file as a report of things observed.
+This mod ships no assembly (see STATUS.md's `settings_audit`/`localization` notes: there
+is no C# anywhere in the tree). Every scenario below has been **written**, none has been
+**run**. `STATUS.md`'s `remaining` list tracks that distinction; do not read this file as
+a report of things observed.
+
+**Scenarios 1 to 4 and 7 are also played by Pickle**, in `Tests/Pickle/` — the same
+checks, asserted inside the running game against the live defs, one scenario per corrected
+mod. Prefer that suite for those five: it covers all 166 corrections instead of the handful
+spot-checked by hand below, and it needs no manual inspection of a def's fields. It has not
+been run either. Scenarios 5, 6 and 8 stay manual: they change the modlist or the files on
+disk, which a scenario running inside the game cannot do to itself.
 
 ## Before starting
 

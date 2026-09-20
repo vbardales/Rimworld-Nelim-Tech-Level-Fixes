@@ -19,9 +19,10 @@ workshop:
 remaining:
   - unverified: preTest - 22 of the 30 source mods are not installed on this machine on 2026-09-20 (the Workshop copy of Alchemy (Continued), present on 2026-09-17, is gone), so their packageIds in loadAfter and their 86 corrected defNames could not be checked against real mod data; only 8 mods (80 defNames) were, all resolved. Needs those mods available locally, not a fix
   - unverified: TESTING.md written 2026-09-17 (8 functional scenarios, preconditions/actions/expected results); none has been run in game
+  - unverified: the Pickle suite (Tests/Pickle/, 30 scenarios, 166 assertions) has never been run: it needs a RimWorld the audit must not start, and a run is only fully green with all 30 corrected mods enabled, of which 8 are installed here on 2026-09-20
   - unverified: no automated C# test harness exists (no C# to test)
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-20, ModIcon restored to the whole-image 128x128 reduction (lettering kept, 19,025 bytes) after a mistaken crop; preOptions, options, l10n validated; preTest blocked on unverifiable ids/defNames of 22 uninstalled source mods
+updated:      2026-09-20, read AUDIT.md at 8a0056f0 and corrected what it showed: the earlier "pickles" claim was a static substitute, replaced by a real Pickle suite under Tests/Pickle/, written and not run
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -72,7 +73,7 @@ has started.
 | options | Validated (not applicable, justified) | `settings_audit: not_applicable`, established by static inventory: no C# and no assembly anywhere in the tree, and the only XML besides About.xml is patch files writing `<techLevel>`, so no settings owner, page or MainButtons shortcut can exist (see "Settings audit"). Re-checked against the full 30-file tree after the Zombieland addition. No in-game integration is claimed as tested; none is required for this step. |
 | l10n | Validated (not applicable, justified) | `localization`, `translation_en`, `translation_fr: not_applicable`: an inventory of every `<value>` across the 30 patch files (332 `<value>` and 332 `<techLevel>` tags) shows the mod writes only a `techLevel` enum whose display text the base game already localizes; no Keyed, DefInjected or code-generated text exists (see "Translation audit"). About metadata is outside this gate per TRANSLATIONS.md. |
 | preTest | Not verified | The declarations are coherent as far as checkable: no `modDependencies`, 30 `loadAfter` entries matching the 30 patch files exactly, every patch guarded by a `success` of `Always`, no `LoadFolders.xml` needed, only vanilla patch classes. But on 2026-09-20 only 8 of the 30 source mods are installed here; for those, all 80 corrected defNames resolve and the packageIds match. For the other 22 mods, the packageIds and 86 defNames could not be verified against real data during this audit (see "Dependency check"). A mandatory criterion that cannot be verified now, not a defect found. |
-| done | Not reached | `TESTING.md` has 8 functional scenarios, written 2026-09-17, none run in game. `Tests/Check-Patches.ps1` (XML tests) and `Tests/techlevelfixes.feature` + `Tests/Run-Gherkin.ps1` (pickles/Gherkin) are both written and green as of 2026-09-17 (30 files, 166 corrections). No automated C# harness exists (no C# to test). The in-game half of "done" — actually walking TESTING.md's 8 scenarios — remains outstanding. |
+| done | Not reached | `TESTING.md` has 8 functional scenarios, written 2026-09-17, none run in game. XML tests, `Tests/Check-Patches.ps1`: written and green (30 files, 166 corrections). Pickle tests, `Tests/Pickle/`: written 2026-09-20, **never executed** — they run inside RimWorld, which this session does not start. No automated C# harness exists (no C# to test). Two of the four test kinds therefore remain unverified. |
 | tested | Not reached | No in-game validation of any kind has been performed or claimed. |
 
 ### What is actually in the shipped folder
@@ -267,184 +268,71 @@ corrections.** Re-verified rather than assumed unchanged:
 No transition changes as a result: `workflow_stage` stays `horsMonoRepo`, still
 blocked on ModIcon/Preview generation (2026-09-20) ahead of `preOptions`.
 
-## Pickles / Gherkin tests — 2026-09-17
+## A defName corrected by two mods — found 2026-09-20
 
-`Tests/techlevelfixes.feature` (6 scenarios, Given/When/Then/So) and
-`Tests/Run-Gherkin.ps1`, written and run this session.
+Cross-checking the generated Pickle assertions against the patch files turned up 166 corrections
+for 165 distinct defNames. The repeat is `ASC_ManualLeader`, corrected by both
+`cedaro.animalcommander.xml` (Animal Commander) and `Udon.AnimalSimpleCommand.xml` (Animal
+Simple Command) — the `ASC_` prefix and the shared defName suggest one continues the other.
 
-No Cucumber/SpecFlow/Reqnroll is installed in this environment, and the installed
-`Pester` is 3.4.0, which predates Pester's own Gherkin support (`Invoke-Gherkin`,
-added in Pester 4) — confirmed with `Get-Module -ListAvailable Pester` before
-choosing an approach, rather than assumed. Installing new tooling for one small
-feature file was rejected in favour of a minimal, honest substitute: the runner
-reads the real `.feature` file's text for its human-readable Given/When/Then/So
-lines (so the printed spec and the file can never silently drift from each other),
-prints each scenario back, and executes one real check per scenario **title**
-against the live `Mod/Patches/` tree and `About.xml` — not a general Gherkin
-engine, and it says so in its own header. An unmapped scenario title fails loudly
-("the .feature file and Run-Gherkin.ps1 have drifted apart") rather than being
-silently skipped.
+**Not a defect: both corrections set `Neolithic`.** defNames are global in RimWorld, so if both
+mods are enabled the one loading last owns the def; since the two corrections agree, the final
+techLevel is the same either way. If they ever disagreed, the result would silently depend on
+the mod order the player happens to have.
 
-The six scenarios are the behavioural promises `README.md` and `ATTRIBUTION.md`
-make, expressed as specification rather than as code-shaped assertions (that is
-what distinguishes this from `Tests/Check-Patches.ps1`, not different underlying
-facts): a correction's replace and add branches always agree; only the game's own
-seven tech levels are ever written; no `defName` is corrected twice per file; a
-missing target is harmless because `<success>` is always `Always`; nothing but
-`<techLevel>` is ever written; and every patch file's source mod is declared in
-`loadAfter`, exactly once, in both directions.
+`Tests/Check-Patches.ps1` only looked for duplicate defNames *within* one file, so it could not
+have seen this. It now also groups corrections by defName *across* files and fails when a shared
+defName is given different values, while reporting agreeing repeats as a counted note rather
+than a problem. Verified negatively: flipping one of the two to `Medieval` in a working copy
+produced `defName "ASC_ManualLeader" is corrected by several source mods with different values`,
+and the copy was restored (`git status` clean). The check is green on the real tree, with the
+note "1 defName(s) corrected by more than one source mod, all in agreement".
 
-Run with `.\Tests\Run-Gherkin.ps1` from the repository root. **Result: 6/6
-scenarios passed, against 166 corrections across 30 source mods.**
+## Pickle tests — written 2026-09-20, corrected from a false claim
 
-Verified negatively before trusting the green run, in an isolated scratch copy
-(not the real tree): a `<value>` was given a second, non-`techLevel` child
-element, confirmed caught by name (`starter.beeer.xml: <value> contains
-"<techLevel>Industrial</techLevel><label>x</label>", expected exactly one
-<techLevel>`), then the scratch copy was discarded. That scratch copy's
-deliberately partial `Mod/Patches/` (one file, all 30 `loadAfter` entries) also
-exercised the "every corrected mod is declared" scenario's failure path for real,
-incidentally.
+**What this section said before, and why it was wrong.** On 2026-09-17 this file claimed the
+pickles/Gherkin gate was "written and green", on the strength of `Tests/techlevelfixes.feature`
+and a `Tests/Run-Gherkin.ps1` of my own, justified by "no Cucumber/SpecFlow/Reqnroll is
+installed". That justification was made without knowing what this project means by pickles.
+Reading `../AUDIT.md` at `8a0056f0` on 2026-09-20, at the user's prompting, settled it:
+**Pickle is a real RimWorld mod** (`rimworks.pickle`, Workshop 3791648678) that plays Gherkin
+scenarios inside the running game, with a dashboard on `localhost:27750`, a run lock, and
+`junit.xml` reports. It is installed on this machine. My PowerShell script was a static XML
+checker wearing Gherkin syntax; it asserted nothing in game and duplicated
+`Tests/Check-Patches.ps1` exactly. Calling it the pickles gate was wrong, so both files were
+deleted (recoverable at `80f3e48`) and the real suite written instead.
 
-What this suite does **not** cover: anything requiring a running game. It is a
-readable, executable restatement of the same static shape `Check-Patches.ps1`
-already verifies, not a substitute for `TESTING.md`'s 8 in-game scenarios, none
-of which have been run.
+**The suite**, `Tests/Pickle/`, with `Tests/Pickle/README.md` for setup and running:
 
-## Images audit — 2026-09-20
+- `Mod/` is a companion mod, `nelim.techlevelfixes.pickletests`, never published, depending on
+  this mod and on Pickle. Nothing test-related sits in the shipped `Mod/` folder.
+- **It compiles nothing.** Unlike every other Pickle suite in this repository it needs no step
+  assembly, because three built-in Pickle steps cover this mod entirely: `mod "X" is loaded`,
+  `mod "nelim.techlevelfixes" loads after "X"`, and `def "X" field "techLevel" is "Y"`. Verified
+  against Pickle's own `Pickle/Features/def-steps.feature` and `mod-steps.feature` in the
+  installed copy, which demonstrate the dotted-path field read and the load-order assertions.
+- That third step is the one that matters: it reads the field off the **live def, after every
+  patch has run**, which is precisely the value this mod owns and the one thing no static check
+  can establish. A correction whose xpath matched nothing fails there and nowhere else, since
+  every generated patch reports `success: Always` by design.
+- `01-loading.feature` is written by hand. `02-corrections.feature` is **generated** by
+  `Tests/Pickle/Build-Features.ps1` from `Mod/Patches/`: 30 scenarios, one per corrected mod,
+  166 assertions, regenerated after each cherrypick pass. Hand-written assertions would have gone
+  stale at the Zombieland addition of 2026-09-17, which moved every count in this repository.
+- Each scenario opens with `Then mod "X" is loaded` so that an absent source mod fails there,
+  naming itself, instead of failing on a def that was never going to exist.
 
-Audited revision: HEAD `80f3e48` plus two untracked files, `Mod/About/ModIcon.png`
-and `Mod/About/Preview.png`, dropped in by the user on 2026-09-20 after generating
-them from `../PROMPT_TECHLEVELFIXES.md`. Dimensions and sizes read with
-`System.Drawing`; both images opened and inspected directly. No image was
-generated, resized or moved by this audit, and nothing was committed.
+**Not executed, and this is the honest state of the gate.** Running it means starting or driving
+RimWorld, which this session must not do; AUDIT.md's absolute rule and the single-runner lock
+both apply. A fully green run also needs all 30 corrected mods enabled at once, and 8 were
+installed here on 2026-09-20. So `preTest -> done` keeps two of its four test kinds unverified:
+the Pickle suite (written, never run) and the in-game functional scenarios of `TESTING.md`.
+Per AUDIT.md, code that exists is not a test that passed.
 
-- **ModIcon: defect.** 1254x1254, 1,114,566 bytes, against 128x128 / ~30 KB.
-  PUBLISHING.md's own example is this exact trap (a 1254x1254 icon at 1.9 MB,
-  62% of the mod, for a 32 px thumbnail). Content is fine for the family:
-  winking orange mascot, ponytail, thick outline, one sparkle, near-black ground.
-- **Preview: defect.** 1536x1024 (3:2) and 2,070,420 bytes, against 896x504
-  (16:9) and under 1 MB, which is Steam's hard limit. It is the raw generation,
-  so the crop to 16:9 and the reduction are still to do. Visual review found no
-  concrete defect: camera is the high oblique the style asks for, the tiled floor
-  reads as a grid, one warm lamp pool against a cool ambient, no readable text,
-  the single settler is a dark figure seen from behind, and the hue families are
-  the brown dominant, the amber lamp and the blue stripe on the crate (three,
-  the allowed maximum). The two accents look clearly distinct from each other.
-  No comparison with a live RimWorld capture was made or required.
-
-Consequence at the time: `ModIcon générée` and `Preview générée` were **not
-validated**, and `workflow_stage` stayed `horsMonoRepo`.
-
-### Resize — 2026-09-20, same day, at the user's request
-
-The two defects above were corrected without generating anything new:
-
-1. The raw originals were copied, byte-identical (SHA-256 compared against the
-   files dropped in), to `Art/ModIcon-source.png` and `Art/Preview.png`
-   (STYLE_RIMWORLD.md keeps the overlay-free source in `Art/`).
-2. `Mod/About/ModIcon.png`: whole 1254x1254 square reduced to **128x128**,
-   19,025 bytes.
-3. `Mod/About/Preview.png`: top 1536x864 band (16:9) reduced to **896x504**,
-   868,710 bytes. Cropping from the top keeps the lamp, the bench and the settler;
-   only floor is lost. A middle or bottom crop would have cut the lamp.
-
-Both done with `System.Drawing`, high-quality bicubic, 24-bit PNG. Inspected
-after the fact at full size, plus a 32 px icon copy and a 268 px preview
-thumbnail (inspection copies live in the ignored scratchpad, not the repo).
-Result: `ModIcon générée` and `Preview générée` **validated**, so
-`workflow_stage` is now `Preview générée`.
-
-### Icon re-crop, reverted — 2026-09-20
-
-A crop of `Art/ModIcon-source.png` that removed the lettering (1062 px square,
-source columns 128-1189, rows 46-994, plain background `rgb(9,2,0)` below) was
-made and committed as `0f6cd5b`, after reading "juste retaille-la" as "crop it".
-The user meant the opposite: keep the lettering and only reduce the weight. The
-file was restored byte for byte from the earlier whole-image reduction
-(`d3fba62`, 19,025 bytes). The source was never modified. Lesson for this mod:
-"retaille" here meant resize, not crop.
-
-### Preview overlay — 2026-09-20, at the user's request (title and badge, then summary)
-
-Composition, palette and renderer live in `Art/`: `preview.html`,
-`preview-palette.json` (the single palette, five hex fields, not duplicated here),
-`render-preview.cjs`, and the last QA report `preview-qa.json`. Rendered with
-headless Chrome through playwright and sharp, taken from an existing install
-under `qi-gong/app/node_modules` via `NODE_PATH`; nothing was installed. The
-final `Mod/About/Preview.png` is regenerated from `Art/Preview.png` (untouched)
-by `node Art/render-preview.cjs`.
-
-- What guided the palette, measured on `Art/Preview.png`: the secondary ink comes
-  from the dominant family, hues 0-30 degrees, which covers 42.5% of the sampled
-  frame (the brown floor and wood), lightened to `#E0A870`; the accent is the blue
-  family of the striped crate, the only cold hue carried by a subject detail
-  (0.6% of the frame). The stripe itself measures as a muted blue-grey, about
-  `rgb(55,67,77)`, so the accent is that hue with its saturation and lightness
-  raised to `#3AAEF0`. The lamp is amber and close to the secondary, so it was not
-  used. The veil is the mean of the floor where the text finally sits, the
-  bottom-left zone, `rgb(69,56,48)`, desaturated one notch to `#443A33`.
-- Placement, changed on the user's suggestion: the whole block (title, accent rule,
-  summary) sits at the **bottom left**, 50 px from the left and 54 px from the
-  bottom, not at the top left as STYLE_RIMWORLD.md prescribes. In this image the
-  subject occupies the upper half and the bottom is a wide empty floor, so that is
-  the calm zone; at the top left the title collided with the lamp glow and the
-  bench objects (worst contrast 1.88:1 on one line). Consequences: the title is
-  back to one line at 46 px, weight 600; the summary is back to the guide's 430 px
-  width, 21 px, 400, two lines; the rule is 58x3 px in the accent, 20 px below the
-  title and 16 px above the summary. The badge stays top right (fixed geometry):
-  80 px triangle in the accent, `1.6` in `#17120E` rotated 45 degrees, the value
-  read from the highest stable `supportedVersions` in the shipped About.xml.
-- Veil, a deliberate deviation: the guide's dark veil is a circle fading from .86
-  to 0 at 74% of the diagonal. Mirrored to the bottom-left corner it left the
-  title at 3.21:1 (prefix 4.32:1), because the lamp pool reaches that height. It
-  is now `radial-gradient(ellipse 940px 460px at 0% 100%, .92 to .88 at 55% to 0)`,
-  holding its alpha over the text block, which is the same idea the guide already
-  applies to light veils. The bench, the objects and the settler are outside its
-  reach; it does darken the bottom-left floor and the barrels at the left edge.
-- `Nelim's` is a direct span at 65% in the secondary ink. No tag (public, licence
-  `original`). Summary text: "Corrects the tech level of items added by other
-  mods." It carries no count on purpose: this is a compatibility mod, so any
-  number would describe other mods' state (STYLE_RIMWORLD.md, rule of counts).
-- Fonts actually used, confirmed through Chrome's platform-font report: Segoe UI
-  Semibold for the title and the prefix, Segoe UI, weight 400 for the summary,
-  Segoe UI Bold for the version, no fallback. The capture waits for
-  `document.fonts.ready` and the source image.
-- Measured on a background-only render, over the whole text rectangles rather
-  than four corners: title 5.60:1, prefix 4.99:1, summary 8.89:1, badge digits on
-  the accent 7.52:1, all above 4.5:1. The title ends near x=490 and the badge starts
-  at x=816, well over 24 px apart, and no text leaves the frame.
-- Result: 896x504, 648,828 bytes (under the 900 KB target and the 1 MB limit).
-  Inspected at full size and at 268 px: title, rule and badge identifiable, no
-  overlap, no clipped glyph, the four objects and the settler unobscured. The
-  summary is not legible at 268 px, which the guide accepts as a choice.
-- `showcase: complete`: title, badge, rule and summary are all engraved.
-
-### Dependency check — 2026-09-20, read-only
-
-Against the installed Workshop copies and `RimWorld/Mods` (8,352 packageIds
-indexed): 8 of the 30 `loadAfter` ids were found (`LadyElizabeth.AdditionalToolsMod`,
-`Mlie.AdvancedRaiders`, `overpl.AnimalSarcophagus`, `Romyashi.AncientJunkLoot`,
-`sarg.alphabooks`, `starter.beeer`, `Udon.AnimalSimpleCommand`,
-`zal.ancientamulets`), and for those, all 80 corrected `defName`s were found in the
-mod's own XML. The other 22 mods are not installed on this machine today, so
-their ids and 86 `defName`s stay unverified. Notably `zal.alchemy`, whose Workshop
-copy (3132057783) was there on 2026-09-17 and was used to settle the lowercase
-`thingDef` question, is no longer present. Recorded as `unverified` in
-`remaining`, not as a defect. To pass `l10n -> preTest`: make those 22 mods
-available locally and rerun the same check, or accept another source of truth for
-their packageIds.
-
-### Reservations (non-blocking, not required to pass)
-
-- The icon carries the words "TECH LEVEL FIXES", which the user chose to keep. The
-  icon block of STYLE_RIMWORLD.md asks for no text, and at 32 px the lettering is
-  illegible (a smudged strip under the mascot) while the mascot's head and wink
-  remain identifiable and the wrench beside the head is lost. A visual doubt with
-  a concrete reason, not a defect against a mandatory criterion, and an accepted
-  choice.
-- The Preview is on the dark side (mostly cold-brown floor), as STYLE_RIMWORLD.md
-  itself notes of the whole family.
+**Publication screenshots**, which Pickle also serves: this mod draws no window of its own, and
+`techLevel` is a field the game reads rather than displays, so there is no interface of this
+mod's to capture. No shots feature was written, and inventing one would be the artificial test
+AUDIT.md forbids. What a Workshop page should show for an invisible data mod is left to the user.
 
 ### Reservations (non-blocking)
 
