@@ -61,6 +61,18 @@ Never start a second RimWorld: one machine, one game, one runner. Take
 report out of `PickleReports` first — a run overwrites it, captures included. `Run-Pickle.ps1` in
 ArchitectStudio is the reference script for both.
 
+Since 2026-09-21 that lock is no longer a Pickle lock. What it protects is the **WSL machine being
+busy**, not a game starting: a build, a `steamcmd`, a long copy into `~/rimworld` disturbs a run or
+is disturbed by one. Any WSL work goes through `scripts/Use-Wsl.ps1` in the rimworld folder, same
+queue and same journal:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File scripts/Use-Wsl.ps1 -Reason 'what you are doing' -Command 'the bash command'
+```
+
+`powershell.exe`, never `pwsh`: PowerShell 7 is not installed on this machine. The owner's own
+reservation comes before anything a session wants.
+
 ## Status
 
 Executed 2026-09-21, headless under WSL: **5 of 5**. The report is kept as
