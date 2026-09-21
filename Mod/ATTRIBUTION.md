@@ -44,10 +44,14 @@ this mod does not ship, alter or redistribute any of their files.
 - `zal.crystalbodyparts`
 - `zal.easternarmory`
 
+The base game is also a target: `Ludeon.RimWorld.xml` corrects the tech level of base-game research
+projects (`Stonecutting`), addressed by `defName`. It ships no base-game file either.
+
 None of them is a dependency: this mod loads after all of them (see `loadAfter` in `About.xml`),
 but a correction whose target item is missing simply does nothing.
 
 ## Generation
 
-Every correction was arbitrated per item with the author's own cherrypick tool, not copied from
-any external tech-level list or another mod's compatibility patch.
+Every correction was arbitrated per item by the author (with the cherrypick tool, or by hand for
+base-game research projects), not copied from any external tech-level list or another mod's
+compatibility patch.
