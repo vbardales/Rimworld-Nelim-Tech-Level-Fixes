@@ -3,25 +3,8 @@
      fichiers generes, pour que Tests/Check-Patches.ps1 les verifie de la meme facon.
 
      Source : RimWorld (Ludeon.RimWorld), recherches du jeu de base
-     Corrections : 2 -->
+     Corrections : 1 -->
 <Patch>
-
-  <!-- Prosthetics : Industrial -> Medieval -->
-  <Operation Class="PatchOperationConditional">
-    <xpath>/Defs/ResearchProjectDef[defName="Prosthetics"]</xpath>
-    <success>Always</success>
-    <match Class="PatchOperationConditional">
-      <xpath>/Defs/ResearchProjectDef[defName="Prosthetics"]/techLevel</xpath>
-      <match Class="PatchOperationReplace">
-        <xpath>/Defs/ResearchProjectDef[defName="Prosthetics"]/techLevel</xpath>
-        <value><techLevel>Medieval</techLevel></value>
-      </match>
-      <nomatch Class="PatchOperationAdd">
-        <xpath>/Defs/ResearchProjectDef[defName="Prosthetics"]</xpath>
-        <value><techLevel>Medieval</techLevel></value>
-      </nomatch>
-    </match>
-  </Operation>
 
   <!-- Stonecutting : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
