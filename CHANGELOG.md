@@ -16,6 +16,12 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   (Medieval -> Neolithic). Written by hand, in the same shape as the generated files, because
   cherrypick does not handle research projects.
 
+### Changed
+
+- `Romyashi.AncientJunkLoot` (Ancient Junk Loot): its six corrections now set `Animal` instead of
+  `Industrial` (five) and `Spacer` (one). They are relics left by the Ancients, so they can turn up
+  from the very start of a game. The file was edited by hand and says so in its header.
+
 ## [1.0.0] — 2026-09-17
 
 First version. RimWorld 1.6.

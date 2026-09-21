@@ -3,10 +3,15 @@
      Ancient Junk Loot reecrit ce fichier en entier.
 
      Source : Ancient Junk Loot (Romyashi.AncientJunkLoot)
-     Corrections : 6 -->
+     Corrections : 6
+
+     Modifie a la main le 2026-09-21 : les six vont en Animal (decision de l'utilisateur, ce sont
+     des vestiges laisses par les Anciens, on peut en trouver des l'ere animale). Etaient : cinq en
+     Industrial, un en Spacer. Une nouvelle passe de cherrypick reecrirait ce fichier avec ce
+     qu'il a en memoire : y refaire l'arbitrage avant de regenerer. -->
 <Patch>
 
-  <!-- Romy_AncientMicrowave : (aucun) -> Industrial -->
+  <!-- Romy_AncientMicrowave : (aucun) -> Animal -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Romy_AncientMicrowave"]</xpath>
     <success>Always</success>
@@ -14,16 +19,16 @@
       <xpath>/Defs/ThingDef[defName="Romy_AncientMicrowave"]/techLevel</xpath>
       <match Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName="Romy_AncientMicrowave"]/techLevel</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </match>
       <nomatch Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="Romy_AncientMicrowave"]</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </nomatch>
     </match>
   </Operation>
 
-  <!-- Romy_AncientOven : (aucun) -> Industrial -->
+  <!-- Romy_AncientOven : (aucun) -> Animal -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Romy_AncientOven"]</xpath>
     <success>Always</success>
@@ -31,16 +36,16 @@
       <xpath>/Defs/ThingDef[defName="Romy_AncientOven"]/techLevel</xpath>
       <match Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName="Romy_AncientOven"]/techLevel</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </match>
       <nomatch Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="Romy_AncientOven"]</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </nomatch>
     </match>
   </Operation>
 
-  <!-- Romy_AncientPowerCell : (aucun) -> Spacer -->
+  <!-- Romy_AncientPowerCell : (aucun) -> Animal -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Romy_AncientPowerCell"]</xpath>
     <success>Always</success>
@@ -48,16 +53,16 @@
       <xpath>/Defs/ThingDef[defName="Romy_AncientPowerCell"]/techLevel</xpath>
       <match Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName="Romy_AncientPowerCell"]/techLevel</xpath>
-        <value><techLevel>Spacer</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </match>
       <nomatch Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="Romy_AncientPowerCell"]</xpath>
-        <value><techLevel>Spacer</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </nomatch>
     </match>
   </Operation>
 
-  <!-- Romy_AncientPowerCellBlock : (aucun) -> Industrial -->
+  <!-- Romy_AncientPowerCellBlock : (aucun) -> Animal -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Romy_AncientPowerCellBlock"]</xpath>
     <success>Always</success>
@@ -65,16 +70,16 @@
       <xpath>/Defs/ThingDef[defName="Romy_AncientPowerCellBlock"]/techLevel</xpath>
       <match Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName="Romy_AncientPowerCellBlock"]/techLevel</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </match>
       <nomatch Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="Romy_AncientPowerCellBlock"]</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </nomatch>
     </match>
   </Operation>
 
-  <!-- Romy_AncientStove : (aucun) -> Industrial -->
+  <!-- Romy_AncientStove : (aucun) -> Animal -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Romy_AncientStove"]</xpath>
     <success>Always</success>
@@ -82,16 +87,16 @@
       <xpath>/Defs/ThingDef[defName="Romy_AncientStove"]/techLevel</xpath>
       <match Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName="Romy_AncientStove"]/techLevel</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </match>
       <nomatch Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="Romy_AncientStove"]</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </nomatch>
     </match>
   </Operation>
 
-  <!-- Romy_RestoredAncientLamp : (aucun) -> Industrial -->
+  <!-- Romy_RestoredAncientLamp : (aucun) -> Animal -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Romy_RestoredAncientLamp"]</xpath>
     <success>Always</success>
@@ -99,11 +104,11 @@
       <xpath>/Defs/ThingDef[defName="Romy_RestoredAncientLamp"]/techLevel</xpath>
       <match Class="PatchOperationReplace">
         <xpath>/Defs/ThingDef[defName="Romy_RestoredAncientLamp"]/techLevel</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </match>
       <nomatch Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="Romy_RestoredAncientLamp"]</xpath>
-        <value><techLevel>Industrial</techLevel></value>
+        <value><techLevel>Animal</techLevel></value>
       </nomatch>
     </match>
   </Operation>
