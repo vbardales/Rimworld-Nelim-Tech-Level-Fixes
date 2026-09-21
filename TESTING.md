@@ -34,7 +34,7 @@ the pass without the optional mods corrects exactly nothing. It cannot prove a s
 That does not make it pointless — it makes it the only pass that can test the promise the whole
 design rests on.
 
-| Pass | `-DepsMap` | What it stages | What it can prove |
+| Pass | `-DepMap` | What it stages | What it can prove |
 |---|---|---|---|
 | **sans-facultatifs** | *(none)* | Core, DLCs, Harmony, RimLogging, Pickle, this mod | That 166 corrections with no target load, apply and log **nothing**. That is `success: Always` observed in a real game rather than in a fixture. |
 | **sources** | `wsl-deps.sources.map` | the above, plus Alpha Books, Additional Tools, Ancient Amulets | Every value assertion, and the load order the game settled on. Both patch branches, and the inherited-value case no headless test can reach. |
@@ -42,10 +42,15 @@ design rests on.
 Two feature files match the split: `01-alone.feature` runs in both, `02-with-sources.feature`
 only in the second, where its defs exist.
 
+**Selecting a pass.** `-DepMap wsl-deps.sources.map` takes a name relative to `Tests/Pickle`, or a
+full path, and names the pass after it: `sources` in the report. Without it the pass is
+`sans-facultatifs` and stages no optional mod at all.
+
 **The name of the default map mattered.** Until 2026-09-21 this suite's map was called
-`wsl-deps.map`, which the staging script reads on *every* pass. With that name there is no bare
-pass to be had: the three source mods are staged whether or not anyone asked. It is now
-`wsl-deps.sources.map`, and selected by name.
+`wsl-deps.map`, which the staging script reads on *every* pass. With that name there was no bare
+pass to be had: the three source mods were staged whether or not anyone asked. It is now
+`wsl-deps.sources.map`, and selected by name. The harness was fixed the same day to match - an
+unnamed pass now says `none` rather than an empty value that fell back to the default map.
 
 ### What has actually run
 

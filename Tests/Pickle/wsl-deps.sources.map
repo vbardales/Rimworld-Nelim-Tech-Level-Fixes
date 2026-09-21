@@ -5,7 +5,7 @@
 # so a suite that keeps that name can never have a pass without its optional mods: they are staged
 # whether asked for or not. Naming the set makes the bare pass reachable, and selects this one:
 #
-#   -DepsMap wsl-deps.sources.map
+#   -DepMap wsl-deps.sources.map
 #
 # These are not dependencies and must never become any: this mod declares none on purpose, and a
 # correction whose target is absent does nothing. But a suite that checks corrections has to have

@@ -362,8 +362,15 @@ with no target load, apply and log nothing — which until now was only ever che
 One thing had to change before it even became reachable: the suite's map was named
 `wsl-deps.map`, which `stage-pickle-wsl.sh` stages on *every* pass. With that name the three
 source mods are present whether asked for or not, and a bare pass does not exist. Renamed
-`wsl-deps.sources.map` and selected with `-DepsMap`. The feature file was split to match:
+`wsl-deps.sources.map` and selected with `-DepMap`. The feature file was split to match:
 `01-alone.feature` holds what holds with no targets, `02-with-sources.feature` the rest.
+
+Two faults in the shared harness turned up while checking that rule, both reported and both fixed
+the same day by the session that owns it: `Run-PickleWsl.ps1` had been committed in a state
+PowerShell refuses to parse at all, and the empty `PICKLE_DEPMAP` above fell through `:-` to the
+default map, so **no mod owning a `wsl-deps.map` could have a bare pass**. Rebuilt at `b8a78203`,
+with `none` as an explicit sentinel; re-checked here with `[Parser]::ParseFile`, which now reports
+no errors. The flag is `-DepMap`, singular - the near-duplicate `-DepsMap` is gone.
 
 Not measured, and not to be implied either way: whether the 30 corrected mods can coexist. Three
 are staged, 23 are not installed. If an incompatibility turns up it earns its own named map.
