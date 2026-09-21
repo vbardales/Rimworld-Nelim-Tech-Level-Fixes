@@ -12,6 +12,9 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   matching its `Smithing` research prerequisite), `ZombieSerumSimple` (Neolithic -> Industrial,
   aligning it with its ten `ZombieSerumCore`-derived siblings), `ZombieShocker` (none ->
   Industrial, matching its `Electricity` research prerequisite and `ComponentIndustrial` cost).
+- 1 tech-level correction to a base-game research project (`Ludeon.RimWorld`): `Stonecutting`
+  (Medieval -> Neolithic). Written by hand, in the same shape as the generated files, because
+  cherrypick does not handle research projects.
 
 ## [1.0.0] — 2026-09-17
 

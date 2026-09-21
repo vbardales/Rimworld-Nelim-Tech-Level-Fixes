@@ -61,7 +61,8 @@ unnamed pass now says `none` rather than an empty value that fell back to the de
   the thirty corrected, so all 166 corrections ran with no target: no error logged, and the two
   warnings present are `[Vanilla]` and unattributed, one of them caused by the companion test
   mod's own About.xml. Recorded in `Tests/Pickle/results/2026-09-21-sans-facultatifs/`.
-  It proves no value, by construction, and the scenario as played was still the weak form.
+  It proves no value, by construction. Replayed at 12:08 in the strengthened form (target absent,
+  nothing patched it, no attributed warning): 5 steps of 5, in `results/2026-09-21-sans-facultatifs-strengthened/`.
 
 ### On mutually exclusive optional mods
 

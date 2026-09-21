@@ -17,13 +17,12 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - unverified: the strengthened bare-pass scenario (no def exists / no def was patched / no warnings from mod) is written but never played; the 1/1 of 2026-09-21 played the weak two-step form
   - unverified: TESTING.md’s 8 functional scenarios have not been walked in game. This is what done -> tested asks for, and it is the only thing between this mod and tested
 accepted:
   - accepted 2026-09-21 by the user: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
   - accepted 2026-09-21 by the user: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20 and report the rest as SKIP rather than passing them. Knowingly accepted on the same ground, and the SKIP is deliberate - the suite never reports an unchecked mod as passing
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-21, the user accepted the two gaps around the 23 uninstalled source mods; they move from remaining to accepted, unchanged in substance. TESTING.md’s 8 in-game scenarios are now the only thing left, for done -> tested
+updated:      2026-09-21, the bare pass (sans-facultatifs) is green in its strengthened form, 5 of 5 steps; the sources pass (5/5) and the bare pass are both green. TESTING.md’s 8 in-game scenarios are the only thing left, for done -> tested
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -365,7 +364,13 @@ defs are absent by design - checked deliberately, because AUDIT.md records a cas
 gap was silent truncation reporting green. Report kept in
 `Tests/Pickle/results/2026-09-21-sans-facultatifs/`.
 
-Two things it does not settle, and neither is hidden. It proves no `techLevel` value at all -
+**Then replayed in the strengthened form, 12:08 the same day: 1 of 1, 5 steps of 5 PASSED**, against 2
+in the morning. Target absent, nothing patched it, no warning attributed to this mod, no error.
+`Tests/Pickle/results/2026-09-21-sans-facultatifs-strengthened/`. Only `no def ... exists` could
+have failed for a mod that did nothing at all; `no warnings from mod` was never shown able to
+fail, since none was produced to catch.
+
+What the *first* run left open, kept for the record: two things it does not settle, and neither is hidden. It proves no `techLevel` value at all -
 there is no def to read - and the scenario as played was still the weak form, `mod is loaded`
 plus `no errors were logged`, which a mod doing nothing whatever would also pass. A strengthened
 form was drafted while the ticket was queued and deliberately not applied: editing a feature with

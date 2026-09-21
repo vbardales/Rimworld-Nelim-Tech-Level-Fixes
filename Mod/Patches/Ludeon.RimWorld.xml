@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ecrit a la main (cherrypick ne traite pas les recherches). Meme forme que les
+     fichiers generes, pour que Tests/Check-Patches.ps1 les verifie de la meme facon.
+
+     Source : RimWorld (Ludeon.RimWorld), recherches du jeu de base
+     Corrections : 1 -->
+<Patch>
+
+  <!-- Stonecutting : Medieval -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ResearchProjectDef[defName="Stonecutting"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ResearchProjectDef[defName="Stonecutting"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ResearchProjectDef[defName="Stonecutting"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ResearchProjectDef[defName="Stonecutting"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

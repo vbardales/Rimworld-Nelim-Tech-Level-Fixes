@@ -1,7 +1,7 @@
 # Nelim's Tech Level Fixes
 
-A RimWorld 1.6 mod that rewrites the tech level of items from other mods, one correction at a
-time, arbitrated for each item with the **cherrypick** tool.
+A RimWorld 1.6 mod that rewrites the tech level of items from other mods, and of a few base-game
+research projects, one correction at a time, arbitrated for each item with the **cherrypick** tool.
 
 RimWorld uses `techLevel` to gate raid loot, trade stock, quest rewards and research-adjacent
 content by era. Many mods leave it at its default, or pick a level that does not match the item's
@@ -37,6 +37,12 @@ file in place whether or not the mod it corrects is currently enabled.
 `TurboPickle.GlitterCraft`, `Udon.AnimalSimpleCommand`, `Vanya.Outsource.BodyTypeExtend`,
 `zal.alchemy`, `zal.alternativepowersolutions`, `zal.ancientamulets`, `zal.angelarm`,
 `zal.crystalbodyparts`, `zal.easternarmory`.
+
+One more file targets the base game rather than a mod, `Ludeon.RimWorld.xml`: it corrects the tech
+level of base-game research projects (currently `Stonecutting`, Medieval to Neolithic). Unlike the
+others it is written by hand, in the same shape, because cherrypick does not handle research
+projects. It is the one file that changes base-game data, and it can be deleted like any other to
+undo it.
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for how these mods relate to this one.
 
