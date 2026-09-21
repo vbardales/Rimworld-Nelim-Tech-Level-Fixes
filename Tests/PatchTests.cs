@@ -471,6 +471,10 @@ internal static class PatchTests
         {
             @"C:\Program Files (x86)\Steam\steamapps\workshop\content\294100",
             @"C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods",
+            // The base game and its DLCs. Core is a source mod like any other - Ludeon.RimWorld
+            // corrects research projects - and it lives here, not under the Workshop. Without this
+            // root the suite said "not installed" about the one mod every install has.
+            @"C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Data",
         };
         var found = new Dictionary<string, string>();
         foreach (var root in roots.Where(Directory.Exists))

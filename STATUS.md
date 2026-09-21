@@ -16,13 +16,13 @@ dependencies: none  # verified 2026-09-20: no modDependencies declared and none 
 showcase:     complete
 tested_on:
 workshop:
-remaining:
-  - unverified: TESTING.md’s 8 functional scenarios have not been walked in game. This is what done -> tested asks for, and it is the only thing between this mod and tested
+remaining: []
 accepted:
   - accepted 2026-09-21 by the user: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
   - accepted 2026-09-21 by the user: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20 and report the rest as SKIP rather than passing them. Knowingly accepted on the same ground, and the SKIP is deliberate - the suite never reports an unchecked mod as passing
+  - accepted 2026-09-21 by the user: TESTING.md’s 8 functional scenarios will not be walked in game. This is what done -> tested asks for, so the mod stays at `done` and is NOT `tested`: the scenarios were written and never run, and nothing here says otherwise. Scenarios 1 to 4 and 7 are covered by the unit tests and the two Pickle passes; 5, 6 and 8 (modlist changes, save and reload, FR/EN interface) have no coverage of any kind
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-21, the bare pass (sans-facultatifs) is green in its strengthened form, 5 of 5 steps; the sources pass (5/5) and the bare pass are both green. TESTING.md’s 8 in-game scenarios are the only thing left, for done -> tested
+updated:      2026-09-21, the user declined the 8 in-game scenarios: the mod stays at `done`, not `tested`. Unit suite fixed to see Core (114 passed)
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -342,6 +342,18 @@ competes with this mod and neither explains the `Animal_Sarcophagus` value recor
 
 This covers the installed mods only, and one field on three defs. It is not a general proof that
 nothing ever overrides a correction; the Pickle suite is where that would show, in a real load.
+
+## The suite said "not installed" about the base game — fixed 2026-09-21
+
+`Ludeon.RimWorld` became a source mod today (a hand-written patch for `Stonecutting`, by another
+session). The unit suite printed `SKIP  Ludeon.RimWorld: not installed`, which was **false**: the
+game is installed. My lookup of installed mods read the Workshop and `Mods` folders only, written
+when no source mod was Core, and never looked in `Data/`, where Core and the DLCs live. A missing
+root, reported as a missing mod.
+
+Fixed by listing `RimWorld/Data` as a root. 112 -> 114 passed, and Core's two checks now run against
+the real def: `Stonecutting` declares `Medieval` itself in Core, which is the value the patch
+records and the branch it takes. Before the fix that agreement had only been read by hand.
 
 ## Both passes have now run — 2026-09-21
 
