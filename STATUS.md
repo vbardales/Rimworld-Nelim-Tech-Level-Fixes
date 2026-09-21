@@ -17,11 +17,12 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - unverified: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. This does not affect preTest, whose criteria are about declarations rather than targets, and it is temporary by design: the user gates the modlist by tech level and puts a mod back when the colony reaches it. Their patches stay in place meanwhile - see "Patches outlive their mods"
   - unverified: TESTING.md’s 8 functional scenarios have not been walked in game. This is what done -> tested asks for, and it is the only thing between this mod and tested
-  - unverified: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20, and report the rest as SKIP rather than passing them. The 39 corrections repaired that day were all in installed mods; the other 23 mods’ recorded values have never been confronted with their sources
+accepted:
+  - accepted 2026-09-21 by the user: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
+  - accepted 2026-09-21 by the user: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20 and report the rest as SKIP rather than passing them. Knowingly accepted on the same ground, and the SKIP is deliberate - the suite never reports an unchecked mod as passing
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-21, done validated: the Pickle suite is green 5/5, including the added-beats-inherited techLevel that no headless test could reach; the 8 in-game scenarios of TESTING.md remain for done -> tested
+updated:      2026-09-21, the user accepted the two gaps around the 23 uninstalled source mods; they move from remaining to accepted, unchanged in substance. TESTING.md’s 8 in-game scenarios are now the only thing left, for done -> tested
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -403,6 +404,14 @@ So "23 of the 30 source mods are not installed" is not content to prune, and an 
 propose pruning it — an earlier version of this session did, wrongly. It is a checking gap that
 closes by itself when a mod comes back.
 
+**Accepted by the user on 2026-09-21.** Both gaps that follow from this - the 23 uninstalled
+mods' defNames never confronted with their sources, and the unit tests covering those 23 by
+fixture only - were put to the user and knowingly accepted. They move to `accepted:` in the front
+matter, unchanged in substance: neither was measured, and accepting one is not the same as closing
+it. What makes them acceptable is that they shut by themselves, a mod at a time, as the playthrough
+advances and each returning mod is checked against its own source. The suite keeps printing SKIP
+for them rather than PASS, so the record stays honest about what was never checked.
+
 This also makes one property load-bearing rather than incidental. Every generated operation is a
 `PatchOperationConditional` reporting `success: Always`, so a correction whose target is absent
 does nothing and says nothing. That is what lets thirty files sit in the folder while most of
@@ -561,7 +570,8 @@ against the shipped patches.
 It compiles nothing: `mod is loaded`, `loads after`, `def field is` and `no errors were logged`
 are all built into Pickle, which is how a mod with no C# of its own can have a suite at all.
 
-**Never executed.** Running it needs a RimWorld the audit must not start.
+**Executed 2026-09-21: 5 of 5.** Run headless under WSL, with the machine reserved and the
+run lock held; see "The Pickle suite is green" above and `Tests/Pickle/results/2026-09-21-summary.md`.
 
 ### Reservations (non-blocking)
 

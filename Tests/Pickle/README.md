@@ -63,4 +63,10 @@ ArchitectStudio is the reference script for both.
 
 ## Status
 
-Never executed. Running it needs a RimWorld that the audit sessions must not start.
+Executed 2026-09-21, headless under WSL: **5 of 5**. The report is kept as
+`results/2026-09-21-summary.md`, because the shared `pickle-reports/` directory is overwritten by
+the next run. The run before it, 2026-09-20, was 4 of 5: one scenario named a def whose defName
+belongs to two def types, which Pickle's `field` step refuses to guess between.
+
+An audit session still never starts the game itself. That run happened with the machine reserved
+by its owner and the run lock held.
