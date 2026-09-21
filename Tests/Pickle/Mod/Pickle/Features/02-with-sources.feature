@@ -1,3 +1,6 @@
+# The pass WITH the optional mods, staged from Tests/Pickle/wsl-deps.sources.map. Everything this
+# suite asserts about a correction lives here: without a source mod there is no def to read.
+#
 # What only a running game can show for this mod. Everything provable outside the game is proved
 # outside it, by Tests/Run.ps1, which applies these same patch operations headless in seconds.
 #

@@ -17,6 +17,7 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
+  - unverified: the "sans-facultatifs" Pickle pass has never been run; the 5/5 of 2026-09-21 was the "sources" pass. See "Two passes are required"
   - unverified: TESTING.md’s 8 functional scenarios have not been walked in game. This is what done -> tested asks for, and it is the only thing between this mod and tested
 accepted:
   - accepted 2026-09-21 by the user: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
@@ -342,6 +343,30 @@ competes with this mod and neither explains the `Animal_Sarcophagus` value recor
 
 This covers the installed mods only, and one field on three defs. It is not a general proof that
 nothing ever overrides a correction; the Pickle suite is where that would show, in a real load.
+
+## Two passes are required, and only one has run — 2026-09-21
+
+`AUDIT.md` gained a rule the same day: a mod is validated over at least two passes, one **without**
+its optional mods and one **with**, each named in the report, and the mod's TESTING.md has to say
+how many there are and what each covers.
+
+Read against that rule, the 5/5 below is **the "with" pass, and only that**. It was run before the
+rule existed; calling it a named pass afterwards describes what it staged, it adds no evidence.
+
+This mod makes the rule land oddly, and the odd part is the useful part. It declares no dependency
+at all by design, so the pass *without* the optional mods corrects nothing and cannot prove a
+single value. What it can prove is the promise the whole design rests on — that 166 corrections
+with no target load, apply and log nothing — which until now was only ever checked in fixtures by
+`Tests/Run.ps1`. **That pass has never been run.**
+
+One thing had to change before it even became reachable: the suite's map was named
+`wsl-deps.map`, which `stage-pickle-wsl.sh` stages on *every* pass. With that name the three
+source mods are present whether asked for or not, and a bare pass does not exist. Renamed
+`wsl-deps.sources.map` and selected with `-DepsMap`. The feature file was split to match:
+`01-alone.feature` holds what holds with no targets, `02-with-sources.feature` the rest.
+
+Not measured, and not to be implied either way: whether the 30 corrected mods can coexist. Three
+are staged, 23 are not installed. If an incompatibility turns up it earns its own named map.
 
 ## The Pickle suite is green — 2026-09-21, 5 of 5
 

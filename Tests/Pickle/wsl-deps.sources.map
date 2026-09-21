@@ -1,0 +1,21 @@
+# The mod set for the "sources" pass: the three mods this suite's corrections are asserted on.
+#
+# The file is named wsl-deps.sources.map, not wsl-deps.map, on purpose. The staging script reads
+# wsl-deps.map by default, on every pass - `${PICKLE_DEPMAP:-<mod>/Tests/Pickle/wsl-deps.map}` -
+# so a suite that keeps that name can never have a pass without its optional mods: they are staged
+# whether asked for or not. Naming the set makes the bare pass reachable, and selects this one:
+#
+#   -DepsMap wsl-deps.sources.map
+#
+# These are not dependencies and must never become any: this mod declares none on purpose, and a
+# correction whose target is absent does nothing. But a suite that checks corrections has to have
+# something to correct, and the staging script does not copy loadAfter - rightly, since thirty
+# source mods would be a whole scenery to drag along. These three are the ones the scenarios name.
+#
+# A line may be prefixed `first:` to load that mod ahead of Harmony. None here needs it: these are
+# content mods, and the only order this suite asserts on is theirs against Nelim's Tech Level Fixes.
+#
+# packageId                         workshopId   what the scenarios use it for
+sarg.alphabooks                     3403180654   # a def with no techLevel anywhere: the add branch fires into a gap
+LadyElizabeth.AdditionalToolsMod    1443002973   # Bucket_Generic declares Industrial itself: the replace branch fires
+zal.ancientamulets                  2955419294   # 36 defs inherit Medieval from AmuletBase: the add branch lands beside an inherited value

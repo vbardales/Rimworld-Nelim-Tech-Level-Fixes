@@ -15,10 +15,53 @@ minute. Run those on every change.
 The same five are also written as Pickle scenarios in `Tests/Pickle/`, which asserts them
 against the live defs inside a running game. That is the stronger evidence but the expensive
 one: a Pickle run takes over the machine and takes minutes, so it is for confirming a release,
-not for iterating. It has not been run.
+not for iterating. It ran on 2026-09-21, 5 of 5 — but in the "sources" pass only; see
+**How many passes** below.
 
 Scenarios 5, 6 and 8 stay manual: they change the modlist or the files on disk, which neither
 a unit test nor a scenario running inside the game can do to itself.
+
+## How many passes, and what each covers
+
+`AUDIT.md` since 2026-09-21: a mod is validated over **at least two passes**, one **without** the
+optional mods and one **with**, and the report has to say which is which. A green on one says
+nothing about the other.
+
+This mod is an awkward case for that rule, and worth stating plainly rather than tidily. It
+declares **no dependency at all**, on purpose: a correction whose target is absent is a no-op. So
+the pass without the optional mods corrects exactly nothing. It cannot prove a single value.
+
+That does not make it pointless — it makes it the only pass that can test the promise the whole
+design rests on.
+
+| Pass | `-DepsMap` | What it stages | What it can prove |
+|---|---|---|---|
+| **sans-facultatifs** | *(none)* | Core, DLCs, Harmony, RimLogging, Pickle, this mod | That 166 corrections with no target load, apply and log **nothing**. That is `success: Always` observed in a real game rather than in a fixture. |
+| **sources** | `wsl-deps.sources.map` | the above, plus Alpha Books, Additional Tools, Ancient Amulets | Every value assertion, and the load order the game settled on. Both patch branches, and the inherited-value case no headless test can reach. |
+
+Two feature files match the split: `01-alone.feature` runs in both, `02-with-sources.feature`
+only in the second, where its defs exist.
+
+**The name of the default map mattered.** Until 2026-09-21 this suite's map was called
+`wsl-deps.map`, which the staging script reads on *every* pass. With that name there is no bare
+pass to be had: the three source mods are staged whether or not anyone asked. It is now
+`wsl-deps.sources.map`, and selected by name.
+
+### What has actually run
+
+- **sources**: 2026-09-21, 5 of 5. Recorded in `Tests/Pickle/results/2026-09-21-summary.md`. It
+  was run before this rule existed and was not called a pass of anything; naming it afterwards
+  describes what it staged, it does not add evidence.
+- **sans-facultatifs**: never run.
+
+### On mutually exclusive optional mods
+
+The rule asks for one pass per exclusive combination. For this mod the honest answer is that
+**nobody has measured whether the 30 corrected mods can all coexist**, and nothing here should
+imply they can. Three of them are staged; 23 are not even installed. What is known is that the
+modlist is gated by tech level and moves over time, so the 30 may well never be loaded together on
+this machine by design. If an incompatibility is ever found, it gets its own named map beside
+`wsl-deps.sources.map`, and its own row in the table above.
 
 ## Before starting
 

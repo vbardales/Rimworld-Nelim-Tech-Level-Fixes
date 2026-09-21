@@ -13,6 +13,21 @@ exactly that and a scenario which restates one confiscates the machine for nothi
 `Mod/` is a companion mod, **Nelim's Tech Level Fixes - Pickle tests**, never published. It holds
 the feature file, so nothing test-related ships in the Workshop folder.
 
+## Two passes, not one
+
+`AUDIT.md` asks every mod for a pass **without** its optional mods and one **with**. See
+`../../TESTING.md`, "How many passes", for the table and for what each can prove. In short:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes
+powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes -DepsMap wsl-deps.sources.map
+```
+
+The first stages no corrected mod at all, so it proves only that 166 targetless corrections load
+and say nothing — which is exactly the promise `success: Always` makes. The second is where every
+value assertion lives. The map is named `wsl-deps.sources.map` rather than `wsl-deps.map`
+precisely so the first pass exists: the staging reads the unnamed file on every pass.
+
 ## What is left, and why it needs the game
 
 | Scenario | Why a unit test cannot say it |
