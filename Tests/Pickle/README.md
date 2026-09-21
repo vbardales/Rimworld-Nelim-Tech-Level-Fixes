@@ -25,8 +25,8 @@ powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod Tech
 
 Either pass can be narrowed with `-Filter`, a comma-separated list of terms; a scenario runs as
 soon as one term takes it, matched as a case-insensitive substring. `01-alone.feature` runs every
-scenario of that file, `::no target` every scenario whose name contains that in any file,
-`01-alone.feature:16` the one declared on that line. A filter matching nothing is an **error**,
+scenario of that file, `::none of its targets` every scenario whose name contains that, in any file,
+`01-alone.feature:15` the one declared on that line. A filter matching nothing is an **error**,
 exit 2 — never a quietly empty pass.
 
 The first stages no corrected mod at all, so it proves only that 166 targetless corrections load
