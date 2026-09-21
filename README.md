@@ -39,10 +39,10 @@ file in place whether or not the mod it corrects is currently enabled.
 `zal.crystalbodyparts`, `zal.easternarmory`.
 
 One more file targets the base game rather than a mod, `Ludeon.RimWorld.xml`: it corrects the tech
-level of base-game research projects (currently `Stonecutting`, Medieval to Neolithic). Unlike the
-others it is written by hand, in the same shape, because cherrypick does not handle research
-projects. It is the one file that changes base-game data, and it can be deleted like any other to
-undo it.
+level of base-game research projects (currently `Stonecutting`, Medieval to Neolithic, and
+`Prosthetics`, Industrial to Medieval). Unlike the others it is written by hand, in the same
+shape, because cherrypick does not handle research projects. It is the one file that changes
+base-game data, and it can be deleted like any other to undo it.
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for how these mods relate to this one.
 
