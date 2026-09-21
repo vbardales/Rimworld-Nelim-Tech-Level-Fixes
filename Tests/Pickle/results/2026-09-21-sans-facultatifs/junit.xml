@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+  <testsuite name="Nelim's Tech Level Fixes alone" tests="1" failures="0" skipped="0" flakes="0" time="0.163">
+    <testcase name="it loads with none of its targets present and says nothing" classname="Nelim's Tech Level Fixes alone" time="0.163">
+      <system-out>Attachment: smoke-attachment -&gt; smoke test attachment content
+</system-out>
+    </testcase>
+  </testsuite>
+</testsuites>

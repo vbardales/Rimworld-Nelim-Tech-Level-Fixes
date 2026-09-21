@@ -17,7 +17,7 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - unverified: the "sans-facultatifs" Pickle pass has never been run; the 5/5 of 2026-09-21 was the "sources" pass. See "Two passes are required"
+  - unverified: the strengthened bare-pass scenario (no def exists / no def was patched / no warnings from mod) is written but never played; the 1/1 of 2026-09-21 played the weak two-step form
   - unverified: TESTING.md’s 8 functional scenarios have not been walked in game. This is what done -> tested asks for, and it is the only thing between this mod and tested
 accepted:
   - accepted 2026-09-21 by the user: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
@@ -344,7 +344,7 @@ competes with this mod and neither explains the `Animal_Sarcophagus` value recor
 This covers the installed mods only, and one field on three defs. It is not a general proof that
 nothing ever overrides a correction; the Pickle suite is where that would show, in a real load.
 
-## Two passes are required, and only one has run — 2026-09-21
+## Both passes have now run — 2026-09-21
 
 `AUDIT.md` gained a rule the same day: a mod is validated over at least two passes, one **without**
 its optional mods and one **with**, each named in the report, and the mod's TESTING.md has to say
@@ -357,7 +357,20 @@ This mod makes the rule land oddly, and the odd part is the useful part. It decl
 at all by design, so the pass *without* the optional mods corrects nothing and cannot prove a
 single value. What it can prove is the promise the whole design rests on — that 166 corrections
 with no target load, apply and log nothing — which until now was only ever checked in fixtures by
-`Tests/Run.ps1`. **That pass has never been run.**
+`Tests/Run.ps1`. **That pass ran at 11:33 the same day: 1 of 1, `exitReason: passed`, `setName: sans-facultatifs`.**
+Eleven mods staged, not one of the thirty corrected, so all 166 corrections met a game holding
+none of their targets: no error logged. `SuiteScanner` found 2 features in the suite and 1
+scenario ran, which is the filter keeping `02-with-sources.feature` out of a staging where its
+defs are absent by design - checked deliberately, because AUDIT.md records a case where that same
+gap was silent truncation reporting green. Report kept in
+`Tests/Pickle/results/2026-09-21-sans-facultatifs/`.
+
+Two things it does not settle, and neither is hidden. It proves no `techLevel` value at all -
+there is no def to read - and the scenario as played was still the weak form, `mod is loaded`
+plus `no errors were logged`, which a mod doing nothing whatever would also pass. A strengthened
+form was drafted while the ticket was queued and deliberately not applied: editing a feature with
+a ticket in the queue plays something other than what was submitted. Applying it needs another
+pass, and a pass costs the shared machine 45 minutes of queue.
 
 One thing had to change before it even became reachable: the suite's map was named
 `wsl-deps.map`, which `stage-pickle-wsl.sh` stages on *every* pass. With that name the three

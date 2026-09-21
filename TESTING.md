@@ -57,7 +57,11 @@ unnamed pass now says `none` rather than an empty value that fell back to the de
 - **sources**: 2026-09-21, 5 of 5. Recorded in `Tests/Pickle/results/2026-09-21-summary.md`. It
   was run before this rule existed and was not called a pass of anything; naming it afterwards
   describes what it staged, it does not add evidence.
-- **sans-facultatifs**: never run.
+- **sans-facultatifs**: 2026-09-21, 1 of 1, `exitReason: passed`. 11 mods staged and not one of
+  the thirty corrected, so all 166 corrections ran with no target: no error logged, and the two
+  warnings present are `[Vanilla]` and unattributed, one of them caused by the companion test
+  mod's own About.xml. Recorded in `Tests/Pickle/results/2026-09-21-sans-facultatifs/`.
+  It proves no value, by construction, and the scenario as played was still the weak form.
 
 ### On mutually exclusive optional mods
 
