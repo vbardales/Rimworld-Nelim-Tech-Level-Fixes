@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Ari's Psychoid Essence And Sweets reecrit ce fichier en entier.
+
+     Source : Ari's Psychoid Essence And Sweets (ARIS.PSES)
+     Corrections : 20 -->
+<Patch>
+
+  <!-- Comon_Essence : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Comon_Essence"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Comon_Essence"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Comon_Essence"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Comon_Essence"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Distiled_Essence : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Distiled_Essence"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Distiled_Essence"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Distiled_Essence"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Distiled_Essence"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Essence_DiEau : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Essence_DiEau"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Essence_DiEau"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Essence_DiEau"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Essence_DiEau"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Essence_Fungs : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Essence_Fungs"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Essence_Fungs"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Essence_Fungs"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Essence_Fungs"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Essence_HealBurst : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Essence_HealBurst"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Essence_HealBurst"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Essence_HealBurst"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Essence_HealBurst"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Essence_Healrom : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Essence_Healrom"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Essence_Healrom"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Essence_Healrom"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Essence_Healrom"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Essence_Loomblom : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Essence_Loomblom"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Essence_Loomblom"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Essence_Loomblom"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Essence_Loomblom"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Essence_SharpShoot : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Essence_SharpShoot"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Essence_SharpShoot"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Essence_SharpShoot"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Essence_SharpShoot"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Psy_Candy : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Psy_Candy"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Psy_Candy"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Psy_Candy"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Psy_Candy"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Psy_Drops : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Psy_Drops"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Psy_Drops"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Psy_Drops"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Psy_Drops"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Psy_Gummy : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Psy_Gummy"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Psy_Gummy"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Psy_Gummy"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Psy_Gummy"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Psy_Lolipop : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Psy_Lolipop"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Psy_Lolipop"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Psy_Lolipop"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Psy_Lolipop"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Psy_SpicyDust : Neolithic -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Psy_SpicyDust"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Psy_SpicyDust"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Psy_SpicyDust"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Psy_SpicyDust"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Psychoidmust : (aucun) -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Psychoidmust"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Psychoidmust"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Psychoidmust"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Psychoidmust"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- PsyEssence_Pipe : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="PsyEssence_Pipe"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="PsyEssence_Pipe"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="PsyEssence_Pipe"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="PsyEssence_Pipe"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- PsyEssenceDrain : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="PsyEssenceDrain"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="PsyEssenceDrain"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="PsyEssenceDrain"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="PsyEssenceDrain"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- PsyEssenceTank : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="PsyEssenceTank"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="PsyEssenceTank"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="PsyEssenceTank"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="PsyEssenceTank"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- PsyEssenceTap : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="PsyEssenceTap"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="PsyEssenceTap"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="PsyEssenceTap"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="PsyEssenceTap"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- RefinedPsychoidmust : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RefinedPsychoidmust"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="RefinedPsychoidmust"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="RefinedPsychoidmust"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="RefinedPsychoidmust"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- UndergroundPsyEssencePipe : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="UndergroundPsyEssencePipe"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="UndergroundPsyEssencePipe"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="UndergroundPsyEssencePipe"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="UndergroundPsyEssencePipe"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

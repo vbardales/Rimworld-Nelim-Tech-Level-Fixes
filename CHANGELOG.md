@@ -25,6 +25,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   and `Atlas_AntiAerogel` and the `Atlas_ChemicalDryer` that makes them (none -> Industrial: dried
   from stone and chemfuel, and a powered bench with industrial components). Its Spacer gear was
   already correct.
+- 20 tech-level corrections for `ARIS.PSES` (Ari's Psychoid Essence And Sweets): its eight essences
+  and five sweets were declared Neolithic but need the drug lab or the electric stove and the
+  Industrial `PsychiteRefining` research, so they go to Industrial, as do the refined must and the
+  five Psy-Essence pipe-network buildings (none -> Industrial). `Psychoidmust` (none -> Neolithic):
+  a fermented must made at the brewery, which needs no power and only Neolithic `Brewing`.
 
 ### Changed
 
