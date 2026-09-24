@@ -26,17 +26,17 @@ file in place whether or not the mod it corrects is currently enabled.
 
 ## Mods corrected in this release
 
-30 source mods, one file each under `Mod/Patches/`:
+31 source mods, one file each under `Mod/Patches/`:
 
 `AKN.Decorations`, `Ali.CookingTable`, `Ali.CraftingTable`, `AmateurLLTechBox.AmatuerLLsToys.0001`,
 `AR13S.AnimalCaps`, `brrainz.zombieland`, `cedaro.animalcommander`, `Dipsy.Diapers`,
 `hlx.UltratechAlteredCarbon`, `IronSniper.WindowsSkylights`, `LadyElizabeth.AdditionalToolsMod`,
-`leafzxg.AlphaThrumboExtension`, `Mlie.AdvancedRaiders`, `moncho.AlcoholRehabSobrix`,
-`Newton.AKN.CaretakerApparel`, `overpl.AnimalSarcophagus`, `Romyashi.AncientJunkLoot`,
-`Romyashi.AncientRelics`, `rye.animalrepeller`, `sarg.alphabooks`, `starter.beeer`,
-`TurboPickle.GlitterCraft`, `Udon.AnimalSimpleCommand`, `Vanya.Outsource.BodyTypeExtend`,
-`zal.alchemy`, `zal.alternativepowersolutions`, `zal.ancientamulets`, `zal.angelarm`,
-`zal.crystalbodyparts`, `zal.easternarmory`.
+`leafzxg.AlphaThrumboExtension`, `Mlie.AdvancedRaiders`, `Mlie.Aquarium`,
+`moncho.AlcoholRehabSobrix`, `Newton.AKN.CaretakerApparel`, `overpl.AnimalSarcophagus`,
+`Romyashi.AncientJunkLoot`, `Romyashi.AncientRelics`, `rye.animalrepeller`, `sarg.alphabooks`,
+`starter.beeer`, `TurboPickle.GlitterCraft`, `Udon.AnimalSimpleCommand`,
+`Vanya.Outsource.BodyTypeExtend`, `zal.alchemy`, `zal.alternativepowersolutions`,
+`zal.ancientamulets`, `zal.angelarm`, `zal.crystalbodyparts`, `zal.easternarmory`.
 
 One more file targets the base game rather than a mod, `Ludeon.RimWorld.xml`: it corrects the tech
 level of base-game research projects (currently `Stonecutting`, Medieval to Neolithic). Unlike the

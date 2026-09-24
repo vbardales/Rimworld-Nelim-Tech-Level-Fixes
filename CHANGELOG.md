@@ -15,6 +15,12 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 - 1 tech-level correction to a base-game research project (`Ludeon.RimWorld`): `Stonecutting`
   (Medieval -> Neolithic). Written by hand, in the same shape as the generated files, because
   cherrypick does not handle research projects.
+- 8 tech-level corrections for `Mlie.Aquarium` (Aquarium (Continued)), chosen for realism rather
+  than to follow the author's research chain: `AQCollagen`, `AQGelatin` and `AQFishFood` (none ->
+  Neolithic: a butcher spot and a fueled stove, no research in vanilla), `AQFishBowl` (none ->
+  Medieval: it costs a worked glass bowl), and the four fish tanks `AQFishTank`,
+  `AQFishTankWide`, `AQFishTankLong`, `AQFishTankLarge` (none -> Industrial: power, industrial
+  components, glass panels).
 
 ### Changed
 
