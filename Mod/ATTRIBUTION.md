@@ -9,7 +9,7 @@ description or other creative content from any corrected mod is reproduced here.
 
 ## Mods this one corrects
 
-The 34 mods below are the *targets* of a correction, not a source this mod is derived from or
+The 35 mods below are the *targets* of a correction, not a source this mod is derived from or
 studied. Each is referenced only by its `packageId` and the `defName`s of the items it defines;
 this mod does not ship, alter or redistribute any of their files.
 
@@ -25,6 +25,7 @@ this mod does not ship, alter or redistribute any of their files.
 - `dot.atlas`
 - `hlx.UltratechAlteredCarbon`
 - `IronSniper.WindowsSkylights`
+- `khamenman.armorracks`
 - `LadyElizabeth.AdditionalToolsMod`
 - `leafzxg.AlphaThrumboExtension`
 - `Mlie.AdvancedRaiders`

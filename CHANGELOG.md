@@ -34,6 +34,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   `AIU3_TalcumPowder` (Medieval -> Neolithic). It is a stone chunk ground at a crafting spot, with
   no power and no components; the Medieval `ComplexClothing` research the author attached is
   thematic, not a requirement.
+- 3 tech-level corrections for `khamenman.armorracks` (Armor Racks), all none -> a level: the armor
+  rack (Medieval: wood or metal, `ComplexFurniture`), the mechanized rack (Industrial: power and
+  industrial components) and the mending rack (Spacer: a `ComponentSpacer`). Cherrypick wrote
+  each object twice, because the mod ships a `v1.1` folder duplicating its defs; the file was
+  deduplicated by hand and says so in its header.
 
 ### Changed
 
