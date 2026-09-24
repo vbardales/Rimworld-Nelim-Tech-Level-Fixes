@@ -21,6 +21,10 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   Medieval: it costs a worked glass bowl), and the four fish tanks `AQFishTank`,
   `AQFishTankWide`, `AQFishTankLong`, `AQFishTankLarge` (none -> Industrial: power, industrial
   components, glass panels).
+- 3 tech-level corrections for `dot.atlas` (Archotech Duality): the aerogel resources `Atlas_Aerogel`
+  and `Atlas_AntiAerogel` and the `Atlas_ChemicalDryer` that makes them (none -> Industrial: dried
+  from stone and chemfuel, and a powered bench with industrial components). Its Spacer gear was
+  already correct.
 
 ### Changed
 
