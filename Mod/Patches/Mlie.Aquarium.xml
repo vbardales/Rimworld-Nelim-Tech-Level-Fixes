@@ -3,7 +3,12 @@
      Aquarium (Continued) reecrit ce fichier en entier.
 
      Source : Aquarium (Continued) (Mlie.Aquarium)
-     Corrections : 8 -->
+     Corrections : 10
+
+     Modifie a la main le 2026-09-24 : deux recherches du mod (AQFishPets, AQGelatin) passent en
+     Neolithic, decision de l'utilisateur (le realisme d'abord, meme si leur prerequis Smithing est
+     Medieval). Cherrypick ne sait pas ecrire une recherche : une nouvelle passe les perdrait, il
+     faut alors les remettre. AQGelatin designe ici deux defs distinctes, l'objet et la recherche. -->
 <Patch>
 
   <!-- AQCollagen : (aucun) -> Neolithic -->
@@ -52,6 +57,23 @@
       </match>
       <nomatch Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="AQFishFood"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- AQFishPets : Medieval -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ResearchProjectDef[defName="AQFishPets"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ResearchProjectDef[defName="AQFishPets"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ResearchProjectDef[defName="AQFishPets"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ResearchProjectDef[defName="AQFishPets"]</xpath>
         <value><techLevel>Neolithic</techLevel></value>
       </nomatch>
     </match>
@@ -137,6 +159,22 @@
       </match>
       <nomatch Class="PatchOperationAdd">
         <xpath>/Defs/ThingDef[defName="AQGelatin"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+  <!-- AQGelatin : Medieval -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ResearchProjectDef[defName="AQGelatin"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ResearchProjectDef[defName="AQGelatin"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ResearchProjectDef[defName="AQGelatin"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ResearchProjectDef[defName="AQGelatin"]</xpath>
         <value><techLevel>Neolithic</techLevel></value>
       </nomatch>
     </match>

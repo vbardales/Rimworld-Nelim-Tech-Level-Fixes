@@ -26,7 +26,7 @@ file in place whether or not the mod it corrects is currently enabled.
 
 ## Mods corrected in this release
 
-35 source mods, one file each under `Mod/Patches/`:
+36 source mods, one file each under `Mod/Patches/`:
 
 `AKN.Decorations`, `Ali.CookingTable`, `Ali.CraftingTable`, `AmateurLLTechBox.AmatuerLLsToys.0001`,
 `AR13S.AnimalCaps`, `ARIS.PSES`, `brrainz.zombieland`, `cedaro.animalcommander`, `Dipsy.Diapers`,
@@ -34,16 +34,18 @@ file in place whether or not the mod it corrects is currently enabled.
 `LadyElizabeth.AdditionalToolsMod`, `leafzxg.AlphaThrumboExtension`, `Mlie.AdvancedRaiders`,
 `Mlie.Aquarium`, `moncho.AlcoholRehabSobrix`, `Nationality.ArmorIsUncomfortable3`,
 `Newton.AKN.CaretakerApparel`, `overpl.AnimalSarcophagus`, `Romyashi.AncientJunkLoot`,
-`Romyashi.AncientRelics`, `rye.animalrepeller`, `sarg.alphabooks`, `starter.beeer`,
-`TurboPickle.GlitterCraft`, `Udon.AnimalSimpleCommand`, `Vanya.Outsource.BodyTypeExtend`,
-`zal.alchemy`, `zal.alternativepowersolutions`, `zal.ancientamulets`, `zal.angelarm`,
-`zal.crystalbodyparts`, `zal.easternarmory`.
+`Romyashi.AncientRelics`, `rye.animalrepeller`, `sarg.alphabooks`, `SC.waterplace`,
+`starter.beeer`, `TurboPickle.GlitterCraft`, `Udon.AnimalSimpleCommand`,
+`Vanya.Outsource.BodyTypeExtend`, `zal.alchemy`, `zal.alternativepowersolutions`,
+`zal.ancientamulets`, `zal.angelarm`, `zal.crystalbodyparts`, `zal.easternarmory`.
 
-One more file targets the base game rather than a mod, `Ludeon.RimWorld.xml`: it corrects the tech
-level of base-game research projects (currently `Stonecutting`, Medieval to Neolithic). Unlike the
-others it is written by hand, in the same shape, because cherrypick does not handle research
-projects. It is the one file that changes base-game data, and it can be deleted like any other to
-undo it.
+Research projects are corrected too, and they are written by hand, in the same shape, because
+cherrypick does not handle them. `Ludeon.RimWorld.xml` targets the base game (currently
+`Stonecutting`, Medieval to Neolithic), and the research projects of other mods sit in their own
+mod's file: `AQFishPets` and `AQGelatin` in `Mlie.Aquarium.xml`, `SWB_BuildShallowWater` in
+`SC.waterplace.xml`. The base-game file is the one that changes base-game data, and any of these
+files can be deleted like any other to undo it. A new cherrypick pass over a mod rewrites its
+file, so its hand-written research corrections have to be put back.
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for how these mods relate to this one.
 

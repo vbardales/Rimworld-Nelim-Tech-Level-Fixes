@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ecrit a la main (cherrypick ne traite pas les recherches). Meme forme que les fichiers
+     generes, pour que Tests/Check-Patches.ps1 les verifie de la meme facon.
+
+     Source : Artificial Water Place (SC.waterplace)
+     Corrections : 1
+
+     SWB_BuildShallowWater : le mod ne demande que de puiser de l'eau au seau et de la verser,
+     ce que sait faire un colon tribal ; Medieval etait un choix de l'auteur (le realisme d'abord). -->
+<Patch>
+
+  <!-- SWB_BuildShallowWater : Medieval -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ResearchProjectDef[defName="SWB_BuildShallowWater"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ResearchProjectDef[defName="SWB_BuildShallowWater"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ResearchProjectDef[defName="SWB_BuildShallowWater"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ResearchProjectDef[defName="SWB_BuildShallowWater"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

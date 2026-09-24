@@ -39,6 +39,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   industrial components) and the mending rack (Spacer: a `ComponentSpacer`). Cherrypick wrote
   each object twice, because the mod ships a `v1.1` folder duplicating its defs; the file was
   deduplicated by hand and says so in its header.
+- 3 tech-level corrections to research projects of other mods, all Medieval -> Neolithic, written
+  by hand (realism first, even where a prerequisite is more advanced): `AQFishPets` and
+  `AQGelatin` in `Mlie.Aquarium` (fish keeping and gelatine need no smithing), and
+  `SWB_BuildShallowWater` in `SC.waterplace` (Artificial Water Place, new file: drawing water with
+  a bucket). A cherrypick pass over Aquarium would rewrite its file and lose the two.
 
 ### Changed
 

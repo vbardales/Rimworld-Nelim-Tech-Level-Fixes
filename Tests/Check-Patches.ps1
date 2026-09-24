@@ -125,7 +125,10 @@ foreach ($file in $patchFiles) {
         }
         $defName = $Matches[2]
 
-        if (-not $defNamesInFile.Add($defName)) {
+        # A def is identified by its type AND its name (the loader keeps one dictionary per def type),
+        # so an item and a research project may share a defName (Aquarium: AQGelatin is both).
+        # Type compared lower-case: the loader resolves it case-insensitively.
+        if (-not $defNamesInFile.Add("$($Matches[1].ToLowerInvariant())/$defName")) {
             $problems.Add("$($file.Name): defName `"$defName`" is corrected more than once in this file")
         }
 
