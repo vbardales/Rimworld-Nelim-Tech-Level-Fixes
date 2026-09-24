@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Armor is Uncomfortable 3 reecrit ce fichier en entier.
+
+     Source : Armor is Uncomfortable 3 (Nationality.ArmorIsUncomfortable3)
+     Corrections : 1 -->
+<Patch>
+
+  <!-- AIU3_TalcumPowder : Medieval -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AIU3_TalcumPowder"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="AIU3_TalcumPowder"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="AIU3_TalcumPowder"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="AIU3_TalcumPowder"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

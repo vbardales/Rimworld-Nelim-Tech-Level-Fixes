@@ -30,6 +30,10 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   Industrial `PsychiteRefining` research, so they go to Industrial, as do the refined must and the
   five Psy-Essence pipe-network buildings (none -> Industrial). `Psychoidmust` (none -> Neolithic):
   a fermented must made at the brewery, which needs no power and only Neolithic `Brewing`.
+- 1 tech-level correction for `Nationality.ArmorIsUncomfortable3` (Armor is Uncomfortable 3):
+  `AIU3_TalcumPowder` (Medieval -> Neolithic). It is a stone chunk ground at a crafting spot, with
+  no power and no components; the Medieval `ComplexClothing` research the author attached is
+  thematic, not a requirement.
 
 ### Changed
 
