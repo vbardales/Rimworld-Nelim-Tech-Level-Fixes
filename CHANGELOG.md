@@ -55,6 +55,9 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 - 2 tech-level corrections for `Mlie.BasicMirrors` (Basic Mirrors (Continued)), both none ->
   Medieval, as cherrypick proposed: the mirror and the wall mirror, each 40 silver (a polished
   metal, so the metal age) and no power.
+- 1 tech-level correction for `DrAke.BatmanUtilityBelt` (Batman Utility Belt): the belt (none ->
+  Spacer, as cherrypick proposed). 60 plasteel and 2 `ComponentSpacer` at a fabrication bench,
+  behind a Spacer research.
 
 ### Changed
 

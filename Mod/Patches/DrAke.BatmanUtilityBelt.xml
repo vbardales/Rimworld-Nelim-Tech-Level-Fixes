@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Batman Utility Belt reecrit ce fichier en entier.
+
+     Source : Batman Utility Belt (DrAke.BatmanUtilityBelt)
+     Corrections : 1 -->
+<Patch>
+
+  <!-- DrAke_BatmanUtilityBelt : Medieval -> Spacer -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="DrAke_BatmanUtilityBelt"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="DrAke_BatmanUtilityBelt"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="DrAke_BatmanUtilityBelt"]/techLevel</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="DrAke_BatmanUtilityBelt"]</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>
