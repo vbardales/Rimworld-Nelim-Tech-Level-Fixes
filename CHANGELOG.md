@@ -44,6 +44,10 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   `AQGelatin` in `Mlie.Aquarium` (fish keeping and gelatine need no smithing), and
   `SWB_BuildShallowWater` in `SC.waterplace` (Artificial Water Place, new file: drawing water with
   a bucket). A cherrypick pass over Aquarium would rewrite its file and lose the two.
+- 3 tech-level corrections for `kaitorisenkou.BallGames` (BallGames), all none -> a level, chosen by
+  what the item needs rather than by the `ComplexFurniture` research the author attached: the
+  soccer goal and the basketball goal (Neolithic: cloth and a wood or stone frame, no power) and
+  the volleyball net (Medieval: it costs 50 steel).
 
 ### Changed
 
