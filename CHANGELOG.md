@@ -71,6 +71,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   catcher need no power themselves, but do nothing without a powered spot) and the teleporter
   ministation and workstation (Spacer: power, uranium and industrial components behind the Spacer
   `LTF_Research_TpBench`). The bed was already Industrial.
+- 3 tech-level corrections for `Beautiful.Mechnode` (Beautiful Mech Node), all none -> Animal: the
+  unstable power cell, the mech node and the defoliator, which the mod only redraws (they are
+  base-game defs). None has a construction category: they drop from the sky or sit in mechanoid
+  ruins, so they are legitimate at any era, like the relics of `Romyashi.AncientJunkLoot`.
+  Cherrypick proposed Industrial for the first two, from their `ComponentIndustrial` cost.
 
 ### Changed
 

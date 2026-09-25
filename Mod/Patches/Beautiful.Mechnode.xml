@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Beautiful Mech Node reecrit ce fichier en entier.
+
+     Source : Beautiful Mech Node (Beautiful.Mechnode)
+     Corrections : 3 -->
+<Patch>
+
+  <!-- Defoliator : (aucun) -> Animal -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Defoliator"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Defoliator"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Defoliator"]/techLevel</xpath>
+        <value><techLevel>Animal</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Defoliator"]</xpath>
+        <value><techLevel>Animal</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Gloomlight : (aucun) -> Animal -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Gloomlight"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Gloomlight"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Gloomlight"]/techLevel</xpath>
+        <value><techLevel>Animal</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Gloomlight"]</xpath>
+        <value><techLevel>Animal</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- UnstablePowerCell : (aucun) -> Animal -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="UnstablePowerCell"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="UnstablePowerCell"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="UnstablePowerCell"]/techLevel</xpath>
+        <value><techLevel>Animal</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="UnstablePowerCell"]</xpath>
+        <value><techLevel>Animal</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

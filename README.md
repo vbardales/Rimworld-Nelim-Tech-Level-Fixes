@@ -26,10 +26,10 @@ file in place whether or not the mod it corrects is currently enabled.
 
 ## Mods corrected in this release
 
-43 source mods, one file each under `Mod/Patches/`:
+44 source mods, one file each under `Mod/Patches/`:
 
 `AKN.Decorations`, `Ali.CookingTable`, `Ali.CraftingTable`, `AmateurLLTechBox.AmatuerLLsToys.0001`,
-`AR13S.AnimalCaps`, `ARIS.PSES`, `bean.security.pack`, `brrainz.zombieland`,
+`AR13S.AnimalCaps`, `ARIS.PSES`, `bean.security.pack`, `Beautiful.Mechnode`, `brrainz.zombieland`,
 `cedaro.animalcommander`, `Dipsy.Diapers`, `dot.atlas`, `DrAke.BatmanUtilityBelt`,
 `hlx.UltratechAlteredCarbon`, `IronSniper.WindowsSkylights`, `kaitorisenkou.BallGames`,
 `khamenman.armorracks`, `LadyElizabeth.AdditionalToolsMod`, `leafzxg.AlphaThrumboExtension`,
