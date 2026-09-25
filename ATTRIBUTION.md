@@ -9,7 +9,7 @@ description or other creative content from any corrected mod is reproduced here.
 
 ## Mods this one corrects
 
-The 40 mods below are the *targets* of a correction, not a source this mod is derived from or
+The 41 mods below are the *targets* of a correction, not a source this mod is derived from or
 studied. Each is referenced only by its `packageId` and the `defName`s of the items it defines;
 this mod does not ship, alter or redistribute any of their files.
 
@@ -43,6 +43,7 @@ this mod does not ship, alter or redistribute any of their files.
 - `sarg.alphabooks`
 - `SC.waterplace`
 - `SK.BandageWrap`
+- `soap.BattleMaid`
 - `starter.beeer`
 - `TurboPickle.GlitterCraft`
 - `Udon.AnimalSimpleCommand`

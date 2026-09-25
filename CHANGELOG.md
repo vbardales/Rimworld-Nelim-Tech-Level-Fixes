@@ -58,6 +58,10 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 - 1 tech-level correction for `DrAke.BatmanUtilityBelt` (Batman Utility Belt): the belt (none ->
   Spacer, as cherrypick proposed). 60 plasteel and 2 `ComponentSpacer` at a fabrication bench,
   behind a Spacer research.
+- 2 tech-level corrections for `soap.BattleMaid` (Battle Maid Dress), both Medieval -> Industrial,
+  as cherrypick proposed: the two armoured dresses `battle_maid_A` and `battle_maid_d` (100 steel
+  and 3 `ComponentIndustrial` at the machining table, behind the Industrial `FlakArmor` research).
+  Read as Medieval before, since apparel inherits that level. The sabre was already correct.
 
 ### Changed
 
