@@ -48,6 +48,10 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   what the item needs rather than by the `ComplexFurniture` research the author attached: the
   soccer goal and the basketball goal (Neolithic: cloth and a wood or stone frame, no power) and
   the volleyball net (Medieval: it costs 50 steel).
+- 4 tech-level corrections for `SK.BandageWrap` (Bandage Wraps (Continued)), chosen by what each
+  item needs (they had no level of their own, so they read as Medieval): the plain body wrap and
+  head bandage (Neolithic: strips of cloth, made even at a crafting spot, no research) and their
+  aseptic versions (Industrial: each takes a `MedicineIndustrial`).
 
 ### Changed
 
