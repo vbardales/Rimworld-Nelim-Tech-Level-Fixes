@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Basic Mirrors (Continued) reecrit ce fichier en entier.
+
+     Source : Basic Mirrors (Continued) (Mlie.BasicMirrors)
+     Corrections : 2 -->
+<Patch>
+
+  <!-- Joy_Mirror : (aucun) -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Joy_Mirror"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Joy_Mirror"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Joy_Mirror"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Joy_Mirror"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- Joy_WallMirror : (aucun) -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Joy_WallMirror"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="Joy_WallMirror"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="Joy_WallMirror"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Joy_WallMirror"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

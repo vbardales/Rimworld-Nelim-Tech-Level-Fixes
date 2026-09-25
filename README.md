@@ -26,13 +26,13 @@ file in place whether or not the mod it corrects is currently enabled.
 
 ## Mods corrected in this release
 
-38 source mods, one file each under `Mod/Patches/`:
+39 source mods, one file each under `Mod/Patches/`:
 
 `AKN.Decorations`, `Ali.CookingTable`, `Ali.CraftingTable`, `AmateurLLTechBox.AmatuerLLsToys.0001`,
 `AR13S.AnimalCaps`, `ARIS.PSES`, `brrainz.zombieland`, `cedaro.animalcommander`, `Dipsy.Diapers`,
 `dot.atlas`, `hlx.UltratechAlteredCarbon`, `IronSniper.WindowsSkylights`,
 `kaitorisenkou.BallGames`, `khamenman.armorracks`, `LadyElizabeth.AdditionalToolsMod`,
-`leafzxg.AlphaThrumboExtension`, `Mlie.AdvancedRaiders`, `Mlie.Aquarium`,
+`leafzxg.AlphaThrumboExtension`, `Mlie.AdvancedRaiders`, `Mlie.Aquarium`, `Mlie.BasicMirrors`,
 `moncho.AlcoholRehabSobrix`, `Nationality.ArmorIsUncomfortable3`, `Newton.AKN.CaretakerApparel`,
 `overpl.AnimalSarcophagus`, `Romyashi.AncientJunkLoot`, `Romyashi.AncientRelics`,
 `rye.animalrepeller`, `sarg.alphabooks`, `SC.waterplace`, `SK.BandageWrap`, `starter.beeer`,

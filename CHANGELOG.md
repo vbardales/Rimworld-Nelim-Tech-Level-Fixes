@@ -52,6 +52,9 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   item needs (they had no level of their own, so they read as Medieval): the plain body wrap and
   head bandage (Neolithic: strips of cloth, made even at a crafting spot, no research) and their
   aseptic versions (Industrial: each takes a `MedicineIndustrial`).
+- 2 tech-level corrections for `Mlie.BasicMirrors` (Basic Mirrors (Continued)), both none ->
+  Medieval, as cherrypick proposed: the mirror and the wall mirror, each 40 silver (a polished
+  metal, so the metal age) and no power.
 
 ### Changed
 
