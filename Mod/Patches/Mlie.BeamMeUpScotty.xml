@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Beam me up Scotty (Continued) reecrit ce fichier en entier.
+
+     Source : Beam me up Scotty (Continued) (Mlie.BeamMeUpScotty)
+     Corrections : 5 -->
+<Patch>
+
+  <!-- LTF_MiniStation : (aucun) -> Spacer -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LTF_MiniStation"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LTF_MiniStation"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LTF_MiniStation"]/techLevel</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LTF_MiniStation"]</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- LTF_TpBench : (aucun) -> Spacer -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LTF_TpBench"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LTF_TpBench"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LTF_TpBench"]/techLevel</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LTF_TpBench"]</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- LTF_TpBox : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LTF_TpBox"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LTF_TpBox"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LTF_TpBox"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LTF_TpBox"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- LTF_TpCatcher : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LTF_TpCatcher"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LTF_TpCatcher"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LTF_TpCatcher"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LTF_TpCatcher"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- LTF_TpSpot : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LTF_TpSpot"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LTF_TpSpot"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LTF_TpSpot"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LTF_TpSpot"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

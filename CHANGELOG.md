@@ -66,6 +66,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   as cherrypick proposed: the Hesco wall, the chain-link fence, the razorwire and the kevlar. Real
   dates agree: chain-link 1844, barbed wire 1867, kevlar 1965, Hesco 1990. The pack's ten armours
   and guns were already Industrial and correct.
+- 5 tech-level corrections for `Mlie.BeamMeUpScotty` (Beam me up Scotty (Continued)), all none -> a
+  level, as cherrypick proposed: the teleport spot, box and catcher (Industrial: the box and the
+  catcher need no power themselves, but do nothing without a powered spot) and the teleporter
+  ministation and workstation (Spacer: power, uranium and industrial components behind the Spacer
+  `LTF_Research_TpBench`). The bed was already Industrial.
 
 ### Changed
 

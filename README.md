@@ -26,20 +26,20 @@ file in place whether or not the mod it corrects is currently enabled.
 
 ## Mods corrected in this release
 
-42 source mods, one file each under `Mod/Patches/`:
+43 source mods, one file each under `Mod/Patches/`:
 
 `AKN.Decorations`, `Ali.CookingTable`, `Ali.CraftingTable`, `AmateurLLTechBox.AmatuerLLsToys.0001`,
 `AR13S.AnimalCaps`, `ARIS.PSES`, `bean.security.pack`, `brrainz.zombieland`,
 `cedaro.animalcommander`, `Dipsy.Diapers`, `dot.atlas`, `DrAke.BatmanUtilityBelt`,
 `hlx.UltratechAlteredCarbon`, `IronSniper.WindowsSkylights`, `kaitorisenkou.BallGames`,
 `khamenman.armorracks`, `LadyElizabeth.AdditionalToolsMod`, `leafzxg.AlphaThrumboExtension`,
-`Mlie.AdvancedRaiders`, `Mlie.Aquarium`, `Mlie.BasicMirrors`, `moncho.AlcoholRehabSobrix`,
-`Nationality.ArmorIsUncomfortable3`, `Newton.AKN.CaretakerApparel`, `overpl.AnimalSarcophagus`,
-`Romyashi.AncientJunkLoot`, `Romyashi.AncientRelics`, `rye.animalrepeller`, `sarg.alphabooks`,
-`SC.waterplace`, `SK.BandageWrap`, `soap.BattleMaid`, `starter.beeer`, `TurboPickle.GlitterCraft`,
-`Udon.AnimalSimpleCommand`, `Vanya.Outsource.BodyTypeExtend`, `zal.alchemy`,
-`zal.alternativepowersolutions`, `zal.ancientamulets`, `zal.angelarm`, `zal.crystalbodyparts`,
-`zal.easternarmory`.
+`Mlie.AdvancedRaiders`, `Mlie.Aquarium`, `Mlie.BasicMirrors`, `Mlie.BeamMeUpScotty`,
+`moncho.AlcoholRehabSobrix`, `Nationality.ArmorIsUncomfortable3`, `Newton.AKN.CaretakerApparel`,
+`overpl.AnimalSarcophagus`, `Romyashi.AncientJunkLoot`, `Romyashi.AncientRelics`,
+`rye.animalrepeller`, `sarg.alphabooks`, `SC.waterplace`, `SK.BandageWrap`, `soap.BattleMaid`,
+`starter.beeer`, `TurboPickle.GlitterCraft`, `Udon.AnimalSimpleCommand`,
+`Vanya.Outsource.BodyTypeExtend`, `zal.alchemy`, `zal.alternativepowersolutions`,
+`zal.ancientamulets`, `zal.angelarm`, `zal.crystalbodyparts`, `zal.easternarmory`.
 
 Research projects are corrected too, and they are written by hand, in the same shape, because
 cherrypick does not handle them. `Ludeon.RimWorld.xml` targets the base game (currently
