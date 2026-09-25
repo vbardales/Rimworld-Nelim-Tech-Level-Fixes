@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     Bean's Security Pack reecrit ce fichier en entier.
+
+     Source : Bean's Security Pack (bean.security.pack)
+     Corrections : 4 -->
+<Patch>
+
+  <!-- BM_Chain_Fence : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BM_Chain_Fence"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="BM_Chain_Fence"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="BM_Chain_Fence"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="BM_Chain_Fence"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- BM_Hesco : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BM_Hesco"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="BM_Hesco"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="BM_Hesco"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="BM_Hesco"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- BM_Kevlar : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BM_Kevlar"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="BM_Kevlar"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="BM_Kevlar"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="BM_Kevlar"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- BM_Razorwire : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BM_Razorwire"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="BM_Razorwire"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="BM_Razorwire"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="BM_Razorwire"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

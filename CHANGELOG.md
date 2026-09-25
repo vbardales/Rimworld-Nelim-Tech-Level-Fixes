@@ -62,6 +62,10 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   as cherrypick proposed: the two armoured dresses `battle_maid_A` and `battle_maid_d` (100 steel
   and 3 `ComponentIndustrial` at the machining table, behind the Industrial `FlakArmor` research).
   Read as Medieval before, since apparel inherits that level. The sabre was already correct.
+- 4 tech-level corrections for `bean.security.pack` (Bean's Security Pack), all none -> Industrial,
+  as cherrypick proposed: the Hesco wall, the chain-link fence, the razorwire and the kevlar. Real
+  dates agree: chain-link 1844, barbed wire 1867, kevlar 1965, Hesco 1990. The pack's ten armours
+  and guns were already Industrial and correct.
 
 ### Changed
 
