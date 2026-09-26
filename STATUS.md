@@ -5,7 +5,7 @@ translation_en: not_applicable
 translation_fr: not_applicable
 mod:          Nelim's Tech Level Fixes
 packageId:    nelim.techlevelfixes
-repo:         rimworld-nelim-tech-level-fixes
+repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
 stage:        done
@@ -15,17 +15,221 @@ licence_at:   2026-09-17, verified by inspection: the shipped content is a set o
 dependencies: none  # verified 2026-09-20: no modDependencies declared and none used
 showcase:     complete
 tested_on:
-workshop:
-remaining: []
+workshop:      3806765254  # the 0.1.0 pre-publication of 2026-09-23: a private item, not published
+remaining:
+  - unverified 2026-09-26: no Pickle run is on the shipped revision. The suite last ran on the tree of `a37ff89` (31 patch files) and `Mod/` now holds 45. `tested` needs the two requests of TESTING.md (bare pass, sources pass) played on a frozen tree, with `exitReason` and the discovered-against-played count read first. Nothing else is left for `tested`: no `@wip`, no `@requires`, no `@review`, and no manual scenario (5, 6 and 8 are not applicable, see TESTING.md)
+  - unverified 2026-09-26: the sources pass mounts 3 of the 45 source mods this mod lists in `loadAfter`; AUDIT.md defines the pass "with the optional mods" as all of them. A reservation, not a defect: the unit tests cover the others (15 against their real defs, the rest against fixtures)
+  - not started, for transition 10 (`tested -> prepublished`) and not a defect of `done`: `PUBLICATION.md` does not exist; the 0.1.0 item's description came from About.xml at creation and lacks `IF I GO QUIET`, `AI-GENERATED` and `THANKS`, so it has to be corrected through the CI (`update_description`) from a `## Steam description` block; the mod lists 45 source mods and none has an entry in the WORKSHOP_COMMENTS.md register; neither README.md nor ATTRIBUTION.md names the AI tool used; there is no `Source/*.csproj` and no `Mod/README.template.md`, so `bootstrap-release.sh` skips this repository and the manual workflow is the route (with `--require Patches`, this mod having no `Defs`)
+  - reservation, visual, not a defect: at 32 px the ModIcon's face and gear rim are distinguishable but its engraved text strip is not readable; the owner asked on 2026-09-20 to keep that text
 accepted:
-  - accepted 2026-09-21 by the user: the corrected defNames of the 23 uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
-  - accepted 2026-09-21 by the user: the unit tests check 23 of the 30 source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20 and report the rest as SKIP rather than passing them. Knowingly accepted on the same ground, and the SKIP is deliberate - the suite never reports an unchecked mod as passing
-  - accepted 2026-09-21 by the user: TESTING.md’s 8 functional scenarios will not be walked in game. This is what done -> tested asks for, so the mod stays at `done` and is NOT `tested`: the scenarios were written and never run, and nothing here says otherwise. Scenarios 1 to 4 and 7 are covered by the unit tests and the two Pickle passes; 5, 6 and 8 (modlist changes, save and reload, FR/EN interface) have no coverage of any kind
+  - accepted 2026-09-21 by the user (23 uninstalled source mods then, 30 of 45 on 2026-09-26): the corrected defNames of the uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
+  - accepted 2026-09-21 by the user (23 of 30 then, 30 of 45 on 2026-09-26): the unit tests check the uninstalled source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20 and report the rest as SKIP rather than passing them. Knowingly accepted on the same ground, and the SKIP is deliberate - the suite never reports an unchecked mod as passing
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-21, Ancient Junk Loot set to Animal by the user (six corrections, by hand); cherrypick now applies our research corrections; unit suite sees Core (8 of 31 installed). The mod stays at `done`
+updated:      2026-09-26, audited against the AUDIT.md of that day: stage stays `done` (out-of-game suites green on the current revision), `tested` not reached (no Pickle run on the shipped revision). 0.1.0 recorded, evidence out of git, scenarios 5, 6 and 8 not applicable
 ---
 
 # Nelim's Tech Level Fixes — status
+
+## Workflow audit — 2026-09-26
+
+**Decision: the stage stays `done`. `tested` is not reached.** The out-of-game suites are green on the current revision, and no
+Pickle run is. Nothing found today lowers the stage; two earlier claims of this file were false and are corrected below.
+
+### Audited revision and scope
+
+- Repository root `C:/Users/nelim/Documents/rimworld/TechLevelFixes`, distributed folder `Mod/`. At the start `HEAD` was
+  `9640d92` (`Add Beautiful.Mechnode tech-level corrections`), fourteen commits after `a37ff89`, the last one this file had
+  audited. Those fourteen add source mods; none of them was made by this session.
+- Local state found: `STATUS.md` and `TESTING.md` carried uncommitted work of 2026-09-22 (folded in below, and corrected where the
+  tree disagreed); `Tests/manual-evidence/README.md` was untracked (removed, see below); `Mod/About/PublishedFileId.txt` was
+  untracked (committed, `fa3d7c8`).
+- `AUDIT.md` read at `4f034f5` (2026-09-26). The other documents and their versions are in `docs/PROTOCOLS-READ.md`.
+- No RimWorld and no Pickle process was launched by this session.
+
+### Controls run, and what they gave
+
+| Control | Result |
+|---|---|
+| `Tests/Check-Patches.ps1` | PASS: 45 patch files, 229 corrections, 45 `loadAfter` entries, 2 defNames corrected by more than one source mod, all in agreement; `LICENSE` and `ATTRIBUTION.md` identical to their `Mod/` copies |
+| `Tests/Run.ps1` (unit) | 168 passed, 0 failed. `Installed source mods found: 15 of 45`; the others are covered by fixtures only, and reported as `SKIP`, never as passed |
+| `ModIcon.png` | 128 x 128, 19,025 bytes, unchanged since 2026-09-20. **Opened and looked at, at 32 px**: the winking face and the gear rim are distinguishable; the engraved text strip under it is not readable at that size. Recorded as a reservation: the owner asked to keep that text |
+| `Preview.png` | 896 x 504, 648,828 bytes (under 1 MB), unchanged since 2026-09-20. **Opened at 268 px**: title, `1.6` badge and summary line all readable, one small figure, no face. The text block is at the bottom-left, where the 2026-09-25 spec says top-left or bottom-right; already-engraved previews keep their layout until the mod is reworked, so not a defect |
+| Structure | `Mod/` holds `About/` and `Patches/` only: no assembly, no `Defs`, no `Languages`. No `incompatibleWith`, `loadBefore` or `modDependencies`. `loadAfter` names mods, never a patch file. No `<label>` or `<description>` in any patch |
+| Features | No `@wip`, no `@requires`, no `@review`, no `@allow-errors` in `Tests/Pickle/Mod/Pickle/Features/` |
+| GitHub links | `https://github.com/vbardales/rimworld-nelim-tech-level-fixes` and `.../Rimworld-Nelim-Tech-Level-Fixes` both answer 200 (GitHub ignores case). `About.xml` now uses the canonical spelling, in `<url>` and in the closing description line |
+| Not run | Pickle, and anything in the game. The tree is not frozen (source mods keep arriving), so a request would not test a stable revision |
+
+### Ordered result
+
+| Destination | Result | Evidence |
+|---|---|---|
+| horsMonoRepo | Validated | Public repository `Rimworld-Nelim-Tech-Level-Fixes`, `origin` at `HEAD`, English documentation, `LICENSE` and `ATTRIBUTION.md` duplicated in `Mod/` |
+| ModIcon générée | Validated, with a reservation | Direct checks above; the text strip does not read at 32 px |
+| Preview générée | Validated | Direct check above |
+| preOptions | Validated | Description in English, ends with the `Source code on GitHub` link, now on the canonical repository name. The defect the 2026-09-22 audit raised (lowercase spelling) is fixed by `9dfcdd9` |
+| options | Not applicable, justified | No assembly, no settings, no page and no shortcut: checked against the tree |
+| l10n | Not applicable, justified | The patches write `techLevel` values and no text: no `Keyed`, no `DefInjected`, no label |
+| preTest | Validated | No dependency declared or used; `loadAfter` and `Patches/` match exactly (XML suite); no `LoadFolders` needed for a single version |
+| done | **Validated on the current revision** | Scenarios written (`TESTING.md`), unit suite 168/0, XML suite PASS, Pickle suite written. Results correspond to the shipped revision for every out-of-game suite |
+| tested | Not reached | Both Pickle passes have to be played on the shipped revision; see below |
+| prepublished, published | Not started | The 0.1.0 pre-publication exists (item `3806765254`, private); it is not the `prepublished` state |
+
+### Required for `tested`
+
+1. Freeze the tree, then file two requests (`TESTING.md` gives the exact ones): the bare pass, and the sources pass. A request
+   carries no SHA, so no commit may land before their `RUN_DONE`.
+2. Read `exitReason`, the suite name and the discovered-against-played count of each report before its figures.
+3. Record both in `docs/runs/history.md` and here.
+
+Nothing else: no `@wip`, no `@requires`, no `@review` capture, no manual scenario.
+
+### Judgements made today, for the owner to confirm or overturn
+
+- **Scenarios 5, 6 and 8 are not applicable** (delete one patch file, delete the folder, save and reload or add and remove the
+  mod). `AUDIT.md` "On ne teste pas le jeu" puts the game's handling of an absent file, and of a mod added to or removed from a
+  save, outside what a mod answers for; the mod declares no file and stores nothing. The reasons are in `TESTING.md`. This
+  replaces the 2026-09-22 plan that asked for recorded videos, and it withdraws `Tests/manual-evidence/`, which was never
+  tracked and held only that plan. If the owner disagrees, the three come back as manual and `tested` waits for them.
+- **The sources pass mounts 3 of 45 `loadAfter` mods.** A reservation against the letter of `AUDIT.md`, not a defect; extending
+  the map is the owner's call.
+
+### Corrections to earlier claims
+
+- **The 2026-09-22 follow-up says `About.xml`'s `<url>` and description link were corrected to the new spelling. They were not in
+  the tree**: on 2026-09-26 both the working file and `HEAD` still carried the lowercase form of `a37ff89`. Whether the edit
+  was lost or never saved is not established. It is done now, by `9dfcdd9`.
+- **`Tests/Pickle/results/2026-09-20-summary.md` was not this mod's report.** It lists three trouser scenarios that belong to
+  TailorMade Waistlines: a copy of the shared `pickle-reports/` folder taken after that mod's run had overwritten ours. The
+  "4 of 5" of that day has no valid report behind it. The file is removed and the run is recorded as such in `docs/runs/history.md`.
+- **The 2026-09-22 note says the bare pass was not yet re-established on Pickle v4.8.4.** A launcher log of 2026-09-23 00:08 shows
+  it was: 1 of 1, `exitReason: passed`. It had not been written down.
+- **The 2026-09-22 "Manual-evidence plan" is withdrawn** (see above).
+
+### What changed in the repository today
+
+`fa3d7c8` the published file ID; `9dfcdd9` the changelog (`[0.1.0]` is the publishIdFile, `1.0.0` stays under `[Unreleased]`) and the
+canonical links; then the evidence moved out of git (`Tests/Pickle/results/` removed, one line per run in `docs/runs/history.md`,
+the latest proofs kept in `Tests/Pickle/Evidence/`, ignored), `docs/PROTOCOLS-READ.md` with its checking script, `TESTING.md`
+rewritten, and this file.
+
+
+## Manual-evidence plan — 2026-09-22 (withdrawn 2026-09-26)
+
+**Withdrawn.** Scenarios 5, 6 and 8 are not applicable and the others are automated; see "Workflow audit — 2026-09-26" above and
+`TESTING.md`. What follows is kept as it was written.
+
+`TESTING.md` now makes every scenario auditable by a human: stable end states require named PNG
+captures; state transitions require unedited MP4 recordings; each run records its active mod list,
+game state and relevant Player.log excerpt in `Tests/manual-evidence/README.md`. The plan applies
+to all eight scenarios, while the remaining evidence gate for `tested` is scenarios 5, 6 and 8:
+only a human can alter the installed copy, change the mod list, and save/reload across those
+changes. The README now exists as the ready-to-fill evidence register. No capture/video has been
+fabricated or claimed as observed.
+
+## Pickle revalidation — 2026-09-22
+
+The two required headless WSL passes completed through `scripts/Run-PickleWsl.ps1`, each after
+the launcher obtained its ticket and released the lock in `finally`. A subsequent sources-only
+revalidation repeated the live source assertions.
+
+| Pass | Invocation scope | Verdict | Evidence |
+| --- | --- | --- | --- |
+| Minimal | `-Filter 01-alone.feature`; no corrected source mod staged | 1/1 passed, `exitReason: passed` | Launcher log, removed 2026-09-26 (one line in `docs/runs/history.md`). The mod loaded with all targets absent and logged no warning or error. |
+| Sources | `-Filter 02-with-sources.feature -DepMap wsl-deps.sources.map` | 5/5 passed, `exitReason: passed` | The archived report, purged by the launcher's retention (one line in `docs/runs/history.md`). It staged Alpha Books, Additional Tools and Ancient Amulets, then established real load order, add branch, replace branch and inherited-level override. |
+| Sources revalidation | Same sources filter and map; ticket 40916, started 17:24 and ran 17:33 | 5/5 passed, `exitReason: passed` | Launcher log and archived report, both removed (one line in `docs/runs/history.md`). It staged 14 mods and released the lock after the verdict. |
+| Sources, Pickle v4.8.4 | `-Filter 02-with-sources.feature -DepMap wsl-deps.sources.map -PickleSrc .build/Pickle-4.8.4/Pickle` | 5/5 passed, `exitReason: passed` | Official GitHub release `v4.8.4` (published 2026-09-22, includes patching fix PR #20 / `0bc6960`); downloaded archive SHA-256 `088911EA5C29FE91D2AEE5C668BCDEF60061955AE75D38E1EA29E0B39CDBD93C`; launcher log, kept as `Tests/Pickle/Evidence/2026-09-22-v4.8.4-sources.out.log`, confirms `override: rimworks.pickle` from that extracted release; the archived report itself is gone. |
+
+An earlier 2/6 result is not a mod defect: the complete suite was mistakenly run in the minimal
+pass, so its real-modlist feature necessarily lacked its three source mods. A subsequent
+zero-scenario infrastructure result was likewise discarded: the filter was passed with literal
+apostrophes and matched no feature. Neither run is evidence for or against the mod; the two
+passes above are the valid revalidation evidence.
+
+`rg -n "@review" Tests/Pickle/Mod/Pickle/Features Tests/Pickle/README.md` found no review-tagged
+TechLevelFixes scenario. The shared archive contains screenshots from other queued runs; none
+was treated as a TechLevelFixes capture. `tested` remains unreached: the eight manual scenarios
+recorded in `TESTING.md` were not all executed; scenarios 5, 6 and 8 remain explicitly
+`unverified` pending their required human-reviewable videos.
+
+The v4.8.4 result is a precise **sources-pass** proof only: it validates the five live-def/load-order
+assertions with the released PR #20 backend, but does not yet re-establish the separate
+`sans-facultatifs` no-target guarantee on that release.
+
+## Workflow follow-up — 2026-09-22
+
+**Corrected 2026-09-26:** the `About.xml` edit described below was not in the tree. See "Corrections to earlier claims" above.
+
+**Decision: `Preview générée` -> `done`.** The blocker from this audit's first pass was
+corrected in the distributed `Mod/About/About.xml`: both `<url>` and the final description link
+now use `https://github.com/vbardales/rimworld-Nelim-Tech-Level-Fixes`, matching `origin`
+apart from its `.git` suffix. The top-level `repo` field was corrected to the same kebab-case
+spelling. The `Preview générée -> preOptions` criterion is therefore validated.
+
+The independently established `options` (`settings_audit: not_applicable`) and `l10n`
+(`localization`, `translation_en`, `translation_fr: not_applicable`) results remain valid. The
+current out-of-game XML and unit-test controls, the already-written functional scenarios, and
+the existing Pickle suite establish `preTest -> done` under AUDIT.md's rule that a live-game run
+is not required for `done`. `tested` remains unreached: this follow-up launched no RimWorld or
+Pickle process and makes no new gameplay, persistence, UI, or language-display claim.
+
+## Workflow audit — 2026-09-22
+
+**Decision: `done` -> `Preview générée` (project stage: `showcase`).** This is a
+documentation/metadata rollback, not a claim that the patch content or its independent
+test results are defective. The ordered `Preview générée -> preOptions` transition requires
+the final `Source code on GitHub` target and `<url>` in the distributed `About.xml` to match
+the autonomous GitHub remote exactly. On revision `a37ff89d`, both still use
+`rimworld-nelim-tech-level-fixes`, while the corrected `origin` is
+`https://github.com/vbardales/rimworld-Nelim-Tech-Level-Fixes.git` (fetch and push).
+That is a concrete metadata defect, so `preOptions` and every sequential later stage are
+not currently established.
+
+### Scope and controls
+
+- Audited repository root: `C:/Users/nelim/Documents/rimworld/TechLevelFixes`; distributed
+  folder: `Mod/`; revision: `a37ff89d1459bd41120bd5022007b07b6d8dfcc0` (`Ancient Junk Loot:
+  all six corrections go to Animal`). The working tree was clean before this audit; the only
+  audit edit is this STATUS.md update. `origin` was corrected locally to the kebab-case URL
+  above before the check.
+- Direct artefact inspection: `Mod/About/ModIcon.png` is a 128x128 PNG (19,025 bytes), and
+  `Mod/About/Preview.png` is an 896x504 PNG (648,828 bytes, below 1 MB). Both were opened and
+  reviewed directly; the preview has a readable overlay, a high-oblique workshop scene, and a
+  visible 1.6 badge. No new visual defect was observed.
+- `powershell.exe -ExecutionPolicy Bypass -File Tests/Check-Patches.ps1`: pass — 31 patch
+  files, 167 corrections and 31 `loadAfter` entries; the one shared defName agrees. The script
+  also verifies that the shipped LICENSE and ATTRIBUTION copies match the root copies.
+- `powershell.exe -ExecutionPolicy Bypass -File Tests/Run.ps1`: build and test process exited
+  successfully after the required local Windows SDK access was available. Build: 0 warnings,
+  0 errors. This remains an out-of-game test only; it does not validate game UI, loading or
+  save behaviour.
+- Settings and localization were re-inventoried: the shipped mod has no C# or assembly and its
+  31 patch XML files only write `techLevel` enum values. No player settings, empty settings
+  page, MainButtons shortcut, Keyed text or DefInjected text exists. `settings_audit` and all
+  three localization fields therefore remain justified `not_applicable`.
+- No RimWorld or Pickle process was launched by this audit. All prior in-game/Pickle evidence is
+  historical only and no new gameplay, English/French display, persistence, log or screenshot
+  assertion is made here.
+
+### Ordered result
+
+| Transition destination | Result in this audit | Evidence |
+| --- | --- | --- |
+| horsMonoRepo | Validated | Autonomous Git repository, public GitHub remote and required English root/distributed documentation remain present. |
+| ModIcon générée | Validated | Direct 128x128 PNG inspection above; no build artefact applies to this XML-only mod. |
+| Preview générée | Validated | Direct 896x504, sub-1-MB Preview inspection above. |
+| preOptions | Defect | About.xml's repository URL and final description link do not use the corrected kebab-case origin spelling. |
+| options | Not applicable, justified | Independent static settings inventory remains valid. |
+| l10n | Not applicable, justified | Independent player-facing-text inventory remains valid. |
+| preTest | Independently validated | Patch-shape/XML validation and out-of-game unit test execution are recorded above; sequential entry remains blocked by preOptions. |
+| done | Independently unmodified, sequentially not current | Existing test scenarios and historical results are preserved, but `done` cannot be the current workflow stage while preOptions is blocked. |
+| tested | Not reached in this audit | No new game validation was run. |
+
+### Required next transition
+
+Correct the two distributed `About.xml` repository references to
+`https://github.com/vbardales/rimworld-Nelim-Tech-Level-Fixes`, then verify that the final
+description link, `<url>`, and `origin` are byte-for-byte coherent. No code, image, settings,
+translation, or RimWorld run is required for that transition.
 
 ## Workflow audit — 2026-09-17
 
@@ -377,11 +581,11 @@ none of their targets: no error logged. `SuiteScanner` found 2 features in the s
 scenario ran, which is the filter keeping `02-with-sources.feature` out of a staging where its
 defs are absent by design - checked deliberately, because AUDIT.md records a case where that same
 gap was silent truncation reporting green. Report kept in
-`Tests/Pickle/results/2026-09-21-sans-facultatifs/`.
+one line in `docs/runs/history.md`; the report was not kept.
 
 **Then replayed in the strengthened form, 12:08 the same day: 1 of 1, 5 steps of 5 PASSED**, against 2
 in the morning. Target absent, nothing patched it, no warning attributed to this mod, no error.
-`Tests/Pickle/results/2026-09-21-sans-facultatifs-strengthened/`. Only `no def ... exists` could
+`Tests/Pickle/Evidence/2026-09-21-bare-strengthened/` (`summary.json` and `junit.xml`). Only `no def ... exists` could
 have failed for a mod that did nothing at all; `no warnings from mod` was never shown able to
 fail, since none was produced to catch.
 
@@ -411,8 +615,8 @@ are staged, 23 are not installed. If an incompatibility turns up it earns its ow
 ## The Pickle suite is green — 2026-09-21, 5 of 5
 
 Run headless in the WSL game through `scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes`.
-Report kept at `Tests/Pickle/results/2026-09-21-summary.md`; the 4-of-5 run of the day before is
-kept beside it, since the shared report directory is overwritten by whoever runs next.
+Report kept as text at `Tests/Pickle/Evidence/2026-09-21-sources/summary.md`. The 4-of-5 run of the day before has no valid
+report: the file saved for it belonged to another mod (see "Corrections to earlier claims" above).
 
 | Scenario | Outcome |
 |---|---|
@@ -636,7 +840,7 @@ It compiles nothing: `mod is loaded`, `loads after`, `def field is` and `no erro
 are all built into Pickle, which is how a mod with no C# of its own can have a suite at all.
 
 **Executed 2026-09-21: 5 of 5.** Run headless under WSL, with the machine reserved and the
-run lock held; see "The Pickle suite is green" above and `Tests/Pickle/results/2026-09-21-summary.md`.
+run lock held; see "The Pickle suite is green" above and `docs/runs/history.md`.
 
 ### Reservations (non-blocking)
 
