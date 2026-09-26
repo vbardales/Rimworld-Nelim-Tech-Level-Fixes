@@ -20,3 +20,11 @@ Source/bin/
 # Showcase notes: working notes for image generation, deleted once Preview.png and
 # ModIcon.png are done.
 PROMPT_*.md
+
+# Test evidence kept on disk, never in git (AGENTS.md, "Test evidence"). Captures and Player.log make
+# it grow without limit; the history is one line per run in docs/runs/history.md.
+Tests/Pickle/Evidence/
+evidence/
+
+# Compiled textures. This mod ships none; listed so one can never be committed by accident.
+*.dds

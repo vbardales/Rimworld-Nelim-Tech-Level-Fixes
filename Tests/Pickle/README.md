@@ -96,10 +96,17 @@ reservation comes before anything a session wants.
 
 ## Status
 
-Executed 2026-09-21, headless under WSL: **5 of 5**. The report is kept as
-`results/2026-09-21-summary.md`, because the shared `pickle-reports/` directory is overwritten by
-the next run. The run before it, 2026-09-20, was 4 of 5: one scenario named a def whose defName
-belongs to two def types, which Pickle's `field` step refuses to guess between.
+The runs are one line each in `../../docs/runs/history.md`. None is on the current revision: the suite last ran on the tree
+of `a37ff89`. The latest reports still worth holding are in `Evidence/`, which git ignores (a report is kept only while it proves
+something about the revision now in the repository; `AGENTS.md`).
 
-An audit session still never starts the game itself. That run happened with the machine reserved
-by its owner and the run lock held.
+Since 2026-09-24 a session does not launch a run, it files a request, and no session starts the game itself:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File C:Users
+elimDocumentsimworldRimworld-Ticket-DispatcherscriptsSubmit-PickleRun.ps1 `
+  -Mod TechLevelFixes -Owner local_<session id> -Label "bare pass, <sha>" -Filter '01-alone' `
+  -EvidenceDir TechLevelFixes/Tests/Pickle/Evidence/<fresh folder>
+```
+
+The second request adds `-DepMap wsl-deps.sources.map` and `-Filter '02-with-sources'`. `TESTING.md` says why each filter is there.
