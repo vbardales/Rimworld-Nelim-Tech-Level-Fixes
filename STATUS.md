@@ -57,6 +57,8 @@ Pickle run is. Nothing found today lowers the stage; two earlier claims of this 
 | Structure | `Mod/` holds `About/` and `Patches/` only: no assembly, no `Defs`, no `Languages`. No `incompatibleWith`, `loadBefore` or `modDependencies`. `loadAfter` names mods, never a patch file. No `<label>` or `<description>` in any patch |
 | Features | No `@wip`, no `@requires`, no `@review`, no `@allow-errors` in `Tests/Pickle/Mod/Pickle/Features/` |
 | GitHub links | `https://github.com/vbardales/rimworld-nelim-tech-level-fixes` and `.../Rimworld-Nelim-Tech-Level-Fixes` both answer 200 (GitHub ignores case). `About.xml` now uses the canonical spelling, in `<url>` and in the closing description line |
+| Origin project's repository | Not applicable, justified. `PUBLISHING.md` ("Départ depuis le projet d'origine") asks to start from the origin project's Git repository and to send pull requests there. This mod has no origin project: its patches are original (`licence: original`), written by the author, and the source mods are only the *targets* of a correction, neither derived from nor studied (`ATTRIBUTION.md`). There is no repository to start from and no pull request to send |
+| `.dds` files | None tracked (`git ls-files '*.dds'` is empty) and none on disk; this mod ships no texture. `*.dds` is in `.gitignore` all the same, as instructed |
 | Not run | Pickle, and anything in the game. The tree is not frozen (source mods keep arriving), so a request would not test a stable revision |
 
 ### Ordered result
