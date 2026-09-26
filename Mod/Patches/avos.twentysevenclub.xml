@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     27 Club reecrit ce fichier en entier.
+
+     Source : 27 Club (avos.twentysevenclub)
+     Corrections : 3 -->
+<Patch>
+
+  <!-- BlessedChalice : Archotech -> Animal -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BlessedChalice"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="BlessedChalice"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="BlessedChalice"]/techLevel</xpath>
+        <value><techLevel>Animal</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="BlessedChalice"]</xpath>
+        <value><techLevel>Animal</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- CursedHemogen : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="CursedHemogen"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="CursedHemogen"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="CursedHemogen"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="CursedHemogen"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- CursedSerum : Industrial -> Spacer -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="CursedSerum"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="CursedSerum"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="CursedSerum"]/techLevel</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="CursedSerum"]</xpath>
+        <value><techLevel>Spacer</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

@@ -71,6 +71,11 @@ version that arrives with `published`; until then this section holds it.
   base-game defs). None has a construction category: they drop from the sky or sit in mechanoid
   ruins, so they are legitimate at any era, like the relics of `Romyashi.AncientJunkLoot`.
   Cherrypick proposed Industrial for the first two, from their `ComponentIndustrial` cost.
+- 3 tech-level corrections for `avos.twentysevenclub` (27 Club), chosen for realism: the blessed
+  chalice (Archotech -> Animal: a gold relic found only by exploration, no recipe or trade tag, so
+  legitimate at any era like the relics of `Romyashi.AncientJunkLoot`), the cursed hemogen (none ->
+  Industrial, like base-game hemogen) and the cursed serum (Industrial -> Spacer: brewed from a
+  `MedicineUltratech`). The bomb vest was already Industrial and correct.
 
 ### Changed
 
