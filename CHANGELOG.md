@@ -5,16 +5,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ## [Unreleased]
 
+Everything here is committed after the 0.1.0 upload and is not on Steam yet. The `1.0.0` is the
+version that arrives with `published`; until then this section holds it.
+
 ### Added
 
-- Repository documentation: README, ATTRIBUTION, LICENSE (MIT), this changelog.
-- 3 tech-level corrections for `brrainz.zombieland` (Zombieland): `Thumper` (none -> Medieval,
-  matching its `Smithing` research prerequisite), `ZombieSerumSimple` (Neolithic -> Industrial,
-  aligning it with its ten `ZombieSerumCore`-derived siblings), `ZombieShocker` (none ->
-  Industrial, matching its `Electricity` research prerequisite and `ComponentIndustrial` cost).
-- 1 tech-level correction to a base-game research project (`Ludeon.RimWorld`): `Stonecutting`
-  (Medieval -> Neolithic). Written by hand, in the same shape as the generated files, because
-  cherrypick does not handle research projects.
 - 8 tech-level corrections for `Mlie.Aquarium` (Aquarium (Continued)), chosen for realism rather
   than to follow the author's research chain: `AQCollagen`, `AQGelatin` and `AQFishFood` (none ->
   Neolithic: a butcher spot and a fueled stove, no research in vanilla), `AQFishBowl` (none ->
@@ -79,13 +74,21 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ### Changed
 
-- `Romyashi.AncientJunkLoot` (Ancient Junk Loot): its six corrections now set `Animal` instead of
-  `Industrial` (five) and `Spacer` (one). They are relics left by the Ancients, so they can turn up
-  from the very start of a game. The file was edited by hand and says so in its header.
+- The repository links in `About.xml` (`<url>` and the closing `Source code on GitHub` line) now
+  use the repository's canonical spelling, `Rimworld-Nelim-Tech-Level-Fixes`. The old lowercase
+  form still resolved (checked: HTTP 200 for both), but only because GitHub ignores case.
 
-## [1.0.0] — 2026-09-17
+## [0.1.0] — 2026-09-23
 
-First version. RimWorld 1.6.
+Creation of a publishIdFile. A first upload whose only purpose is to create the Workshop item
+(private, as Steam creates every item) and obtain `Mod/About/PublishedFileId.txt`, item
+`3806765254`. It is not a tested release and it does not make the mod public.
+
+What the upload contained is `Mod/` as committed at `a37ff89`, the `HEAD` when the file was written
+(2026-09-23 16:40): 31 patch files (167 corrections), the `loadAfter` list, `LICENSE`,
+`ATTRIBUTION.md`, `ModIcon.png` (128 x 128) and `Preview.png` (896 x 504). The owner made the
+upload from the game and its exact tree was not recorded, so the commit is inferred from the
+timestamp of the file.
 
 ### Added
 
@@ -93,3 +96,17 @@ First version. RimWorld 1.6.
   `Mod/Patches/`, each arbitrated item by item with the cherrypick tool.
 - Loads after every corrected mod (`loadAfter` in `About.xml`); none is a hard dependency, and a
   correction whose target item is missing does nothing.
+- Repository documentation: README, ATTRIBUTION, LICENSE (MIT), this changelog.
+- 3 tech-level corrections for `brrainz.zombieland` (Zombieland): `Thumper` (none -> Medieval,
+  matching its `Smithing` research prerequisite), `ZombieSerumSimple` (Neolithic -> Industrial,
+  aligning it with its ten `ZombieSerumCore`-derived siblings), `ZombieShocker` (none ->
+  Industrial, matching its `Electricity` research prerequisite and `ComponentIndustrial` cost).
+- 1 tech-level correction to a base-game research project (`Ludeon.RimWorld`): `Stonecutting`
+  (Medieval -> Neolithic). Written by hand, in the same shape as the generated files, because
+  cherrypick does not handle research projects.
+
+### Changed
+
+- `Romyashi.AncientJunkLoot` (Ancient Junk Loot): its six corrections now set `Animal` instead of
+  `Industrial` (five) and `Spacer` (one). They are relics left by the Ancients, so they can turn up
+  from the very start of a game. The file was edited by hand and says so in its header.
