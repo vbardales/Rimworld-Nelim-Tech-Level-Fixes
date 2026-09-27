@@ -19,7 +19,7 @@ workshop:      3806765254  # the 0.1.0 pre-publication of 2026-09-23: a private 
 remaining:
   - unverified 2026-09-26: no Pickle run is on the shipped revision. The suite last ran on the tree of `a37ff89` (31 patch files) and `Mod/` now holds 45. `tested` needs the two requests of TESTING.md (bare pass, sources pass) played on a frozen tree, with `exitReason` and the discovered-against-played count read first. Nothing else is left for `tested`: no `@wip`, no `@requires`, no `@review`, and no manual scenario (5, 6 and 8 are not applicable, see TESTING.md)
   - unverified 2026-09-26: the sources pass mounts 3 of the 45 source mods this mod lists in `loadAfter`; AUDIT.md defines the pass "with the optional mods" as all of them. A reservation, not a defect: the unit tests cover the others (15 against their real defs, the rest against fixtures)
-  - partial, for transition 10 (`tested -> prepublished`), not a defect of `done`: `PUBLICATION.md` now exists (2026-09-27), with the Steam description block (`IF I GO QUIET`, `AI-GENERATED`, `THANKS`), dependencies/DLC, content boxes and gallery filled in. Not done: wiring the description to it and running `sync-about-description.mjs`; generating the manual publish workflow. The owner decided 2026-09-27 that no thank-you comment or register entry is owed to the `loadAfter` mods this one corrects: a correction is not the dependency/inspiration relationship `WORKSHOP_COMMENTS.md` targets
+  - partial, for transition 10 (`tested -> prepublished`), not a defect of `done`: the manual publish workflow is now generated (`.github/`, template stamp `a8ca11cdd9a3`) and `About.xml`'s description is synced from `PUBLICATION.md` (68/68 CI script tests pass). Not done: a dry-run (no commit to run it against yet), `steam-production` (the owner's alone), and `tested` itself
   - reservation, visual, not a defect: at 32 px the ModIcon's face and gear rim are distinguishable but its engraved text strip is not readable; the owner asked on 2026-09-20 to keep that text
 accepted:
   - accepted 2026-09-21 by the user (23 uninstalled source mods then, 30 of 45 on 2026-09-26): the corrected defNames of the uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
@@ -108,6 +108,12 @@ Nothing else: no `@wip`, no `@requires`, no `@review` capture, no manual scenari
 - **The 2026-09-22 "Manual-evidence plan" is withdrawn** (see above).
 
 ### What changed in the repository — 2026-09-27
+Then, still 2026-09-27: the manual publish workflow generated (`generate-publish-workflow.sh`) and `About.xml`'s
+description synced to `PUBLICATION.md`'s block (`sync-about-description.mjs --write`, then confirmed idempotent). A
+first sync surfaced a line that only made sense inside `PUBLICATION.md` ("see 'Thank-you comments' above"); fixed in the
+source before it could ship on the Steam page. All 68 of `.github/tests/*.test.mjs` pass, and both mod suites stay green
+(XML PASS; unit 173/0).
+
 
 Overnight, `f7866e1` added `avos.twentysevenclub` (27 Club): 46 patch files, 232 corrections. Both suites re-run and green
 (XML PASS; unit 173 passed, 0 failed, 16 of 46 source mods installed).

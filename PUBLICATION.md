@@ -49,19 +49,25 @@ Claude Sonnet 5) over the course of the project.
 Pickle (RimWorks), used to test this mod inside the game: a development tool only, never a dependency of the mod.
 RimLogging too, for the same reason.
 
-See ATTRIBUTION.md in the repository below for the list of source mods this one corrects. No individual thanks: see
-"Thank-you comments" above.
+See ATTRIBUTION.md in the repository below for the list of source mods this one corrects.
 
 [Source code on GitHub](https://github.com/vbardales/Rimworld-Nelim-Tech-Level-Fixes)
 ```
 
 **The page still carries the `0.1.0` description**, sent once at creation from the `About.xml` of that day (no `IF I GO
-QUIET`, `AI-GENERATED` or `THANKS`). Replacing it needs either a hand edit on the Steam page, or the CI's
-`update_description` once this mod is wired to read the block above (`PUBLISHING.md`, "Source unique de la description":
-`descriptionFile: PUBLICATION.md`, `descriptionHeading: '^## Steam description$'`, `aboutFromDescription: true`, then
-`sync-about-description.mjs --write` to bring `About.xml`'s plain text in step). Not done yet: this mod has no
-`Source/*.csproj` and no `Mod/README.template.md`, so `bootstrap-release.sh` skips it and the manual workflow
-(`generate-publish-workflow.sh ... --require Patches --forbid Assemblies`) is the route, at transition 10.
+QUIET`, `AI-GENERATED` or `THANKS`). Replacing it needs the CI's `update_description`, in a `publish` run — never a hand
+edit, which the manual workflow's next dry-run would then diff against and flag as unexpectedly different.
+
+**Done, 2026-09-27:** the manual publish workflow is generated in this repository (`.github/workflows/publish-tag.yml`,
+`script-tests.yml`, `.github/publish.config.json`, `.github/scripts/`, `.github/tests/`, template stamp `a8ca11cdd9a3`,
+via `generate-publish-workflow.sh . --workshop-id 3806765254 --package-id nelim.techlevelfixes --release-title "Nelim's
+Tech Level Fixes {version}" --require Patches --require About/About.xml --forbid Assemblies --description-markdown
+PUBLICATION.md --description-heading '^## Steam description$' --about-from-description`). `About.xml`'s description is
+already the plain text of the block above (`node .github/scripts/sync-about-description.mjs`, no diff). All 68 of
+`.github/tests/*.test.mjs` pass. Never edit `.github/` by hand: regenerate with the script instead.
+
+Not done: a dry-run (needs a commit to run against and the `release-dry-run` environment), and `steam-production` itself
+(secrets, required reviewer — the owner's alone, `Rimworld-Release-Admin/docs/OPERATIONS.md`).
 
 ## Dependencies and DLC
 
@@ -90,7 +96,8 @@ First tested release. See CHANGELOG.md for the full list of corrections.
 
 ## Still to do before `prepublished`
 
-1. Wire the description to this file (`--description-markdown` or `--description-file`, see above) and run
-   `sync-about-description.mjs --write`; read the diff before committing.
-2. Generate the manual publish workflow (`generate-publish-workflow.sh`) once `tested` is reached.
-3. `tested` itself: the two Pickle passes on a frozen tree (`TESTING.md`).
+1. `tested` itself: the two Pickle passes on a frozen tree (`TESTING.md`).
+2. A dry-run of the exact commit, its run ID and SHA recorded here and in `STATUS.md`.
+3. `steam-production` created with its two secrets and the owner as required reviewer (her alone).
+4. Everything `AUDIT.md`'s `tested -> prepublished` transition lists: gallery, thank-you comments (none owed here, see
+   above), dependencies/DLC (none), content boxes (no), rollback target chosen ahead of the `publish`.

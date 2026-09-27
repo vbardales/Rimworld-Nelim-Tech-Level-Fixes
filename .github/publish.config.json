@@ -4,7 +4,8 @@
   "packageId": "nelim.techlevelfixes",
   "releaseTitle": "Nelim's Tech Level Fixes {version}",
   "requirePaths": [
-    "Patches"
+    "Patches",
+    "About/About.xml"
   ],
   "forbidPaths": [
     "Assemblies"
