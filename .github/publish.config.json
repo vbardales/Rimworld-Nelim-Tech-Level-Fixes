@@ -1,0 +1,19 @@
+{
+  "templateStamp": "a8ca11cdd9a3",
+  "workshopId": "3806765254",
+  "packageId": "nelim.techlevelfixes",
+  "releaseTitle": "Nelim's Tech Level Fixes {version}",
+  "requirePaths": [
+    "Patches"
+  ],
+  "forbidPaths": [
+    "Assemblies"
+  ],
+  "previewFile": "About/Preview.png",
+  "aboutFromDescription": true,
+  "description": {
+    "file": "PUBLICATION.md",
+    "format": "markdown",
+    "heading": "^## Steam description$"
+  }
+}
