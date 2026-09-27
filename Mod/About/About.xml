@@ -55,11 +55,34 @@
     <li>zal.crystalbodyparts</li>
     <li>zal.easternarmory</li>
   </loadAfter>
-  <description>Rewrites the tech level of items, to the level arbitrated for each one with the cherrypick tool, mod by mod.
+  <description>Rewrites the tech level of items from other mods, and of a few base-game research projects, to the level arbitrated for
+each one with the cherrypick tool.
 
-Every file under Patches/ is generated: one per source mod, named after its packageId. Deleting a file undoes that mod's corrections; deleting the folder undoes everything.
+RimWorld uses techLevel to gate raid loot, trade stock, quest rewards and research-adjacent content by era. Many mods
+leave it at its default, or pick a level that does not match the item's actual place in the tech tree. This mod corrects
+that, item by item, without touching the mods it corrects.
 
-It loads after the mods it corrects, listed in loadAfter, so their own patches have already run. None of them is required: a correction whose item is missing does nothing.
+Every file under Patches/ is generated, one per source mod, named after its packageId. Deleting a file undoes that
+mod's corrections; deleting the whole folder undoes everything. It loads after every mod it corrects: none of them is a
+dependency, and a correction whose target item is missing simply does nothing.
 
-[url=https://github.com/vbardales/Rimworld-Nelim-Tech-Level-Fixes]Source code on GitHub[/url]</description>
+IF I GO QUIET
+
+If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my
+mods, including publishing a continuation of it. All credit must be preserved.
+
+AI-GENERATED
+
+Written and tested with Claude Code (Anthropic), under human direction and review, across several models (Claude Opus 5,
+Claude Sonnet 5) over the course of the project.
+
+THANKS
+
+Pickle (RimWorks), used to test this mod inside the game: a development tool only, never a dependency of the mod.
+RimLogging too, for the same reason.
+
+See ATTRIBUTION.md in the repository below for the list of source mods this one corrects. No individual thanks: see
+"Thank-you comments" above.
+
+Source code on GitHub (https://github.com/vbardales/Rimworld-Nelim-Tech-Level-Fixes)</description>
 </ModMetaData>
