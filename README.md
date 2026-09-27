@@ -26,7 +26,9 @@ file in place whether or not the mod it corrects is currently enabled.
 
 ## Mods corrected in this release
 
-45 source mods, one file each under `Mod/Patches/`:
+One file per source mod under `Mod/Patches/`. The list below grows as more mods are arbitrated with cherrypick;
+`Tests/Check-Patches.ps1` prints the current file and correction count, and `ATTRIBUTION.md` is the list that gets
+recopied on every change:
 
 `AKN.Decorations`, `Ali.CookingTable`, `Ali.CraftingTable`, `AmateurLLTechBox.AmatuerLLsToys.0001`,
 `AR13S.AnimalCaps`, `ARIS.PSES`, `avos.twentysevenclub`, `bean.security.pack`,

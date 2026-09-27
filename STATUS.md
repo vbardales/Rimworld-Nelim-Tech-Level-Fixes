@@ -19,7 +19,7 @@ workshop:      3806765254  # the 0.1.0 pre-publication of 2026-09-23: a private 
 remaining:
   - unverified 2026-09-26: no Pickle run is on the shipped revision. The suite last ran on the tree of `a37ff89` (31 patch files) and `Mod/` now holds 45. `tested` needs the two requests of TESTING.md (bare pass, sources pass) played on a frozen tree, with `exitReason` and the discovered-against-played count read first. Nothing else is left for `tested`: no `@wip`, no `@requires`, no `@review`, and no manual scenario (5, 6 and 8 are not applicable, see TESTING.md)
   - unverified 2026-09-26: the sources pass mounts 3 of the 45 source mods this mod lists in `loadAfter`; AUDIT.md defines the pass "with the optional mods" as all of them. A reservation, not a defect: the unit tests cover the others (15 against their real defs, the rest against fixtures)
-  - not started, for transition 10 (`tested -> prepublished`) and not a defect of `done`: `PUBLICATION.md` does not exist; the 0.1.0 item's description came from About.xml at creation and lacks `IF I GO QUIET`, `AI-GENERATED` and `THANKS`, so it has to be corrected through the CI (`update_description`) from a `## Steam description` block; the mod lists 45 source mods and none has an entry in the WORKSHOP_COMMENTS.md register; neither README.md nor ATTRIBUTION.md names the AI tool used; there is no `Source/*.csproj` and no `Mod/README.template.md`, so `bootstrap-release.sh` skips this repository and the manual workflow is the route (with `--require Patches`, this mod having no `Defs`)
+  - partial, for transition 10 (`tested -> prepublished`), not a defect of `done`: `PUBLICATION.md` now exists (2026-09-27), with the Steam description block (`IF I GO QUIET`, `AI-GENERATED`, `THANKS`), dependencies/DLC, content boxes and gallery filled in. Not done: wiring the description to it and running `sync-about-description.mjs`; generating the manual publish workflow. The owner decided 2026-09-27 that no thank-you comment or register entry is owed to the `loadAfter` mods this one corrects: a correction is not the dependency/inspiration relationship `WORKSHOP_COMMENTS.md` targets
   - reservation, visual, not a defect: at 32 px the ModIcon's face and gear rim are distinguishable but its engraved text strip is not readable; the owner asked on 2026-09-20 to keep that text
 accepted:
   - accepted 2026-09-21 by the user (23 uninstalled source mods then, 30 of 45 on 2026-09-26): the corrected defNames of the uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
@@ -106,6 +106,17 @@ Nothing else: no `@wip`, no `@requires`, no `@review` capture, no manual scenari
 - **The 2026-09-22 note says the bare pass was not yet re-established on Pickle v4.8.4.** A launcher log of 2026-09-23 00:08 shows
   it was: 1 of 1, `exitReason: passed`. It had not been written down.
 - **The 2026-09-22 "Manual-evidence plan" is withdrawn** (see above).
+
+### What changed in the repository — 2026-09-27
+
+Overnight, `f7866e1` added `avos.twentysevenclub` (27 Club): 46 patch files, 232 corrections. Both suites re-run and green
+(XML PASS; unit 173 passed, 0 failed, 16 of 46 source mods installed).
+
+Then, while waiting for a Pickle slot: `PUBLICATION.md` created (Steam description with the required sections, filled
+dependencies/DLC/content/gallery); the owner decided no thank-you comment is owed to the corrected `loadAfter` mods (see
+`PUBLICATION.md`, "Thank-you comments"); `README.md`'s mod count is no longer a fixed number, since it goes stale with
+every cherrypick pass. `.build/tests` and the downloaded Pickle 4.8.4 zip were deleted (TicketDispatcher's disk-space
+request), both regenerable and neither pointed to by this file.
 
 ### What changed in the repository today
 
