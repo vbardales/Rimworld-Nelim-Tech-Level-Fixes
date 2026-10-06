@@ -28,3 +28,4 @@ evidence/
 
 # Compiled textures. This mod ships none; listed so one can never be committed by accident.
 *.dds
+Art/.render/
