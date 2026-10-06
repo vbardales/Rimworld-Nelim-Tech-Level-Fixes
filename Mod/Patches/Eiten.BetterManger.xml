@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     BetterManger reecrit ce fichier en entier.
+
+     Source : BetterManger (Eiten.BetterManger)
+     Corrections : 2 -->
+<Patch>
+
+  <!-- EtnManger : (aucun) -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="EtnManger"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="EtnManger"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="EtnManger"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="EtnManger"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- EtnMangerSingle : (aucun) -> Neolithic -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="EtnMangerSingle"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="EtnMangerSingle"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="EtnMangerSingle"]/techLevel</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="EtnMangerSingle"]</xpath>
+        <value><techLevel>Neolithic</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

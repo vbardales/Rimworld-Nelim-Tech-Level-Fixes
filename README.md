@@ -32,8 +32,8 @@ recopied on every change:
 
 `AKN.Decorations`, `Ali.CookingTable`, `Ali.CraftingTable`, `AmateurLLTechBox.AmatuerLLsToys.0001`,
 `AR13S.AnimalCaps`, `ARIS.PSES`, `avos.twentysevenclub`, `bean.security.pack`,
-`Beautiful.Mechnode`, `brrainz.zombieland`, `cedaro.animalcommander`, `Dipsy.Diapers`, `dot.atlas`,
-`DrAke.BatmanUtilityBelt`, `hlx.UltratechAlteredCarbon`, `IronSniper.WindowsSkylights`,
+`Beautiful.Mechnode`, `BetterStuffs.BS`, `brrainz.zombieland`, `Capi.bettercribs.biotech`, `cedaro.animalcommander`, `Dipsy.Diapers`, `dot.atlas`,
+`DrAke.BatmanUtilityBelt`, `Eiten.BetterManger`, `hlx.UltratechAlteredCarbon`, `IronSniper.WindowsSkylights`,
 `kaitorisenkou.BallGames`, `khamenman.armorracks`, `LadyElizabeth.AdditionalToolsMod`,
 `leafzxg.AlphaThrumboExtension`, `Mlie.AdvancedRaiders`, `Mlie.Aquarium`, `Mlie.BasicMirrors`,
 `Mlie.BeamMeUpScotty`, `moncho.AlcoholRehabSobrix`, `Nationality.ArmorIsUncomfortable3`,

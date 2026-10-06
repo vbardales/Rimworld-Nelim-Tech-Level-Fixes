@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Genere par cherrypick. Ne pas modifier a la main : une nouvelle passe sur
+     BetterStuffs reecrit ce fichier en entier.
+
+     Source : BetterStuffs (BetterStuffs.BS)
+     Corrections : 4 -->
+<Patch>
+
+  <!-- LOW_Apparel_BetterCowboyHat : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterCowboyHat"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterCowboyHat"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterCowboyHat"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterCowboyHat"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- LOW_Apparel_BetterDuster : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterDuster"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterDuster"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterDuster"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterDuster"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- LOW_Apparel_BetterPants : (aucun) -> Medieval -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterPants"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterPants"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterPants"]/techLevel</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterPants"]</xpath>
+        <value><techLevel>Medieval</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+  <!-- LOW_Apparel_BetterTShirt : (aucun) -> Industrial -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterTShirt"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationConditional">
+      <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterTShirt"]/techLevel</xpath>
+      <match Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterTShirt"]/techLevel</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterTShirt"]</xpath>
+        <value><techLevel>Industrial</techLevel></value>
+      </nomatch>
+    </match>
+  </Operation>
+
+</Patch>

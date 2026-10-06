@@ -9,7 +9,7 @@ description or other creative content from any corrected mod is reproduced here.
 
 ## Mods this one corrects
 
-The 45 mods below are the *targets* of a correction, not a source this mod is derived from or
+The 48 mods below are the *targets* of a correction, not a source this mod is derived from or
 studied. Each is referenced only by its `packageId` and the `defName`s of the items it defines;
 this mod does not ship, alter or redistribute any of their files.
 
@@ -22,11 +22,14 @@ this mod does not ship, alter or redistribute any of their files.
 - `avos.twentysevenclub`
 - `bean.security.pack`
 - `Beautiful.Mechnode`
+- `BetterStuffs.BS`
 - `brrainz.zombieland`
+- `Capi.bettercribs.biotech`
 - `cedaro.animalcommander`
 - `Dipsy.Diapers`
 - `dot.atlas`
 - `DrAke.BatmanUtilityBelt`
+- `Eiten.BetterManger`
 - `hlx.UltratechAlteredCarbon`
 - `IronSniper.WindowsSkylights`
 - `kaitorisenkou.BallGames`

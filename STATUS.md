@@ -30,6 +30,25 @@ updated:      2026-09-26, audited against the AUDIT.md of that day: stage stays 
 
 # Nelim's Tech Level Fixes — status
 
+## Mods to integrate later — noted 2026-10-06
+
+Source mods reviewed on Steam, not yet patched: not installed, so no `defName` to correct. Integrate each when the
+mod returns to the modlist or its Defs are supplied. Levels below are provisional, judged from the Steam page only,
+never confronted with the Defs. Mods with nothing to correct are not listed.
+
+| Mod | Workshop | Provisional level |
+|---|---|---|
+| BEER (Fermenting Tank) | 3793220704 | Industrial (needs components, power; research is Brewing, Medieval: a mismatch to check) |
+| Belt Flashlight | 3403230282 | Industrial |
+| Beds Plus [v18] | 1360708265 | per bed: sleeping mat and large-animal box Neolithic, makeshift bed Medieval, animal medical bed Industrial, Space bed Spacer; Flame bed and Storm bed undecided. 0.18 only |
+| Better Survival Meals (Continued) | 2063417558 | Industrial (all survival meal tiers) |
+| BetterCoolers | 1430093399 | Industrial |
+| Better Tool Cabinet | 3538193748 | Medieval |
+
+Also open: BetterStuffs joywire (`LOW_BodyParts_BetterJoywire`) probably Spacer, not corrected; vanilla joywire level unchecked.
+Better Cribs and Better Cribs and Children (2563638037, needs Babies and Children, 1.3): the vanilla-side crib of
+Babies and Children may be wrongly Industrial (user comment); check in that mod, not here.
+
 ## Workflow audit — 2026-09-26
 
 **Decision: the stage stays `done`. `tested` is not reached.** The out-of-game suites are green on the current revision, and no
