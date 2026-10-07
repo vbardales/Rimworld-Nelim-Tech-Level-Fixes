@@ -29,3 +29,6 @@ evidence/
 # Compiled textures. This mod ships none; listed so one can never be committed by accident.
 *.dds
 Art/.render/
+
+# Local Explorer folder icons (AUDIT.md, "Icônes locales"): never versioned.
+desktop.ini

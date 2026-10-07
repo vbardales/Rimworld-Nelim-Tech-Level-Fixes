@@ -8,15 +8,20 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-stage:        done
-workflow_stage: done
+stage:        preTest
+workflow_stage: preTest
 licence:      original
+upstream_mod_remotes:
+  - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
+  - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none  # verified 2026-09-20: no modDependencies declared and none used
 showcase:     complete
 tested_on:
 workshop:      3806765254  # the 0.1.0 pre-publication of 2026-09-23: a private item, not published
 remaining:
+  - defect 2026-10-07: `Tests/Run.ps1` is 185 passed, 5 failed since `727f394` (BetterStuffs, Better Cribs, BetterManger): those mods are now installed and the corrections were written from the Steam page, not the Defs. `Capi.bettercribs.biotech`: `BasicCrib` and `PillowCrib` do not exist in the installed mod; `Eiten.BetterManger`: `EtnManger` and `EtnMangerSingle` do not exist; `BetterStuffs.BS`: `LOW_Apparel_BetterCowboyHat`, `BetterDuster`, `BetterPants`, `BetterTShirt` were recorded with no starting level and now start at Medieval. Fix = a new cherrypick pass against the real Defs, not the audit's work (`preTest -> done` fails)
+  - tested, new criteria (AUDIT.md step 9, 2026-10-02): no `@wip` (none); every conditional scenario has run (none is conditional, no `@requires`); no manual test left to validate (5, 6, 8 not applicable, TESTING.md). Only the two Pickle passes are missing
   - unverified 2026-09-26: no Pickle run is on the shipped revision. The suite last ran on the tree of `a37ff89` (31 patch files) and `Mod/` now holds 45. `tested` needs the two requests of TESTING.md (bare pass, sources pass) played on a frozen tree, with `exitReason` and the discovered-against-played count read first. Nothing else is left for `tested`: no `@wip`, no `@requires`, no `@review`, and no manual scenario (5, 6 and 8 are not applicable, see TESTING.md)
   - unverified 2026-09-26: the sources pass mounts 3 of the 45 source mods this mod lists in `loadAfter`; AUDIT.md defines the pass "with the optional mods" as all of them. A reservation, not a defect: the unit tests cover the others (15 against their real defs, the rest against fixtures)
   - partial, for transition 10 (`tested -> prepublished`), not a defect of `done`: the manual publish workflow is now generated (`.github/`, template stamp `a8ca11cdd9a3`) and `About.xml`'s description is synced from `PUBLICATION.md` (68/68 CI script tests pass). Not done: a dry-run (no commit to run it against yet), `steam-production` (the owner's alone), and `tested` itself
@@ -25,10 +30,30 @@ accepted:
   - accepted 2026-09-21 by the user (23 uninstalled source mods then, 30 of 45 on 2026-09-26): the corrected defNames of the uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
   - accepted 2026-09-21 by the user (23 of 30 then, 30 of 45 on 2026-09-26): the unit tests check the uninstalled source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20 and report the rest as SKIP rather than passing them. Knowingly accepted on the same ground, and the SKIP is deliberate - the suite never reports an unchecked mod as passing
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-09-26, audited against the AUDIT.md of that day: stage stays `done` (out-of-game suites green on the current revision), `tested` not reached (no Pickle run on the shipped revision). 0.1.0 recorded, evidence out of git, scenarios 5, 6 and 8 not applicable
+updated:      2026-10-07, audited against the AUDIT.md of 2026-10-02: stage falls from `done` to `preTest` (unit suite red, 5 failures on 3 mods added by `727f394`). `tested` not reached either way (no Pickle run on the shipped revision)
+code_review_sha: 34d97324a7a988e120a9e2aa4262f334be154c7e  # baseline 2026-10-07, range fa3d7c8 (0.1.0) .. 34d9732; findings below
 ---
 
 # Nelim's Tech Level Fixes — status
+
+## Audit — 2026-10-07 (replaces the decision of 2026-09-26: stage was `done`, now `preTest`)
+
+Revision audited: `34d9732` plus the uncommitted `.github/` regeneration (7 files) and two untracked `desktop.ini`. `AUDIT.md` read at `5a975b5` (2026-10-02); other documents in `docs/PROTOCOLS-READ.md`. No RimWorld, no Pickle process launched.
+
+| Control | Result |
+|---|---|
+| `Tests/Check-Patches.ps1` | PASS: 49 patch files, 240 corrections, 49 `loadAfter` entries, `Mod/Patches/` matches `loadAfter` |
+| `.github/tests` | 71 of 71 pass |
+| `Tests/Run.ps1` | **185 passed, 5 failed** (see `remaining`). `preTest -> done` ("automated tests green on the delivered version") is not met. 20 of 49 source mods installed |
+| ModIcon / Preview | `Art/ModIcon-source.png` (2026-10-06 11:47) is older than `ModIcon.png` and `Preview.png` (12:06): already regenerated by `34d9732`, nothing to redo. `Art/Gallery/0-preview.png` is byte-identical to `Preview.png` |
+| `.dds` | none tracked, none on disk; `*.dds` and `Art/.render/` are in `.gitignore` |
+| Origin repository | not applicable: original patches, no origin project, no repository to base on, no pull request to send |
+| Evidence | `Tests/Pickle/Evidence/` gitignored, nothing tracked. Keep the latest run per scenario on the shipped tree, plus the 2026-09-23 bare log as sole proof of the no-target guarantee until a newer bare pass replaces it |
+| Gallery | none planned (PUBLICATION.md): no capture scenario, so no Sanctuary place is chosen and no `Nelim's Sanctuary:` step is used. Sanctuary place steps now live in the `SanctuaryBacklot` repository; this mod's features use Pickle's own steps only, no `Nelim's Pickle Tools:` step either |
+| PUBLICATION.md vs PUBLISHING.md | consistent (description order, `0-` = byte copy of the Preview, no thank-you comments by owner decision 2026-09-27, no dependency, no adult-content box, change note per version, CI generated). Stale count fixed: 49 `loadAfter` entries, not 46 |
+| `publishIdFile` | present (`3806765254`); `CHANGELOG.md` ends with `## [0.1.0]` (the publishIdFile), `1.0.0` stays `[Unreleased]` |
+| Root hygiene | no `.XXX` or `_XXX` at the root besides `.git*`, `.github`; no `_tools` |
+| Code review | none existed; baseline range `fa3d7c8` (0.1.0) .. `34d9732`, sha in `code_review_sha` |
 
 ## Mods to integrate later — noted 2026-10-06
 

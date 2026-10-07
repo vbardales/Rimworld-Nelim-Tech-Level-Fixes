@@ -80,9 +80,20 @@ Every run is one line in `docs/runs/history.md`. **None of them is on the curren
 
 Both requests above, played on a **frozen** tree (a request carries no SHA: the mod is staged when its ticket is played, so no
 commit may land until the `RUN_DONE`), with `exitReason`, the discovered-against-played count and the suite name read before the
-figures. Then their verdict goes in `docs/runs/history.md` and `STATUS.md`. Nothing else is left: no `@wip`, no `@requires`, no
-`@review` capture, no manual scenario.
+figures. Then their verdict goes in `docs/runs/history.md` and `STATUS.md`.
 
+The three criteria `AUDIT.md` (step 9, 2026-10-02) added, checked on 2026-10-07:
+
+- no scenario in `@wip`: none (`Tests/Pickle/Mod/Pickle/Features/`);
+- every conditional scenario has run: none is conditional, no `@requires:<packageId>`; the two features are split by pass, not by tag;
+- no manual test left to validate: scenarios 5, 6 and 8 are not applicable, with their reasons above; no `@review` capture exists.
+
+Only the two passes are missing. The unit suite must also be green first (`Tests/Run.ps1`): on 2026-10-07 it is not (5 failures, see
+`STATUS.md` `remaining`).
+
+**Evidence to keep after a run** (minified, `Tests/Pickle/Evidence/`, gitignored): per pass, `summary.md` + `junit.xml` (or the
+`.out.log`) of the latest run on the shipped revision, nothing else. No capture, no `Player.log`, no earlier run once a newer one
+replaces it. The 2026-09-23 bare log stays only until a bare pass on the shipped revision replaces it.
 ## Reading the log
 
 - Development mode on, so a bad patch shows up as a red `XML error` line instead of silently doing nothing.

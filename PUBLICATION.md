@@ -12,7 +12,7 @@ thank-you register.
 ## Thank-you comments: none, decided by the owner 2026-09-27
 
 Not for this mod. `WORKSHOP_COMMENTS.md`'s rule ("cela vaut même si... seulement déclarée en `loadAfter`") is written for
-a mod that depends on, is inspired by, or integrates with what it names. This mod's relationship to its 46 (and growing)
+a mod that depends on, is inspired by, or integrates with what it names. This mod's relationship to its 49 (and growing)
 `loadAfter` entries is the opposite: it corrects a value on their items, with no code read or reused. No register entry,
 no comment, for any of them. The Pickle/RimLogging dev-tool thanks in the description below stand as they are, since
 those are actually used to test this mod.
