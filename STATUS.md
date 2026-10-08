@@ -8,21 +8,18 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-stage:        done
-workflow_stage: done
+stage:        tested
+workflow_stage: tested
 licence:      original
 upstream_mod_remotes:
-  - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none  # verified 2026-09-20: no modDependencies declared and none used
 showcase:     complete
-tested_on:
+tested_on:    2026-10-08, tree of `324e9ec` (49 patch files), Pickle in the WSL: bare pass 1 of 1 and sources pass 5 of 5, both `exitReason: passed`, scenario names read; reports in `Tests/Pickle/Evidence/2026-10-08-bare` and `-sources`. Logs read: no error or warning attributed to this mod (only the companion test mod's missing dependency URL); the sources log's errors come from other mods (KCSG, VEF, Alpha Books cross-references)
 workshop:      3806765254  # the 0.1.0 pre-publication of 2026-09-23: a private item, not published
 remaining:
   - reservation 2026-10-08, not a defect: Better Cribs (`Capi.bettercribs.biotech`) and BetterManger (`Eiten.BetterManger`) stop at RimWorld 1.4, so on 1.6 their defs are not loaded and the corrections for `BasicCrib`, `PillowCrib`, `EtnManger` and `EtnMangerSingle` stay inert. The unit suite checks their defNames against their 1.4 folder (`EffectiveVersion` in `Tests/PatchTests.cs`)
-  - tested, new criteria (AUDIT.md step 9, 2026-10-02): no `@wip` (none); every conditional scenario has run (none is conditional, no `@requires`); no manual test left to validate (5, 6, 8 not applicable, TESTING.md). Only the two Pickle passes are missing
-  - unverified 2026-09-26: no Pickle run is on the shipped revision. The suite last ran on the tree of `a37ff89` (31 patch files) and `Mod/` now holds 45. `tested` needs the two requests of TESTING.md (bare pass, sources pass) played on a frozen tree, with `exitReason` and the discovered-against-played count read first. Nothing else is left for `tested`: no `@wip`, no `@requires`, no `@review`, and no manual scenario (5, 6 and 8 are not applicable, see TESTING.md)
   - unverified 2026-09-26: the sources pass mounts 3 of the 45 source mods this mod lists in `loadAfter`; AUDIT.md defines the pass "with the optional mods" as all of them. A reservation, not a defect: the unit tests cover the others (15 against their real defs, the rest against fixtures)
   - partial, for transition 10 (`tested -> prepublished`), not a defect of `done`: the manual publish workflow is now generated (`.github/`, template stamp `a8ca11cdd9a3`) and `About.xml`'s description is synced from `PUBLICATION.md` (68/68 CI script tests pass). Not done: a dry-run (no commit to run it against yet), `steam-production` (the owner's alone), and `tested` itself
   - reservation, visual, not a defect: at 32 px the ModIcon's face and gear rim are distinguishable but its engraved text strip is not readable; the owner asked on 2026-09-20 to keep that text
@@ -30,7 +27,7 @@ accepted:
   - accepted 2026-09-21 by the user (23 uninstalled source mods then, 30 of 45 on 2026-09-26): the corrected defNames of the uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
   - accepted 2026-09-21 by the user (23 of 30 then, 30 of 45 on 2026-09-26): the unit tests check the uninstalled source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20 and report the rest as SKIP rather than passing them. Knowingly accepted on the same ground, and the SKIP is deliberate - the suite never reports an unchecked mod as passing
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-10-08: the 5 unit failures of 2026-10-07 are fixed (190 passed, 0 failed), stage back to `done`. Causes: the two 1.4-only mods were looked up in a 1.6 folder they do not have; BetterStuffs and Better Cribs defs inherit Medieval, recorded as "none" in the patch comments. `tested` not reached (no Pickle run on the shipped revision)
+updated:      2026-10-08: both Pickle passes green on `324e9ec` (bare 1/1, sources 5/5); step 9 criteria met (no `@wip`, no conditional scenario, no manual test left): stage `tested`. Next: `tested -> prepublished` (dry-run of the exact commit, `steam-production` by the owner)
 code_review_sha: 34d97324a7a988e120a9e2aa4262f334be154c7e  # baseline 2026-10-07, range fa3d7c8 (0.1.0) .. 34d9732; findings below
 ---
 
@@ -648,7 +645,7 @@ one line in `docs/runs/history.md`; the report was not kept.
 
 **Then replayed in the strengthened form, 12:08 the same day: 1 of 1, 5 steps of 5 PASSED**, against 2
 in the morning. Target absent, nothing patched it, no warning attributed to this mod, no error.
-`Tests/Pickle/Evidence/2026-09-21-bare-strengthened/` (`summary.json` and `junit.xml`). Only `no def ... exists` could
+`Tests/Pickle/Evidence/2026-10-08-bare/ (replaced the 2026-09-21 run)` (`summary.json` and `junit.xml`). Only `no def ... exists` could
 have failed for a mod that did nothing at all; `no warnings from mod` was never shown able to
 fail, since none was produced to catch.
 
@@ -678,7 +675,7 @@ are staged, 23 are not installed. If an incompatibility turns up it earns its ow
 ## The Pickle suite is green — 2026-09-21, 5 of 5
 
 Run headless in the WSL game through `scripts/Run-PickleWsl.ps1 -Mod TechLevelFixes`.
-Report kept as text at `Tests/Pickle/Evidence/2026-09-21-sources/summary.md`. The 4-of-5 run of the day before has no valid
+Report kept as text at `Tests/Pickle/Evidence/2026-10-08-sources/summary.md`. The 4-of-5 run of the day before has no valid
 report: the file saved for it belonged to another mod (see "Corrections to earlier claims" above).
 
 | Scenario | Outcome |

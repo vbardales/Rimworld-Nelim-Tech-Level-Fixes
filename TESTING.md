@@ -72,15 +72,11 @@ text, so there is nothing to display in French and English and no `-Language` pa
 
 ### What has run
 
-Every run is one line in `docs/runs/history.md`. **None of them is on the current revision:** the suite last ran on the tree of
-`a37ff89` (31 patch files) and `Mod/` now holds more. The latest reports still worth holding are in `Tests/Pickle/Evidence/`
-(ignored by git). A report is kept only while it proves something about the revision now in the repository.
+Every run is one line in `docs/runs/history.md`. **Both passes ran on the current tree, `324e9ec` (2026-10-08): bare 1 of 1, sources 5 of 5, `exitReason: passed`.** Reports are in `Tests/Pickle/Evidence/` (ignored by git); a report is kept only while it proves something about the revision now in the repository.
 
-### What `tested` still needs
+### What `tested` needed (met 2026-10-08)
 
-Both requests above, played on a **frozen** tree (a request carries no SHA: the mod is staged when its ticket is played, so no
-commit may land until the `RUN_DONE`), with `exitReason`, the discovered-against-played count and the suite name read before the
-figures. Then their verdict goes in `docs/runs/history.md` and `STATUS.md`.
+Both requests played on a frozen tree, `exitReason` and the discovered-against-played count read before the figures; verdict in `docs/runs/history.md` and `STATUS.md`.
 
 The three criteria `AUDIT.md` (step 9, 2026-10-02) added, checked on 2026-10-07:
 
@@ -88,8 +84,7 @@ The three criteria `AUDIT.md` (step 9, 2026-10-02) added, checked on 2026-10-07:
 - every conditional scenario has run: none is conditional, no `@requires:<packageId>`; the two features are split by pass, not by tag;
 - no manual test left to validate: scenarios 5, 6 and 8 are not applicable, with their reasons above; no `@review` capture exists.
 
-Only the two passes are missing. The unit suite must also be green first (`Tests/Run.ps1`): on 2026-10-07 it is not (5 failures, see
-`STATUS.md` `remaining`).
+Met: unit suite 190 of 190 (`Tests/Run.ps1`) and both passes green. A change to `Mod/` makes the passes stale: replay them on the new tree.
 
 **Evidence to keep after a run** (minified, `Tests/Pickle/Evidence/`, gitignored): per pass, `summary.md` + `junit.xml` (or the
 `.out.log`) of the latest run on the shipped revision, nothing else. No capture, no `Player.log`, no earlier run once a newer one

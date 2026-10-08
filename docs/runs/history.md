@@ -14,12 +14,12 @@ counts it printed; it is not the report itself.
   found on 2026-09-26 to hold another mod's report (TailorMade Waistlines' three trouser scenarios, 3 of 3), copied from the shared
   `pickle-reports/` folder after that mod's run had overwritten ours. The "4 of 5" rests on what the session read that day.
 - 2026-09-21, sources pass (before the two-pass rule existed), on the tree of `421f136`: 5 of 5 passed. Kept as text only:
-  `Evidence/2026-09-21-sources/summary.md`; there is no `summary.json`, so `exitReason` cannot be re-read from it.
+  `Evidence/2026-10-08-sources/summary.md`; there is no `summary.json`, so `exitReason` cannot be re-read from it.
 - 2026-09-21 11:33, bare pass (`sans-facultatifs`), weak form (`mod is loaded`, `no errors were logged`): 1 of 1, `exitReason: passed`,
   2 features discovered and 1 played (the filter keeping `02-with-sources.feature` out). Report not kept, superseded below.
 - 2026-09-21 12:08, bare pass, strengthened form on the tree of `bf9d8d7` (`no def ... exists`, `no def ... was patched`,
   `no warnings from mod "Nelim's Tech Level Fixes"`): 1 of 1, 5 steps of 5 `PASSED`, `exitReason: passed`, 0 errors, two unattributed
-  `[Vanilla]` warnings (Steam under WSL; the companion test mod's dependency without a URL). Kept: `Evidence/2026-09-21-bare-strengthened/`.
+  `[Vanilla]` warnings (Steam under WSL; the companion test mod's dependency without a URL). Kept: `Evidence/2026-10-08-bare/`.
 - 2026-09-22 15:55 (launcher log), bare pass with the whole suite by mistake: 2 of 6. Not a defect of the mod: the real-modlist
   feature necessarily lacked its three source mods. Discarded.
 - 2026-09-22 16:21 (launcher log), bare pass: 0 scenarios, `exitReason: infrastructure-error`. The filter went through with literal
@@ -28,7 +28,9 @@ counts it printed; it is not the report itself.
 - 2026-09-22 16:57, 17:35 and 18:01 (launcher logs), sources pass, `-Filter 02-with-sources.feature -DepMap wsl-deps.sources.map`, on
   the tree of `a37ff89`: 5 of 5 passed each time, `exitReason: passed`. Three runs of the same tree; not three pieces of evidence.
 - 2026-09-22 23:26 (launcher log), sources pass on Pickle v4.8.4 (`-PickleSrc`, the release that carries PR #20): 5 of 5,
-  `exitReason: passed`. Kept: `Evidence/2026-09-22-v4.8.4-sources.out.log`.
+  `exitReason: passed`. Kept: `Evidence/2026-10-08-sources/ (replaces this log)`.
 - 2026-09-23 00:08 (launcher log), bare pass on Pickle v4.8.4: 1 of 1, `exitReason: passed`. Kept:
-  `Evidence/2026-09-23-v4.8.4-bare.out.log`. This is the run that re-establishes the no-target guarantee on that release, which the
+  `Evidence/2026-10-08-bare/ (replaces this log)`. This is the run that re-establishes the no-target guarantee on that release, which the
   2026-09-22 note in `STATUS.md` said was still open; it was found in the launcher log on 2026-09-26, not recorded at the time.
+- 2026-10-08 11:38 (RUN_DONE c85e), bare pass `-Filter 01-alone` on the tree of `324e9ec` (49 patch files): 1 of 1, `exitReason: passed`, scenario name checked. Kept: `Evidence/2026-10-08-bare/` (`summary.md`, `summary.json`, `junit.xml`); the two earlier bare reports are deleted, superseded.
+- 2026-10-08 (RUN_DONE f719), sources pass `-Filter 02-with-sources -DepMap wsl-deps.sources.map` on the tree of `324e9ec`: 5 of 5, `exitReason: passed`, names read. Kept: `Evidence/2026-10-08-sources/` (`summary.md`, `summary.json`, `junit.xml`); the 2026-09-21 and 2026-09-22 sources reports are deleted, superseded. With the bare pass above: `tested`.
