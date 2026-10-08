@@ -7,11 +7,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ### Changed
 
-- The Steam description now names every mod this one corrects, with its Workshop link and its author (both people for a continued mod), and thanks their authors. No file under Mod/Patches/ changes: the corrections are those of 1.0.0.
+- The Steam description now names every mod this one corrects, with its Workshop link and the relevant author credits, and thanks their authors. No file under Mod/Patches/ changes: the corrections are those of 1.0.0.
 
 ## [1.0.0] — 2026-10-08
 
-Everything here is committed after the 0.1.0 upload (the publishIdFile) and goes out with the 1.0.0 publication.
+Everything below was committed after the 0.1.0 upload, which created the publishIdFile, and will ship with the 1.0.0 publication.
 
 ### Added
 
@@ -31,7 +31,7 @@ Everything here is committed after the 0.1.0 upload (the publishIdFile) and goes
   five Psy-Essence pipe-network buildings (none -> Industrial). `Psychoidmust` (none -> Neolithic):
   a fermented must made at the brewery, which needs no power and only Neolithic `Brewing`.
 - 1 tech-level correction for `Nationality.ArmorIsUncomfortable3` (Armor is Uncomfortable 3):
-  `AIU3_TalcumPowder` (Medieval -> Neolithic). It is a stone chunk ground at a crafting spot, with
+  `AIU3_TalcumPowder` (Medieval -> Neolithic). It is ground from a stone chunk at a crafting spot, with
   no power and no components; the Medieval `ComplexClothing` research the author attached is
   thematic, not a requirement.
 - 3 tech-level corrections for `khamenman.armorracks` (Armor Racks), all none -> a level: the armor

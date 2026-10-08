@@ -23,14 +23,14 @@ Written from the current `About.xml`, with the sections `PUBLISHING.md` asks for
 bytes; this is under 1 KB.
 
 ```markdown
-Rewrites the tech level of items from other mods, and of a few base-game research projects, to the level arbitrated for
+Rewrites the tech level of items from other mods, and of a few base-game research projects, to the level chosen for
 each one with the **cherrypick** tool.
 
 RimWorld uses `techLevel` to gate raid loot, trade stock, quest rewards and research-adjacent content by era. Many mods
-leave it at its default, or pick a level that does not match the item's actual place in the tech tree. This mod corrects
+leave it at its default, or pick a level that does not match its actual place in the tech tree. This mod corrects
 that, item by item, without touching the mods it corrects.
 
-Every file under `Patches/` is generated, one per source mod, named after its `packageId`. Deleting a file undoes that
+Every file under `Patches/` is generated: there is one per source mod, named after its `packageId`. Deleting a file undoes that
 mod's corrections; deleting the whole folder undoes everything. It loads after every mod it corrects: none of them is a
 dependency, and a correction whose target item is missing simply does nothing.
 
