@@ -3,6 +3,12 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
+## [Unreleased]
+
+### Changed
+
+- New `ModIcon` on a transparent background, trimmed to the art (the previous one had a black background), and the Preview regenerated with it. Goes out with the next publication, together with `update_preview`.
+
 ## [1.0.2] — 2026-10-08
 
 ### Fixed
