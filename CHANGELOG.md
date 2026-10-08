@@ -3,6 +3,12 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
+## [1.0.1] — 2026-10-08
+
+### Changed
+
+- The Steam description now names every mod this one corrects, with its Workshop link and its author (both people for a continued mod), and thanks their authors. No file under Mod/Patches/ changes: the corrections are those of 1.0.0.
+
 ## [1.0.0] — 2026-10-08
 
 Everything here is committed after the 0.1.0 upload (the publishIdFile) and goes out with the 1.0.0 publication.

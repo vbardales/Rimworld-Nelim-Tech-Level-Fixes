@@ -34,6 +34,47 @@ Every file under `Patches/` is generated, one per source mod, named after its `p
 mod's corrections; deleting the whole folder undoes everything. It loads after every mod it corrects: none of them is a
 dependency, and a correction whose target item is missing simply does nothing.
 
+## Mods it corrects
+
+None of these is required. Each correction applies only when its mod is loaded. The mods are listed with their authors,
+and a mod continued by someone else names both people.
+
+- [RimWorld](https://store.steampowered.com/app/294100/RimWorld/) (Ludeon Studios): a few research projects, such as Stonecutting
+- [Akeron - Decorations](https://steamcommunity.com/sharedfiles/filedetails/?id=2755025925) by Newton-Zephyr
+- [Akeron - Caretaker Apparel](https://steamcommunity.com/sharedfiles/filedetails/?id=2799570243) by Newton-Zephyr
+- [Alcohol Rehab - Sobrix](https://steamcommunity.com/sharedfiles/filedetails/?id=3342864295) by Moncho
+- [Ali's Cooking Table](https://steamcommunity.com/sharedfiles/filedetails/?id=2554726284) and [Ali's Crafting Table](https://steamcommunity.com/sharedfiles/filedetails/?id=2554727801) by Ranger Ali
+- [Alpha Books](https://steamcommunity.com/sharedfiles/filedetails/?id=3403180654) by Sarg Bjornson
+- [Alpha Thrumbo Extension](https://steamcommunity.com/sharedfiles/filedetails/?id=3522618217) by leafzxg
+- [Altered Carbon 2: ReSleeved](https://steamcommunity.com/sharedfiles/filedetails/?id=2196278117) by Helixien
+- [AmateurLL's Toys](https://steamcommunity.com/sharedfiles/filedetails/?id=3523484895) by AmateurLL
+- [Ancient Junk Loot](https://steamcommunity.com/sharedfiles/filedetails/?id=3023180229) and [Ancient Relics](https://steamcommunity.com/sharedfiles/filedetails/?id=2961505444) by Romyashi
+- [Animal Commander](https://steamcommunity.com/sharedfiles/filedetails/?id=3420966134) by cedaro
+- [Animal Diapers](https://steamcommunity.com/sharedfiles/filedetails/?id=2817510684) by Dipsy
+- [Animal Repeller](https://steamcommunity.com/sharedfiles/filedetails/?id=3672487181) by Rye
+- [Animal Sarcophagus](https://steamcommunity.com/sharedfiles/filedetails/?id=2876565401) by OverPL
+- [Animal Simple Command](https://steamcommunity.com/sharedfiles/filedetails/?id=2581711499) by Udon
+- [Ari's Psychoid Essence & Sweets](https://steamcommunity.com/sharedfiles/filedetails/?id=3553351533) by araikoskis
+- [Armor is Uncomfortable 3](https://steamcommunity.com/sharedfiles/filedetails/?id=3536380924) by Nationality
+- [Armor Racks](https://steamcommunity.com/sharedfiles/filedetails/?id=1875828205) by khamenman
+- [Artificial Water Place](https://steamcommunity.com/sharedfiles/filedetails/?id=2382789361) by Si-Cafe
+- [BallGames](https://steamcommunity.com/sharedfiles/filedetails/?id=2845856763) by kaitorisenkou
+- [Batman Utility Belt](https://steamcommunity.com/sharedfiles/filedetails/?id=3629298626) by Drake
+- [Battle Maid Dress](https://steamcommunity.com/sharedfiles/filedetails/?id=3624591057) by Soap
+- [Bean's Security Pack](https://steamcommunity.com/sharedfiles/filedetails/?id=3740917483) by Bean
+- [Beautiful Mech Node](https://steamcommunity.com/sharedfiles/filedetails/?id=2572197137) by Damian Pauaqq Pawlak
+- [Better Cribs](https://steamcommunity.com/sharedfiles/filedetails/?id=2879002756) by Capi
+- [BetterManger](https://steamcommunity.com/sharedfiles/filedetails/?id=2886437690) by Eiten
+- [BetterStuffs](https://steamcommunity.com/sharedfiles/filedetails/?id=2176932921) by 1ow.com
+- [Additional Tools Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1443002973) by Lady Elizabeth
+- [27 Club](https://steamcommunity.com/sharedfiles/filedetails/?id=3806997445) by Avos
+- [Zombieland](https://steamcommunity.com/sharedfiles/filedetails/?id=928376710) by Brrainz
+- [All That Glitters: Glitter-Craft](https://steamcommunity.com/sharedfiles/filedetails/?id=3507135086) by TurboPickle
+- Continued by Mlie: [Advanced Raiders (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2894402265), original by saloid ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=2628440891)); [Aquarium (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3544186181), original by pelador ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=2120551963)); [Basic Mirrors (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2597543500), original by lime_time ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=2230124203)); [Beam me up Scotty (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3328183029), original by Gouda quiche ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=1507132557))
+- Continued by Zaljerem: [Alchemy (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3132057783), original by jeonggihun (removed from the Workshop), then continued by Zoura3025 ([their update](https://steamcommunity.com/sharedfiles/filedetails/?id=2834469297)); [Alternative Power Solutions (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3798865548), original by OptimusPrimordial ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=2589973108)); [Ancient Amulets (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2955419294), original by cuproPanda ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=730406682)); [Ancient Eastern Armory (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3132059139), original by Gemi ningen ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=2393395676)); [Angel Arm Revolver (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2777764256), original by Honshitsu ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=948130856)); [Crystal Bodyparts (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2855968478), original by FantasyFan ([original](https://steamcommunity.com/sharedfiles/filedetails/?id=1941242146))
+- [Bandage Wraps 1.6 (Fork)](https://steamcommunity.com/sharedfiles/filedetails/?id=3535716415) by Crudbone, from [Bandage Wraps (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2576978480) by ShiningKakera
+- Also corrected: Animal Caps!, Archotech Duality, Alpine's Window Walls and Skylights, BEER (Advanced Brewery), [RF]Body Type Extend
+
 ## IF I GO QUIET
 
 If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my
@@ -48,6 +89,8 @@ Claude Sonnet 5) over the course of the project.
 
 Pickle (RimWorks), used to test this mod inside the game: a development tool only, never a dependency of the mod.
 RimLogging too, for the same reason.
+
+And thank you to the authors of every mod listed above: this mod only exists because their items needed a second look.
 
 See ATTRIBUTION.md in the repository below for the list of source mods this one corrects.
 
@@ -85,6 +128,14 @@ None planned. This mod has no gameplay screen worth a screenshot of its own: wha
 Dev Mode (`TESTING.md`), not something visibly different on the map. The Preview image is the only image.
 
 ## Change notes (Steam), one block per version
+
+### 1.0.1
+
+```
+[b]1.0.1[/b]
+
+The description now lists every mod this one corrects, with links and authors. The corrections themselves are unchanged from 1.0.0.
+```
 
 ### 1.0.0
 
