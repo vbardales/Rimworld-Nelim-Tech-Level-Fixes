@@ -8,8 +8,8 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-stage:        tested
-workflow_stage: tested
+stage:        prepublished
+workflow_stage: prepublished
 licence:      original
 upstream_mod_remotes:
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
@@ -27,7 +27,7 @@ accepted:
   - accepted 2026-09-21 by the user (23 uninstalled source mods then, 30 of 45 on 2026-09-26): the corrected defNames of the uninstalled source mods have never been confronted with their sources; only the 7 installed mods’ defNames were, and all resolved. Knowingly accepted rather than closed: the gap shuts by itself when a mod returns to the modlist, and the check reruns then. See "Patches outlive their mods"
   - accepted 2026-09-21 by the user (23 of 30 then, 30 of 45 on 2026-09-26): the unit tests check the uninstalled source mods against synthetic fixtures only; the real-def and starting-level checks ran for the 7 installed on 2026-09-20 and report the rest as SKIP rather than passing them. Knowingly accepted on the same ground, and the SKIP is deliberate - the suite never reports an unchecked mod as passing
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
-updated:      2026-10-08: both Pickle passes green on `324e9ec` (bare 1/1, sources 5/5); step 9 criteria met (no `@wip`, no conditional scenario, no manual test left): stage `tested`. Next: `tested -> prepublished` (dry-run of the exact commit, `steam-production` by the owner)
+updated:      2026-10-08: stage `prepublished` set before the publish run 37770622317 is approved (dry-run 37768986059 green on 80606e8; the run was dispatched a few minutes before this field was set). Previous: 2026-10-08: both Pickle passes green on `324e9ec` (bare 1/1, sources 5/5); step 9 criteria met (no `@wip`, no conditional scenario, no manual test left): stage `tested`. Next: `tested -> prepublished` (dry-run of the exact commit, `steam-production` by the owner)
 code_review_sha: 34d97324a7a988e120a9e2aa4262f334be154c7e  # baseline 2026-10-07, range fa3d7c8 (0.1.0) .. 34d9732; findings below
 ---
 
