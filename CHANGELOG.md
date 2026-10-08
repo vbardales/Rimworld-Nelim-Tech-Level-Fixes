@@ -3,6 +3,12 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
+## [1.0.2] — 2026-10-08
+
+### Fixed
+
+- The Steam description showed the links of the Mlie group as raw Markdown from Basic Mirrors on: the converter reads the underscore of the author name lime_time as the start of an italic. The name is now written 	rublucaribou, the other name on that authors page. No file under Mod/Patches/ changes.
+
 ## [1.0.1] — 2026-10-08
 
 ### Changed
