@@ -3,10 +3,9 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
-## [Unreleased]
+## [1.0.0] — 2026-10-08
 
-Everything here is committed after the 0.1.0 upload and is not on Steam yet. The `1.0.0` is the
-version that arrives with `published`; until then this section holds it.
+Everything here is committed after the 0.1.0 upload (the publishIdFile) and goes out with the 1.0.0 publication.
 
 ### Added
 
