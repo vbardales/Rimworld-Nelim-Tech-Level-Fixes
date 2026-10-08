@@ -514,7 +514,7 @@ internal static class PatchTests
         {
             var doc = new XmlDocument();
             doc.Load(loadFolders);
-            var entries = doc.SelectNodes("loadFolders/v" + GameVersion + "/li");
+            var entries = doc.SelectNodes("loadFolders/v" + EffectiveVersion(modFolder) + "/li");
             if (entries != null)
                 foreach (XmlNode li in entries)
                 {
@@ -530,11 +530,33 @@ internal static class PatchTests
         // Without LoadFolders.xml: the root, plus the folder named for the game version if there
         // is one. Older version folders are skipped by the walk below.
         folders.Add(modFolder);
-        var versioned = Path.Combine(modFolder, GameVersion);
+        var versioned = Path.Combine(modFolder, EffectiveVersion(modFolder));
         if (Directory.Exists(versioned)) folders.Add(versioned);
         return folders;
     }
 
+    // The version whose folders are read for a mod. 1.6 when the mod serves it. A mod that stops at an
+    // older release (Better Cribs and BetterManger stop at 1.4) has nothing the game would load, but its
+    // defNames are still the ones this mod's patches name, so the newest release it ships stands in
+    // for the check. Said here, not hidden: the patches stay inert on 1.6 either way.
+    private static string EffectiveVersion(string modFolder)
+    {
+        var loadFolders = Path.Combine(modFolder, "LoadFolders.xml");
+        var candidates = new List<string>();
+        if (File.Exists(loadFolders))
+        {
+            var doc = new XmlDocument();
+            doc.Load(loadFolders);
+            if (doc.DocumentElement != null)
+                foreach (XmlNode n in doc.DocumentElement.ChildNodes)
+                    if (n.NodeType == XmlNodeType.Element && n.Name.StartsWith("v") && IsVersionFolder(n.Name.Substring(1)))
+                        candidates.Add(n.Name.Substring(1));
+        }
+        foreach (var d in Directory.GetDirectories(modFolder))
+            if (IsVersionFolder(Path.GetFileName(d))) candidates.Add(Path.GetFileName(d));
+        if (candidates.Count == 0 || candidates.Contains(GameVersion)) return GameVersion;
+        return candidates.OrderByDescending(v => Version.Parse(v)).First();
+    }
     private static IEnumerable<string> DefFiles(string modFolder, string folder)
     {
         foreach (var file in Directory.GetFiles(folder, "*.xml", SearchOption.AllDirectories))
@@ -544,7 +566,7 @@ internal static class PatchTests
             if (segments.Any(s => s.Equals("About", StringComparison.OrdinalIgnoreCase) ||
                                   s.Equals("Languages", StringComparison.OrdinalIgnoreCase))) continue;
             // A version folder other than the one in play belongs to another RimWorld.
-            if (segments.Take(segments.Length - 1).Any(s => IsVersionFolder(s) && s != GameVersion)) continue;
+            if (segments.Take(segments.Length - 1).Any(s => IsVersionFolder(s) && s != EffectiveVersion(modFolder))) continue;
             yield return file;
         }
     }

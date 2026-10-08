@@ -6,7 +6,7 @@
      Corrections : 4 -->
 <Patch>
 
-  <!-- LOW_Apparel_BetterCowboyHat : (aucun) -> Industrial -->
+  <!-- LOW_Apparel_BetterCowboyHat : Medieval -> Industrial -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterCowboyHat"]</xpath>
     <success>Always</success>
@@ -23,7 +23,7 @@
     </match>
   </Operation>
 
-  <!-- LOW_Apparel_BetterDuster : (aucun) -> Industrial -->
+  <!-- LOW_Apparel_BetterDuster : Medieval -> Industrial -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterDuster"]</xpath>
     <success>Always</success>
@@ -40,7 +40,7 @@
     </match>
   </Operation>
 
-  <!-- LOW_Apparel_BetterPants : (aucun) -> Medieval -->
+  <!-- LOW_Apparel_BetterPants : Medieval -> Medieval -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterPants"]</xpath>
     <success>Always</success>
@@ -57,7 +57,7 @@
     </match>
   </Operation>
 
-  <!-- LOW_Apparel_BetterTShirt : (aucun) -> Industrial -->
+  <!-- LOW_Apparel_BetterTShirt : Medieval -> Industrial -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="LOW_Apparel_BetterTShirt"]</xpath>
     <success>Always</success>

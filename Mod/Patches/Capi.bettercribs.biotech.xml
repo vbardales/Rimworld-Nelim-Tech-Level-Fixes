@@ -6,7 +6,7 @@
      Corrections : 2 -->
 <Patch>
 
-  <!-- BasicCrib : (aucun) -> Neolithic -->
+  <!-- BasicCrib : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="BasicCrib"]</xpath>
     <success>Always</success>
@@ -23,7 +23,7 @@
     </match>
   </Operation>
 
-  <!-- PillowCrib : (aucun) -> Neolithic -->
+  <!-- PillowCrib : Medieval -> Neolithic -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="PillowCrib"]</xpath>
     <success>Always</success>
