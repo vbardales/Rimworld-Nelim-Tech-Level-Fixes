@@ -1,6 +1,6 @@
 # Publication sheet
 
-**Drafted 2026-09-27. The mod is at `done`.** The Workshop item `3806765254` exists, private, created by the `0.1.0`
+**Drafted 2026-09-27; updated 2026-10-08: 1.0.0 and 1.0.1 are uploaded (runs 37770622317 and 37787677923), the item is still private, the stage is `prepublished`.** The Workshop item `3806765254` exists, private, created by the `0.1.0`
 prepublication of 2026-09-23; `Mod/About/PublishedFileId.txt` is committed. Ahead: `tested` (two Pickle passes on a frozen
 tree, see `TESTING.md`), the `1.0.0` publication through the CI, the switch to public (by the owner). Nothing below has
 been posted or pasted anywhere yet.
@@ -93,7 +93,7 @@ See ATTRIBUTION.md in the repository below for the list of source mods this one 
 [Source code on GitHub](https://github.com/vbardales/Rimworld-Nelim-Tech-Level-Fixes)
 ```
 
-**The page still carries the `0.1.0` description**, sent once at creation from the `About.xml` of that day (no `IF I GO
+**Done 2026-10-08 (1.0.1, `update_description`): the page carries this description. It carried the `0.1.0` one before**, sent once at creation from the `About.xml` of that day (no `IF I GO
 QUIET`, `AI-GENERATED` or `THANKS`). Replacing it needs the CI's `update_description`, in a `publish` run — never a hand
 edit, which the manual workflow's next dry-run would then diff against and flag as unexpectedly different.
 
