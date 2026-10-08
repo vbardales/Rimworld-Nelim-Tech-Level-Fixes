@@ -66,7 +66,7 @@ PUBLICATION.md --description-heading '^## Steam description$' --about-from-descr
 already the plain text of the block above (`node .github/scripts/sync-about-description.mjs`, no diff). All 68 of
 `.github/tests/*.test.mjs` pass. Never edit `.github/` by hand: regenerate with the script instead.
 
-Not done: a dry-run (needs a commit to run against and the `release-dry-run` environment), and `steam-production` itself
+Dry-run green: run 37768986059 on 80606e8e5208004f82114340701ba5961e53488b, version 1.0.0. Not done: and `steam-production` itself
 (secrets, required reviewer — the owner's alone, `Rimworld-Release-Admin/docs/OPERATIONS.md`).
 
 ## Dependencies and DLC
