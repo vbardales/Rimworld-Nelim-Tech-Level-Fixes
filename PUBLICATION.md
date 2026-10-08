@@ -1,6 +1,6 @@
 # Publication sheet
 
-**Drafted 2026-09-27; updated 2026-10-08: 1.0.0 and 1.0.1 are uploaded (runs 37770622317 and 37787677923), the item is still private, the stage is `prepublished`.** The Workshop item `3806765254` exists, private, created by the `0.1.0`
+**Drafted 2026-09-27; updated 2026-10-08: 1.0.0, 1.0.1 and 1.0.2 are uploaded (runs 37770622317, 37787677923 and 37789170249), the item is public, the stage is `published`.** The Workshop item `3806765254` exists, private, created by the `0.1.0`
 prepublication of 2026-09-23; `Mod/About/PublishedFileId.txt` is committed. Ahead: `tested` (two Pickle passes on a frozen
 tree, see `TESTING.md`), the `1.0.0` publication through the CI, the switch to public (by the owner). Nothing below has
 been posted or pasted anywhere yet.
