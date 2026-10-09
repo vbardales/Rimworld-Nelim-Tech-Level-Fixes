@@ -1,9 +1,7 @@
 # Publication sheet
 
-**Drafted 2026-09-27; updated 2026-10-08: 1.0.0, 1.0.1 and 1.0.2 are uploaded (runs 37770622317, 37787677923 and 37789170249), the item is public, the stage is `published`.** The Workshop item `3806765254` exists, private, created by the `0.1.0`
-prepublication of 2026-09-23; `Mod/About/PublishedFileId.txt` is committed. Ahead: `tested` (two Pickle passes on a frozen
-tree, see `TESTING.md`), the `1.0.0` publication through the CI, the switch to public (by the owner). Nothing below has
-been posted or pasted anywhere yet.
+**Drafted 2026-09-27; updated 2026-10-09: 1.0.0, 1.0.1 and 1.0.2 are uploaded (runs 37770622317, 37787677923 and 37789170249), the item is public, the stage is `published[1.0.2]`.** The Workshop item `3806765254` was created by the `0.1.0`
+prepublication of 2026-09-23; `Mod/About/PublishedFileId.txt` is committed. Ahead: the next publication, which carries the new ModIcon and the regenerated Preview (`update_preview`).
 
 Rules that apply, and where they are written: `PUBLISHING.md` and `AUDIT.md` (protocols repository, read versions in
 `docs/PROTOCOLS-READ.md`), `Rimworld-Release-Admin/docs/OPERATIONS.md` for the CI, `WORKSHOP_COMMENTS.md` for the
@@ -12,15 +10,14 @@ thank-you register.
 ## Thank-you comments: none, decided by the owner 2026-09-27
 
 Not for this mod. `WORKSHOP_COMMENTS.md`'s rule ("cela vaut même si... seulement déclarée en `loadAfter`") is written for
-a mod that depends on, is inspired by, or integrates with what it names. This mod's relationship to its 49 (and growing)
-`loadAfter` entries is the opposite: it corrects a value on their items, with no code read or reused. No register entry,
+a mod that depends on, is inspired by, or integrates with what it names. This mod's relationship to its `loadAfter` entries is the opposite: it corrects a value on their items, with no code read or reused. No register entry,
 no comment, for any of them. The Pickle/RimLogging dev-tool thanks in the description below stand as they are, since
 those are actually used to test this mod.
 
 ## Steam description
 
 Written from the current `About.xml`, with the sections `PUBLISHING.md` asks for after the body. Steam's limit is 8000
-bytes; this is under 1 KB.
+bytes; the description is trimmed to stay under it.
 
 ```markdown
 Rewrites the tech level of items from other mods, and of a few base-game research projects, to the level chosen for
@@ -97,7 +94,7 @@ See ATTRIBUTION.md in the repository below for the list of source mods this one 
 QUIET`, `AI-GENERATED` or `THANKS`). Replacing it needs the CI's `update_description`, in a `publish` run — never a hand
 edit, which the manual workflow's next dry-run would then diff against and flag as unexpectedly different.
 
-**Done, 2026-09-27:** the manual publish workflow is generated in this repository (`.github/workflows/publish-tag.yml`,
+**Done, 2026-09-27 (history):** the manual publish workflow is generated in this repository (`.github/workflows/publish-tag.yml`,
 `script-tests.yml`, `.github/publish.config.json`, `.github/scripts/`, `.github/tests/`, template stamp `a8ca11cdd9a3`,
 via `generate-publish-workflow.sh . --workshop-id 3806765254 --package-id nelim.techlevelfixes --release-title "Nelim's
 Tech Level Fixes {version}" --require Patches --require About/About.xml --forbid Assemblies --description-markdown
@@ -105,8 +102,8 @@ PUBLICATION.md --description-heading '^## Steam description$' --about-from-descr
 already the plain text of the block above (`node .github/scripts/sync-about-description.mjs`, no diff). All 68 of
 `.github/tests/*.test.mjs` pass. Never edit `.github/` by hand: regenerate with the script instead.
 
-Dry-run green: run 37768986059 on 80606e8e5208004f82114340701ba5961e53488b, version 1.0.0. Not done: and `steam-production` itself
-(secrets, required reviewer — the owner's alone, `Rimworld-Release-Admin/docs/OPERATIONS.md`).
+Dry-run green before each upload (1.0.0: run 37768986059; 1.0.2: run 37788999704, exact commit). `steam-production` stays the owner's alone
+(`Rimworld-Release-Admin/docs/OPERATIONS.md`).
 
 ## Dependencies and DLC
 
@@ -120,7 +117,7 @@ No. The mod contains no images, no text and no new content of its own: every fil
 
 ## Gallery (manual: no tool of the chain can send it)
 
-None planned. This mod has no gameplay screen worth a screenshot of its own: what it changes is a value inspected in
+Only `Art/Gallery/0-preview.png`, the byte copy of the Preview (regenerated with it on 2026-10-08). No capture planned. This mod has no gameplay screen worth a screenshot of its own: what it changes is a value inspected in
 Dev Mode (`TESTING.md`), not something visibly different on the map. The Preview image is the only image.
 
 ## Change notes (Steam), one block per version
@@ -149,10 +146,6 @@ The description now lists every mod this one corrects, with links and authors. T
 First tested release. See CHANGELOG.md for the full list of corrections.
 ```
 
-## Still to do before `prepublished`
+## Next publication
 
-1. `tested` itself: the two Pickle passes on a frozen tree (`TESTING.md`).
-2. A dry-run of the exact commit, its run ID and SHA recorded here and in `STATUS.md`.
-3. `steam-production` created with its two secrets and the owner as required reviewer (her alone).
-4. Everything `AUDIT.md`'s `tested -> prepublished` transition lists: gallery, thank-you comments (none owed here, see
-   above), dependencies/DLC (none), content boxes (no), rollback target chosen ahead of the `publish`.
+The ModIcon and the Preview change (`CHANGELOG.md`, `[Unreleased]`): send with `update_preview` in the dry-run and `--preview` in the dispatch. A change note for that version goes above once its number is chosen.

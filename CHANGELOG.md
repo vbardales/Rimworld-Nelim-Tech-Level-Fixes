@@ -13,7 +13,7 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ### Fixed
 
-- The Steam description showed the links of the Mlie group as raw Markdown from Basic Mirrors on: the converter reads the underscore of the author name lime_time as the start of an italic. The name is now written 	rublucaribou, the other name on that authors page. No file under Mod/Patches/ changes.
+- The Steam description showed the links of the Mlie group as raw Markdown from Basic Mirrors on: the converter reads the underscore of the author name lime_time as the start of an italic. The name is now written trublucaribou, the other name on that authors page. No file under Mod/Patches/ changes.
 
 ## [1.0.1] — 2026-10-08
 
@@ -23,7 +23,7 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ## [1.0.0] — 2026-10-08
 
-Everything below was committed after the 0.1.0 upload, which created the publishIdFile, and will ship with the 1.0.0 publication.
+Everything below was committed after the 0.1.0 upload, which created the publishIdFile, and shipped with the 1.0.0 publication.
 
 ### Added
 
