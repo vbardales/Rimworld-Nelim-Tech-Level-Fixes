@@ -8,8 +8,8 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-stage:        published
-workflow_stage: published
+stage:        published[1.0.2]
+workflow_stage: published[1.0.2]
 licence:      original
 upstream_mod_remotes:
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
@@ -29,6 +29,7 @@ accepted:
 session:      local_bda06393-deee-42a0-8f7b-5796fbec672f
 updated:      2026-10-08: Mod/About/ModIcon.png recropped at the owner's request (black border background made transparent, canvas trimmed to the art, 128x128, 21.9 KB, from Art/ModIcon-source.png); not deployed yet, ships with the next publish together with the Preview (update_preview). Previous: 2026-10-08: 1.0.2 uploaded (publish run 37789170249 approved by the owner; tag v1.0.2 and release by the CI on b5036b67ce2b18bb4be488220ec3396d151ca77f); item public, description links fixed. Previous: 2026-10-08: 1.0.2 prepared to fix description links shown as raw Markdown (converter and the underscore of `lime_time`): dry-run green, run 37788999704 on b5036b67ce2b18bb4be488220ec3396d151ca77f, 7974 bytes; publish run awaits approval. Previous: 2026-10-08: item set public by the owner, stage `published`. Previous: 2026-10-08: 1.0.1 uploaded to Steam by publish run 37787677923 (approved by the owner; tag v1.0.1 and release created by the CI on 0c6e4fffad615a8bf2d3b0e0b1d2325d30f82419); the page description now names the corrected mods; item still private, stage stays `prepublished`. Previous: 2026-10-08: 1.0.1 prepared (description names the corrected mods with links and authors): dry-run green, run 37787478553 on 0c6e4fffad615a8bf2d3b0e0b1d2325d30f82419 (after the wording review; supersedes earlier 1.0.1 dry-runs), update_description=true, 7981 bytes; not published yet. Previous: 2026-10-08: 1.0.0 uploaded to Steam by publish run 37770622317 (approved by the owner; tag v1.0.0 and release created by the CI on 80606e8e5208004f82114340701ba5961e53488b); item still private, stage stays `prepublished` until subscription test and public switch by hand. Previous: 2026-10-08: stage `prepublished` set before the publish run 37770622317 is approved (dry-run 37768986059 green on 80606e8; the run was dispatched a few minutes before this field was set). Previous: 2026-10-08: both Pickle passes green on `324e9ec` (bare 1/1, sources 5/5); step 9 criteria met (no `@wip`, no conditional scenario, no manual test left): stage `tested`. Next: `tested -> prepublished` (dry-run of the exact commit, `steam-production` by the owner)
 code_review_sha: 0f3b7f410ab9d73ca02b311389e36d1525f75258  # 2026-10-08, range 34d9732..0f3b7f4, no findings
+publication_changelog_review: reviewed by the owner (confirmed 2026-10-09) on 0c6e4fffad615a8bf2d3b0e0b1d2325d30f82419, "Apply the wording review to the description and the changelog" (2026-10-08). Later changes to PUBLICATION.md / CHANGELOG.md not covered: 1.0.2 link fixes (012afae, b5036b6), upload records, and the ModIcon/Preview changelog note (2fe36c65aaefa33c7844ca2797fde25a6eebc898)
 ---
 
 # Nelim's Tech Level Fixes — status
