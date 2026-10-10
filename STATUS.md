@@ -64,6 +64,6 @@ Stage kept: `followUp[1.0.2]` (was `published[1.0.2]`, same state, new vocabular
 Open, none a defect of `followUp`:
 - Owner re-review of PUBLICATION.md + CHANGELOG.md (`publication_changelog_review_sha`).
 - Publish the new `ModIcon.png` and `Preview.png` (see `remaining`).
-- Before `dormant` (14.d): remote branches `origin/ci/add-publish-workflow` (commit a05da63 not in `main` by sha) and `origin/master` still exist; check `git log main..<branch>` and the owner's wish, then delete.
+- Branches (14.d), done 2026-10-10: `origin/ci/add-publish-workflow` deleted (its commit a05da63 is superseded by `.github/` on `main`: 24 files identical, 3 newer on `main`); `origin/master` was already gone. Only `main` remains.
 - Before `dormant` (14.a, 14.c): non-regression replay, WSL cleanup, `TESTING.md` and `PUBLICATION.md` trimming.
 - Not set: `social_preview_sha256` and `echo_review`. The Preview changed on 2026-10-08, so the GitHub social preview (public repository) is probably stale; upload and record its sha256 when the Preview ships.
