@@ -18,7 +18,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $project = Join-Path $PSScriptRoot 'TechLevelFixes.Tests.csproj'
-$exe = Join-Path (Split-Path -Parent $PSScriptRoot) ".build\tests\bin\$Configuration\net48\TechLevelFixes.Tests.exe"
+$exe = Join-Path (Split-Path -Parent $PSScriptRoot) "build\tests\bin\$Configuration\net48\TechLevelFixes.Tests.exe"
 
 dotnet build $project -c $Configuration -p:RimWorldManaged=$RimWorldManaged
 if ($LASTEXITCODE -ne 0) { throw "Build failed" }
