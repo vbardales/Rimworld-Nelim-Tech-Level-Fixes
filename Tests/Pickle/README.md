@@ -4,8 +4,8 @@ A short suite, run inside a running RimWorld by
 [Pickle](https://github.com/RimWorks/Rimworld-Pickle) (`rimworks.pickle`, Workshop 3791648678).
 
 **Read `Tests/Run.ps1` first.** The unit tests apply these same patch operations headless, over
-all 166 corrections, in well under a minute. A Pickle run takes over the machine — real pointer,
-real clicks, screen occupied — and takes far longer, so nothing lives here that can be proved
+all 166 corrections, in well under a minute. A Pickle run takes over the machine (real pointer,
+real clicks, screen occupied) and takes far longer, so nothing lives here that can be proved
 outside the game. That rule cost this suite its bulk: a generated feature asserting all 166
 corrections was written on 2026-09-20 and deleted the same day, because the unit tests prove
 exactly that and a scenario which restates one confiscates the machine for nothing.
@@ -27,10 +27,10 @@ Either pass can be narrowed with `-Filter`, a comma-separated list of terms; a s
 soon as one term takes it, matched as a case-insensitive substring. `01-alone.feature` runs every
 scenario of that file, `::none of its targets` every scenario whose name contains that, in any file,
 `01-alone.feature:15` the one declared on that line. A filter matching nothing is an **error**,
-exit 2 — never a quietly empty pass.
+exit 2, never a quietly empty pass.
 
 The first stages no corrected mod at all, so it proves only that 166 targetless corrections load
-and say nothing — which is exactly the promise `success: Always` makes. The second is where every
+and say nothing, which is exactly the promise `success: Always` makes. The second is where every
 value assertion lives. The map is named `wsl-deps.sources.map` rather than `wsl-deps.map`
 precisely so the first pass exists: the staging reads the unnamed file on every pass.
 
@@ -42,14 +42,14 @@ precisely so the first pass exists: the staging reads the unnamed file on every 
 | it loads after the mods it corrects | `loadAfter` is a request; only the running game shows the order it settled on |
 | a def that had no level anywhere gets one | the combined document holds every active mod's patches, not just this one's; if a third mod writes the same field later, only a real load shows it |
 | a def that declared its own level has it replaced | same, for the other branch |
-| **an inherited level is overridden, not merely shadowed** | the one the unit tests structurally cannot reach. These amulets inherit `Medieval` from `AmuletBase` and declare nothing, so the patch *adds* a node beside an inherited value. Which of the two the loaded def reports is decided when the game resolves `ParentName` — **after** patching. A headless test sees the node appear; only the game says it won. |
+| **an inherited level is overridden, not merely shadowed** | the one the unit tests structurally cannot reach. These amulets inherit `Medieval` from `AmuletBase` and declare nothing, so the patch *adds* a node beside an inherited value. Which of the two the loaded def reports is decided when the game resolves `ParentName`, **after** patching. A headless test sees the node appear; only the game says it won. |
 
 Five scenarios, a handful of defs. Spot checks on the real pipeline, not a second inventory.
 
 ## No step assembly
 
-This suite compiles nothing. Every step it uses is built into Pickle — `mod "X" is loaded`,
-`mod "X" loads after "Y"`, `def "X" field "techLevel" is "Y"`, `no errors were logged` — which is
+This suite compiles nothing. Every step it uses is built into Pickle (`mod "X" is loaded`,
+`mod "X" loads after "Y"`, `def "X" field "techLevel" is "Y"`, `no errors were logged`), which is
 why a mod with no C# of its own can still have one. The `field` step reads a dotted path off the
 live def, so it reports the value the game ended up with.
 
@@ -79,7 +79,7 @@ which is the run missing a mod rather than a broken correction.
 
 Never start a second RimWorld: one machine, one game, one runner. Take
 `%LOCALAPPDATA%\rimworld-pickle-run.lock` before any launch or driven run, and move the previous
-report out of `PickleReports` first — a run overwrites it, captures included. `Run-Pickle.ps1` in
+report out of `PickleReports` first, a run overwrites it, captures included. `Run-Pickle.ps1` in
 ArchitectStudio is the reference script for both.
 
 Since 2026-09-21 that lock is no longer a Pickle lock. What it protects is the **WSL machine being
