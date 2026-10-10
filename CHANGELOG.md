@@ -9,19 +9,19 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 - New `ModIcon` on a transparent background, trimmed to the art (the previous one had a black background), and the Preview regenerated with it. Goes out with the next publication, together with `update_preview`.
 
-## [1.0.2] — 2026-10-08
+## [1.0.2]: 2026-10-08
 
 ### Fixed
 
 - The Steam description showed the links of the Mlie group as raw Markdown from Basic Mirrors on: the converter reads the underscore of the author name lime_time as the start of an italic. The name is now written trublucaribou, the other name on that authors page. No file under Mod/Patches/ changes.
 
-## [1.0.1] — 2026-10-08
+## [1.0.1]: 2026-10-08
 
 ### Changed
 
 - The Steam description now names every mod this one corrects, with its Workshop link and the relevant author credits, and thanks their authors. No file under Mod/Patches/ changes: the corrections are those of 1.0.0.
 
-## [1.0.0] — 2026-10-08
+## [1.0.0]: 2026-10-08
 
 Everything below was committed after the 0.1.0 upload, which created the publishIdFile, and shipped with the 1.0.0 publication.
 
@@ -100,7 +100,7 @@ Everything below was committed after the 0.1.0 upload, which created the publish
   use the repository's canonical spelling, `Rimworld-Nelim-Tech-Level-Fixes`. The old lowercase
   form still resolved (checked: HTTP 200 for both), but only because GitHub ignores case.
 
-## [0.1.0] — 2026-09-23
+## [0.1.0]: 2026-09-23
 
 Creation of a publishIdFile. A first upload whose only purpose is to create the Workshop item
 (private, as Steam creates every item) and obtain `Mod/About/PublishedFileId.txt`, item
