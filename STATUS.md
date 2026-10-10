@@ -8,7 +8,7 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-workflow_stage: followUp[1.0.2]
+workflow_stage: dormant
 licence:      original
 upstream_mod_remotes:
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
@@ -72,7 +72,7 @@ Open, none a defect of `followUp`:
 
 ### Full audit, second pass: 2026-10-10 (HEAD `fe4f675`, protocols read at `80ee0129`)
 
-Stage kept: `followUp[1.0.2]`. Not `dormant`. No RimWorld, no Pickle launched.
+Stage at the end of this pass: `dormant` (set 2026-10-10 at the owner request, after 14.a to 14.d). No RimWorld, no Pickle launched.
 
 | Control | Result |
 |---|---|
@@ -86,5 +86,5 @@ Stage kept: `followUp[1.0.2]`. Not `dormant`. No RimWorld, no Pickle launched.
 
 Open before `dormant`, none a defect:
 - 14.a: done 2026-10-10, both passes green on `2cb1aa4` (see `tested_on`, `docs/runs/history.md`).
-- 14.c: WSL cleanup (mods downloaded by this mod's sessions) not done or not recorded; `TESTING.md` "What has run" and `docs/runs/` to trim when going dormant.
+- 14.c, done 2026-10-10: WSL cleanup has nothing to remove (the three source mods of the sources pass, Alpha Books, Additional Tools and Ancient Amulets, are Windows Steam subscriptions, none sits in the WSL workshop cache); `PUBLICATION.md` change notes moved to `docs/runs/change-notes-sent.md`, `TESTING.md` "tested" section folded. 14.d branches done. Unverified: the subscription test of the item (13.b) is not recorded here.
 - Next release: ModIcon and Preview (see `remaining`).

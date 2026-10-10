@@ -94,13 +94,7 @@ See ATTRIBUTION.md in the repository below for the list of source mods this one 
 QUIET`, `AI-GENERATED` or `THANKS`). Replacing it needs the CI's `update_description`, in a `publish` run, never a hand
 edit, which the manual workflow's next dry-run would then diff against and flag as unexpectedly different.
 
-**Done, 2026-09-27 (history):** the manual publish workflow is generated in this repository (`.github/workflows/publish-tag.yml`,
-`script-tests.yml`, `.github/publish.config.json`, `.github/scripts/`, `.github/tests/`, template stamp `a8ca11cdd9a3`,
-via `generate-publish-workflow.sh . --workshop-id 3806765254 --package-id nelim.techlevelfixes --release-title "Nelim's
-Tech Level Fixes {version}" --require Patches --require About/About.xml --forbid Assemblies --description-markdown
-PUBLICATION.md --description-heading '^## Steam description$' --about-from-description`). `About.xml`'s description is
-already the plain text of the block above (`node .github/scripts/sync-about-description.mjs`, no diff). All 71 of
-`.github/tests/*.test.mjs` pass. Never edit `.github/` by hand: regenerate with the script instead.
+The manual publish workflow is generated in `.github/` (template stamp `a8ca11cdd9a3`, history in `docs/runs/`); never edit it by hand, regenerate it with the script. `About.xml`'s description is the plain text of the block above (`node .github/scripts/sync-about-description.mjs`, no diff). All 71 of `.github/tests/*.test.mjs` pass.
 
 Dry-run green before each upload (1.0.0: run 37768986059; 1.0.2: run 37788999704, exact commit). `steam-production` stays the owner's alone
 (`Rimworld-Release-Admin/docs/OPERATIONS.md`).
@@ -122,29 +116,15 @@ Dev Mode (`TESTING.md`), not something visibly different on the map. The Preview
 
 ## Change notes (Steam), one block per version
 
-### 1.0.2
+Template (the first line carries the version, PUBLISHING.md):
 
 ```
-[b]1.0.2[/b]
+[b]x.y.z[/b]
 
-Fixes links of the description that showed as raw text. The corrections are unchanged.
+One or two sentences on what changes for the player.
 ```
 
-### 1.0.1
-
-```
-[b]1.0.1[/b]
-
-The description now lists every mod this one corrects, with links and authors. The corrections themselves are unchanged from 1.0.0.
-```
-
-### 1.0.0
-
-```
-[b]1.0.0[/b]
-
-First tested release. See CHANGELOG.md for the full list of corrections.
-```
+The notes already sent (1.0.0 to 1.0.2) are in `docs/runs/change-notes-sent.md`.
 
 ## Next publication
 

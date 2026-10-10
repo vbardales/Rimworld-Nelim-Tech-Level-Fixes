@@ -74,17 +74,7 @@ text, so there is nothing to display in French and English and no `-Language` pa
 
 Every run is one line in `docs/runs/history.md`. **Both passes ran on the published tree, `2cb1aa4` (2026-10-10, non-regression after 1.0.2): bare 1 of 1, sources 5 of 5, `exitReason: passed`.** Reports are in `Tests/Pickle/Evidence/` (ignored by git); a report is kept only while it proves something about the revision now in the repository.
 
-### What `tested` needed (met 2026-10-08)
-
-Both requests played on a frozen tree, `exitReason` and the discovered-against-played count read before the figures; verdict in `docs/runs/history.md` and `STATUS.md`.
-
-The three criteria `AUDIT.md` (step 9, 2026-10-02) added, checked on 2026-10-07:
-
-- no scenario in `@wip`: none (`Tests/Pickle/Mod/Pickle/Features/`);
-- every conditional scenario has run: none is conditional, no `@requires:<packageId>`; the two features are split by pass, not by tag;
-- no manual test left to validate: scenarios 5, 6 and 8 are not applicable, with their reasons above; no `@review` capture exists.
-
-Met: unit suite 190 of 190 (`Tests/Run.ps1`) and both passes green. A change to `Mod/` makes the passes stale: replay them on the new tree.
+The old `tested` gate (2026-10-08) is met and recorded in `docs/runs/history.md`: no `@wip`, no conditional scenario, no manual test left (5, 6 and 8 are not applicable, reasons above), unit suite 190 of 190. A change to `Mod/` makes the passes stale: replay them on the new tree.
 
 **Evidence to keep after a run** (minified, `Tests/Pickle/Evidence/`, gitignored): per pass, `summary.md` + `junit.xml` (or the
 `.out.log`) of the latest run on the shipped revision, nothing else. No capture, no `Player.log`, no earlier run once a newer one
