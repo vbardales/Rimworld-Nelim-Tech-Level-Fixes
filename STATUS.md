@@ -31,6 +31,7 @@ updated:      2026-10-08: Mod/About/ModIcon.png recropped at the owner's request
 code_review_sha: e3c58cdfdcb1d49e1990c1a8f5cbddb4390125cf  # 2026-10-09, range 0f3b7f4..e3c58cd, no findings: no patch file, no code touched, only About.xml description text, docs, ModIcon/Preview images and ICO
 publication_changelog_review_sha: 0c6e4fffad615a8bf2d3b0e0b1d2325d30f82419  # owner review of PUBLICATION.md + CHANGELOG.md, confirmed 2026-10-09. Not covered: later changes (1.0.2 links, ModIcon/Preview note); PUBLICATION.md and CHANGELOG.md cleaned after it on 2026-10-09, awaiting re-review
 protocols_read_sha: 06263cb0d19e6e3cf21e0145cad5ce348d9a4a69
+social_preview_sha256: 07def70bc9f87fe63a79d03a4b5373a3a47b78689ad322ebe504aac665e4d0a3  # 2026-10-10, GitHub og:image checked byte-identical to Mod/About/Preview.png
 ---
 
 # Nelim's Tech Level Fixes — status
@@ -66,4 +67,4 @@ Open, none a defect of `followUp`:
 - Publish the new `ModIcon.png` and `Preview.png` (see `remaining`).
 - Branches (14.d), done 2026-10-10: `origin/ci/add-publish-workflow` deleted (its commit a05da63 is superseded by `.github/` on `main`: 24 files identical, 3 newer on `main`); `origin/master` was already gone. Only `main` remains.
 - Before `dormant` (14.a, 14.c): non-regression replay, WSL cleanup, `TESTING.md` and `PUBLICATION.md` trimming.
-- Not set: `social_preview_sha256` and `echo_review`. The Preview changed on 2026-10-08, so the GitHub social preview (public repository) is probably stale; upload and record its sha256 when the Preview ships.
+- `social_preview_sha256` set 2026-10-10 (GitHub social preview verified identical to the current Preview). `echo_review` not set.
