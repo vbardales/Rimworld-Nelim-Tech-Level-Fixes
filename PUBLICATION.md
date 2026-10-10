@@ -7,12 +7,14 @@ Rules that apply, and where they are written: `PUBLISHING.md` and `AUDIT.md` (pr
 `docs/PROTOCOLS-READ.md`), `Rimworld-Release-Admin/docs/OPERATIONS.md` for the CI, `WORKSHOP_COMMENTS.md` for the
 thank-you register.
 
-## Thank-you comments: none, decided by the owner 2026-09-27
+## Thank-you comments: none, decided by the owner 2026-09-27, reconfirmed 2026-10-10
 
 Not for this mod. `WORKSHOP_COMMENTS.md`'s rule ("cela vaut même si... seulement déclarée en `loadAfter`") is written for
 a mod that depends on, is inspired by, or integrates with what it names. This mod's relationship to its `loadAfter` entries is the opposite: it corrects a value on their items, with no code read or reused. No register entry,
 no comment, for any of them. The Pickle/RimLogging dev-tool thanks in the description below stand as they are, since
 those are actually used to test this mod.
+
+Reconfirmed by the owner on 2026-10-10, against the rule the protocols gained that day (every integration named, claimed or exercised is thanked, `<loadAfter>` alone included: `AUDIT.md` 11.b and 11.h, `WORKSHOP_COMMENTS.md`): for this mod her decision stands, no register row and no draft for the corrected mods.
 
 ## Steam description
 

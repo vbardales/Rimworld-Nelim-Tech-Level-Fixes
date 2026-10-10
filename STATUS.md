@@ -88,3 +88,4 @@ Open before `dormant`, none a defect:
 - 14.a: done 2026-10-10, both passes green on `2cb1aa4` (see `tested_on`, `docs/runs/history.md`).
 - 14.c, done 2026-10-10: WSL cleanup has nothing to remove (the three source mods of the sources pass, Alpha Books, Additional Tools and Ancient Amulets, are Windows Steam subscriptions, none sits in the WSL workshop cache); `PUBLICATION.md` change notes moved to `docs/runs/change-notes-sent.md`, `TESTING.md` "tested" section folded. 14.d branches done. Unverified: the subscription test of the item (13.b) is not recorded here.
 - Next release: ModIcon and Preview (see `remaining`).
+- Thank-you comments: owner decision of 2026-09-27 (none owed to the corrected mods) reconfirmed 2026-10-10 against the new rule of `AUDIT.md` 11.b and 11.h (every named or `loadAfter` integration thanked). Recorded in `PUBLICATION.md`.
