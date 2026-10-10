@@ -20,8 +20,8 @@ The mod loads after every mod it corrects, declared in `About.xml`'s `loadAfter`
 patches have already run. None of them is a dependency: a correction whose target item is missing
 simply does nothing.
 
-That is deliberate, not merely tolerant. A modlist changes — a mod is taken out for a playthrough,
-or added back later — and the corrections are written once and wait. You can leave every patch
+That is deliberate, not merely tolerant. A modlist changes (a mod is taken out for a playthrough,
+or added back later) and the corrections are written once and wait. You can leave every patch
 file in place whether or not the mod it corrects is currently enabled.
 
 ## Mods corrected in this release
@@ -71,6 +71,6 @@ There is no `Source/`: this mod ships no assembly, only data-driven XML patches.
 
 ## Licence
 
-MIT — see [LICENSE](LICENSE). This mod's patches are original: they only reference other mods'
+MIT: see [LICENSE](LICENSE). This mod's patches are original: they only reference other mods'
 `defName`s to set a `techLevel` value. No third-party code, text or art is included; see
 [ATTRIBUTION.md](ATTRIBUTION.md).

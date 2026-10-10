@@ -91,7 +91,7 @@ See ATTRIBUTION.md in the repository below for the list of source mods this one 
 ```
 
 **Done 2026-10-08 (1.0.1, `update_description`): the page carries this description. It carried the `0.1.0` one before**, sent once at creation from the `About.xml` of that day (no `IF I GO
-QUIET`, `AI-GENERATED` or `THANKS`). Replacing it needs the CI's `update_description`, in a `publish` run — never a hand
+QUIET`, `AI-GENERATED` or `THANKS`). Replacing it needs the CI's `update_description`, in a `publish` run, never a hand
 edit, which the manual workflow's next dry-run would then diff against and flag as unexpectedly different.
 
 **Done, 2026-09-27 (history):** the manual publish workflow is generated in this repository (`.github/workflows/publish-tag.yml`,

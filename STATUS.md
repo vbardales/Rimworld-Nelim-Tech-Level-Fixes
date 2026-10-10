@@ -34,7 +34,7 @@ protocols_read_sha: 6591dbc87e6e41defa0dcf1fc510aac5ca522048
 social_preview_sha256: 07def70bc9f87fe63a79d03a4b5373a3a47b78689ad322ebe504aac665e4d0a3  # 2026-10-10, GitHub og:image checked byte-identical to Mod/About/Preview.png
 ---
 
-# Nelim's Tech Level Fixes — status
+# Nelim's Tech Level Fixes: status
 
 Current state only. The dated journal (audits, runs, repairs, standing decisions such as "Patches outlive their mods") is in [`docs/runs/status-journal-to-2026-10-09.md`](docs/runs/status-journal-to-2026-10-09.md); run proofs in `docs/runs/history.md`.
 
@@ -44,7 +44,7 @@ Current state only. The dated journal (audits, runs, repairs, standing decisions
 - Last green: unit 190/0 and both Pickle passes on `324e9ec` (2026-10-08).
 - Source mods to integrate later (not installed, levels provisional): BEER (Fermenting Tank) 3793220704, Belt Flashlight 3403230282, Beds Plus [v18] 1360708265, Better Survival Meals (Continued) 2063417558, BetterCoolers 1430093399, Better Tool Cabinet 3538193748. Details in the journal, "Mods to integrate later".
 
-## Audit — 2026-10-10
+## Audit: 2026-10-10
 
 Revision audited: `a2d40bc` (clean tree, `main` = `origin/main`). `AUDIT.md` and `AGENTS.md` read; `protocols_read_sha` 06263cb0. No RimWorld, no Pickle process launched.
 
