@@ -89,3 +89,22 @@ Open before `dormant`, none a defect:
 - 14.c, done 2026-10-10: WSL cleanup has nothing to remove (the three source mods of the sources pass, Alpha Books, Additional Tools and Ancient Amulets, are Windows Steam subscriptions, none sits in the WSL workshop cache); `PUBLICATION.md` change notes moved to `docs/runs/change-notes-sent.md`, `TESTING.md` "tested" section folded. 14.d branches done. Unverified: the subscription test of the item (13.b) is not recorded here.
 - Next release: ModIcon and Preview (see `remaining`).
 - Thank-you comments: owner decision of 2026-09-27 (none owed to the corrected mods) reconfirmed 2026-10-10 against the new rule of `AUDIT.md` 11.b and 11.h (every named or `loadAfter` integration thanked). Recorded in `PUBLICATION.md`.
+
+### Full audit, third pass: 2026-10-11 (HEAD `e8b2248` = `origin/main`, clean tree)
+
+`AUDIT.md` read in full (current version, incl. 12.e); `PUBLISHING.md` and `WORKSHOP_COMMENTS.md` read at their diffs since `b4a73cf0` (one sentence on the dry-run date; rows of other mods). Stage kept: `dormant`. No RimWorld, no Pickle launched.
+
+| Control | Result |
+|---|---|
+| `Tests/Check-Patches.ps1` | PASS: 49 files, 240 corrections, 49 `loadAfter`, 2 shared defNames in agreement |
+| `Tests/Run.ps1` | 190 passed, 0 failed; uninstalled source mods SKIP (accepted) |
+| `.github/tests` | 71 of 71 pass under Git Bash; under PowerShell `changelog-section.test.mjs` fails because `spawnSync('bash')` resolves to the WSL bash (environment, not a defect) |
+| `Check-Status.ps1` | 0 error, 1 warning: top CHANGELOG section is `[Unreleased]`, expected until the next dry-run (12.e) |
+| Reviews | `code_review_sha` valid: no `Mod/` patch or `About.xml` change since; `publication_changelog_review_sha`, `echo_review_sha`, `social_preview_sha256` unchanged and consistent (Preview sha256 `07def70b…`, identical to `Art/Gallery/0-preview.png`) |
+| ModIcon | `ModIcon.png` and `ModIcon-source.png` committed together in `2323069`, 128x128, 25.8 KB; derivative current |
+| `About.xml`, `PublishedFileId.txt` | 1.6 only, no `modDependencies`, canonical URL; `3806765254` |
+| Branches | `origin/main` = `HEAD` |
+
+`Mark-ProtocolsRead.ps1` refused: another session has an uncommitted `USE_THIS_INSTEAD.md` in the protocols repository; `protocols_read_sha` left at `b4a73cf0` (INFO only), to rerun once that file is committed.
+
+Unverified, not defects: subscription test of the item (13.b, not recorded here); sources pass mounts 3 of 45 `loadAfter` mods (see `remaining`).
