@@ -32,6 +32,7 @@ code_review_sha: 28b3f7e571361bcfb3f400d12f15a6e0da201640  # 2026-10-10, range e
 publication_changelog_review_sha: 0c6e4fffad615a8bf2d3b0e0b1d2325d30f82419  # owner review of PUBLICATION.md + CHANGELOG.md, confirmed 2026-10-09. Not covered: later changes (1.0.2 links, ModIcon/Preview note); PUBLICATION.md and CHANGELOG.md cleaned after it on 2026-10-09, awaiting re-review
 protocols_read_sha: 6591dbc87e6e41defa0dcf1fc510aac5ca522048
 social_preview_sha256: 07def70bc9f87fe63a79d03a4b5373a3a47b78689ad322ebe504aac665e4d0a3  # 2026-10-10, GitHub og:image checked byte-identical to Mod/About/Preview.png
+echo_review_sha: fe2f03190044a52bc5f069bd9e57fc42071da3ef  # 2026-10-10, validated by the owner: echo.png (workbench of tools line-art) kept, conceptual, the mod has no gallery capture
 ---
 
 # Nelim's Tech Level Fixes: status
@@ -67,4 +68,4 @@ Open, none a defect of `followUp`:
 - Publish the new `ModIcon.png` and `Preview.png` (see `remaining`).
 - Branches (14.d), done 2026-10-10: `origin/ci/add-publish-workflow` deleted (its commit a05da63 is superseded by `.github/` on `main`: 24 files identical, 3 newer on `main`); `origin/master` was already gone. Only `main` remains.
 - Before `dormant` (14.a, 14.c): non-regression replay, WSL cleanup, `TESTING.md` and `PUBLICATION.md` trimming.
-- `social_preview_sha256` set 2026-10-10 (GitHub social preview verified identical to the current Preview). `echo_review` not set.
+- `social_preview_sha256` set 2026-10-10 (GitHub social preview verified identical to the current Preview). `echo_review_sha` set 2026-10-10: the owner validated the echo (kept, conceptual: no gallery capture shows the subject).
