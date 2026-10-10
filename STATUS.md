@@ -42,3 +42,28 @@ Current state only. The dated journal (audits, runs, repairs, standing decisions
 - Pending owner: re-review of PUBLICATION.md + CHANGELOG.md (`publication_changelog_review_sha` stale).
 - Last green: unit 190/0 and both Pickle passes on `324e9ec` (2026-10-08).
 - Source mods to integrate later (not installed, levels provisional): BEER (Fermenting Tank) 3793220704, Belt Flashlight 3403230282, Beds Plus [v18] 1360708265, Better Survival Meals (Continued) 2063417558, BetterCoolers 1430093399, Better Tool Cabinet 3538193748. Details in the journal, "Mods to integrate later".
+
+## Audit — 2026-10-10
+
+Revision audited: `a2d40bc` (clean tree, `main` = `origin/main`). `AUDIT.md` and `AGENTS.md` read; `protocols_read_sha` 06263cb0. No RimWorld, no Pickle process launched.
+
+Stage kept: `followUp[1.0.2]` (was `published[1.0.2]`, same state, new vocabulary). No `Mod/` change since the audited review range, so `code_review_sha` stays valid.
+
+| Control | Result |
+|---|---|
+| `Tests/Check-Patches.ps1` | PASS: 49 files, 240 corrections, 49 `loadAfter`, 2 shared defNames in agreement |
+| `Tests/Run.ps1` | 190 passed, 0 failed; the uninstalled source mods are reported SKIP (accepted, see journal) |
+| `.github/tests` | 71 of 71 pass |
+| `Check-Status.ps1` | 0 error, 1 warning (`publication_changelog_review_sha` stale) |
+| `Preview.png` vs `Art/Gallery/0-preview.png` | identical sha256 `e77fdf63…3879` |
+| `LICENSE`, `ATTRIBUTION.md` | identical to `Mod/` copies |
+| ModIcon | `ModIcon.png` (23:03:16) newer than `ModIcon-source.png` (23:03:15): derivative current |
+| Root and `Mod/` hygiene | `desktop.ini` ignored, none tracked; only `Art/ModIcon.ico` and `Art/Preview.ico` tracked, outside `Mod/` |
+| `About.xml` | 1.6 only, no `modDependencies`, URL on the canonical repository |
+
+Open, none a defect of `followUp`:
+- Owner re-review of PUBLICATION.md + CHANGELOG.md (`publication_changelog_review_sha`).
+- Publish the new `ModIcon.png` and `Preview.png` (see `remaining`).
+- Before `dormant` (14.d): remote branches `origin/ci/add-publish-workflow` (commit a05da63 not in `main` by sha) and `origin/master` still exist; check `git log main..<branch>` and the owner's wish, then delete.
+- Before `dormant` (14.a, 14.c): non-regression replay, WSL cleanup, `TESTING.md` and `PUBLICATION.md` trimming.
+- Not set: `social_preview_sha256` and `echo_review`. The Preview changed on 2026-10-08, so the GitHub social preview (public repository) is probably stale; upload and record its sha256 when the Preview ships.
