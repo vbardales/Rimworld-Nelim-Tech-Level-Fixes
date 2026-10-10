@@ -69,3 +69,22 @@ Open, none a defect of `followUp`:
 - Branches (14.d), done 2026-10-10: `origin/ci/add-publish-workflow` deleted (its commit a05da63 is superseded by `.github/` on `main`: 24 files identical, 3 newer on `main`); `origin/master` was already gone. Only `main` remains.
 - Before `dormant` (14.a, 14.c): non-regression replay, WSL cleanup, `TESTING.md` and `PUBLICATION.md` trimming.
 - `social_preview_sha256` set 2026-10-10 (GitHub social preview verified identical to the current Preview). `echo_review_sha` set 2026-10-10: the owner validated the echo (kept, conceptual: no gallery capture shows the subject).
+
+### Full audit, second pass: 2026-10-10 (HEAD `fe4f675`, protocols read at `80ee0129`)
+
+Stage kept: `followUp[1.0.2]`. Not `dormant`. No RimWorld, no Pickle launched.
+
+| Control | Result |
+|---|---|
+| `Check-Patches.ps1`, `Run.ps1`, `.github/tests`, `Check-Status.ps1` | PASS; 190/0 (20 of 49 source mods installed, the rest SKIP); 71/71; 0 error, 0 warning |
+| `workflow_stage` vocabulary, `stage` field | current (`followUp[1.0.2]`), retired field removed |
+| Reviews | `code_review_sha` current (no `Mod/` commit since, AUDIT 8.m); `publication_changelog_review_sha` confirmed by the owner in chat; `echo_review_sha` set; `social_preview_sha256` set and verified against GitHub `og:image` |
+| Em dash rule (2026-10-10) | none in `About.xml`, the Steam description, README, CHANGELOG, PUBLICATION, STATUS, TESTING, the Pickle READMEs, PROTOCOLS-READ. Left: two generated `.github/tests` files and the archived journal |
+| 13 (`publish -> followUp`) | `PublishedFileId.txt` committed (3806765254), item public, runs recorded; the subscription test of the item is not recorded in this repository (unverified) |
+| 14.d branches | only `main`, local and remote |
+| `Mod/` since the Pickle passes (`324e9ec`) | only `About.xml` (description text), `ModIcon.png`, `Preview.png`; no patch file |
+
+Open before `dormant`, none a defect:
+- 14.a: post-publication non-regression replay not played (`docs/runs/history.md`); 1.0.1 and 1.0.2 touched no patch file.
+- 14.c: WSL cleanup (mods downloaded by this mod's sessions) not done or not recorded; `TESTING.md` "What has run" and `docs/runs/` to trim when going dormant.
+- Next release: ModIcon and Preview (see `remaining`).
