@@ -99,7 +99,7 @@ edit, which the manual workflow's next dry-run would then diff against and flag 
 via `generate-publish-workflow.sh . --workshop-id 3806765254 --package-id nelim.techlevelfixes --release-title "Nelim's
 Tech Level Fixes {version}" --require Patches --require About/About.xml --forbid Assemblies --description-markdown
 PUBLICATION.md --description-heading '^## Steam description$' --about-from-description`). `About.xml`'s description is
-already the plain text of the block above (`node .github/scripts/sync-about-description.mjs`, no diff). All 68 of
+already the plain text of the block above (`node .github/scripts/sync-about-description.mjs`, no diff). All 71 of
 `.github/tests/*.test.mjs` pass. Never edit `.github/` by hand: regenerate with the script instead.
 
 Dry-run green before each upload (1.0.0: run 37768986059; 1.0.2: run 37788999704, exact commit). `steam-production` stays the owner's alone
