@@ -72,7 +72,7 @@ text, so there is nothing to display in French and English and no `-Language` pa
 
 ### What has run
 
-Every run is one line in `docs/runs/history.md`. **Both passes ran on the current tree, `324e9ec` (2026-10-08): bare 1 of 1, sources 5 of 5, `exitReason: passed`.** Reports are in `Tests/Pickle/Evidence/` (ignored by git); a report is kept only while it proves something about the revision now in the repository.
+Every run is one line in `docs/runs/history.md`. **Both passes ran on the published tree, `2cb1aa4` (2026-10-10, non-regression after 1.0.2): bare 1 of 1, sources 5 of 5, `exitReason: passed`.** Reports are in `Tests/Pickle/Evidence/` (ignored by git); a report is kept only while it proves something about the revision now in the repository.
 
 ### What `tested` needed (met 2026-10-08)
 

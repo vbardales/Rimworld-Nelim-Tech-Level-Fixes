@@ -15,7 +15,7 @@ upstream_mod_remotes:
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none  # verified 2026-09-20: no modDependencies declared and none used
 showcase:     complete
-tested_on:    2026-10-08, tree of `324e9ec` (49 patch files), Pickle in the WSL: bare pass 1 of 1 and sources pass 5 of 5, both `exitReason: passed`, scenario names read; reports in `Tests/Pickle/Evidence/2026-10-08-bare` and `-sources`. Logs read: no error or warning attributed to this mod (only the companion test mod's missing dependency URL); the sources log's errors come from other mods (KCSG, VEF, Alpha Books cross-references)
+tested_on:    2026-10-10, tree of `2cb1aa4` (49 patch files, 1.0.2 published), Pickle in the WSL, non-regression: bare pass 1 of 1 and sources pass 5 of 5, both `exitReason: passed`, scenario names read; reports in `Tests/Pickle/Evidence/2026-10-10-bare` and `-sources`. No error or warning attributed to this mod in either log (the sources log's errors come from KCSG, VEF and Alpha Books cross-references). Previous: 2026-10-08 on `324e9ec`, same result
 workshop:      3806765254  # the item: 0.1.0 pre-publication of 2026-09-23, 1.0.0, 1.0.1 and 1.0.2 uploaded 2026-10-08; public
 remaining:
   - for the next release, owner decision 2026-10-10 (no version for images alone): publish the transparent `Mod/About/ModIcon.png` and the regenerated `Mod/About/Preview.png` (badge `translate` -12.5%, 12.5%; `Art/Gallery/0-preview.png` is its byte copy). Not on Steam yet: the CI sends the Preview only with `update_preview=true` in the dry-run and `--preview` in the dispatch (the ModIcon leaves with `Mod/`), so it needs a version number, its dry-run on the exact commit and the owner approval of `steam-production`. Changelog entry waits under `[Unreleased]`
@@ -85,6 +85,6 @@ Stage kept: `followUp[1.0.2]`. Not `dormant`. No RimWorld, no Pickle launched.
 | `Mod/` since the Pickle passes (`324e9ec`) | only `About.xml` (description text), `ModIcon.png`, `Preview.png`; no patch file |
 
 Open before `dormant`, none a defect:
-- 14.a: post-publication non-regression replay not played (`docs/runs/history.md`); 1.0.1 and 1.0.2 touched no patch file.
+- 14.a: done 2026-10-10, both passes green on `2cb1aa4` (see `tested_on`, `docs/runs/history.md`).
 - 14.c: WSL cleanup (mods downloaded by this mod's sessions) not done or not recorded; `TESTING.md` "What has run" and `docs/runs/` to trim when going dormant.
 - Next release: ModIcon and Preview (see `remaining`).
