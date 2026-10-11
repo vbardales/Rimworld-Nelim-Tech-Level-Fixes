@@ -5,8 +5,7 @@
 Written by the session of this mod on 2026-09-26, at the request of the owner, so that a document that has not moved is not read
 twice.
 
-**How to use it.** `docs/Check-ProtocolsRead.ps1` recomputes the SHA-256 (first 12 hex) of every file in the tables below and prints
-the ones that moved. Read again only those, and the ones marked "read every time". The *version* column is the last commit that
+**How to use it.** `scripts/Check-Status.ps1 -Mod TechLevelFixes` lists the protocols moved since `protocols_read_sha` (the per-file hashes below are the 2026-10-07 reading, no longer recomputed: local script removed 2026-10-11, Audit workflow ruling). Read again only those, and the ones marked "read every time". The *version* column is the last commit that
 touched the file. For the protocol documents it was read with
 `git --git-dir=../rimworld-protocols.git --work-tree=. log -1`: `WELCOME.md`, point 5, says a plain `git log` from the monorepo
 returns the commit that *removed* them, a plausible hash pointing the wrong way. The first pass of this session fell for it and

@@ -3,7 +3,7 @@
 A short suite, run inside a running RimWorld by
 [Pickle](https://github.com/RimWorks/Rimworld-Pickle) (`rimworks.pickle`, Workshop 3791648678).
 
-**Read `Tests/Run.ps1` first.** The unit tests apply these same patch operations headless, over
+**Run `scripts/Run-UnitTests.ps1 -ModRoot <this mod>` first (shared script).** The unit tests apply these same patch operations headless, over
 all 166 corrections, in well under a minute. A Pickle run takes over the machine (real pointer,
 real clicks, screen occupied) and takes far longer, so nothing lives here that can be proved
 outside the game. That rule cost this suite its bulk: a generated feature asserting all 166

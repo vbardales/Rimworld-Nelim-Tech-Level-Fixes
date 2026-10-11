@@ -27,7 +27,7 @@
       which is the one Steam ships.
 
   Pure XML parsing, no RimWorld installation or assembly reference needed. What the patches do
-  once applied is the unit tests' job, in Tests/Run.ps1.
+  once applied is the unit tests' job, in the shared scripts/Run-UnitTests.ps1.
 
 .EXAMPLE
   pwsh -File Tests/Check-Patches.ps1
