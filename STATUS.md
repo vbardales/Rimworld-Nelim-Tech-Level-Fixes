@@ -15,7 +15,7 @@ upstream_mod_remotes:
 licence_at:   2026-09-17, verified by inspection: the shipped content is a set of original XML patches (techLevel corrections keyed by other mods' defNames), no third-party code, text or art copied in. User-stated convention: a `Nelim`-prefixed mod name defaults to private; user explicitly validated a one-off exception to public for this mod on 2026-09-17
 dependencies: none  # verified 2026-09-20: no modDependencies declared and none used
 showcase:     complete
-tested_on:    2026-10-10, tree of `2cb1aa4` (49 patch files, 1.0.2 published), Pickle in the WSL, non-regression: bare pass 1 of 1 and sources pass 5 of 5, both `exitReason: passed`, scenario names read; reports in `Tests/Pickle/Evidence/2026-10-10-bare` and `-sources`. No error or warning attributed to this mod in either log (the sources log's errors come from KCSG, VEF and Alpha Books cross-references). Previous: 2026-10-08 on `324e9ec`, same result
+tested_on:    2026-10-11, tree of `ae9bb79` (49 patch files, 1.0.2 published, `Mod/` unchanged since `2cb1aa4`), Pickle in the WSL, non-regression: bare pass 1 of 1 and sources pass 5 of 5, both `exitReason: passed`, scenario names read; reports in `Tests/Pickle/Evidence/2026-10-11-bare` and `-sources`. No error or warning attributed to this mod. Previous: 2026-10-10 on `2cb1aa4`, same result
 workshop:      3806765254  # the item: 0.1.0 pre-publication of 2026-09-23, 1.0.0, 1.0.1 and 1.0.2 uploaded 2026-10-08; public
 remaining:
   - for the next release, owner decision 2026-10-10 (no version for images alone): publish the transparent `Mod/About/ModIcon.png` and the regenerated `Mod/About/Preview.png` (badge `translate` -12.5%, 12.5%; `Art/Gallery/0-preview.png` is its byte copy). Not on Steam yet: the CI sends the Preview only with `update_preview=true` in the dry-run and `--preview` in the dispatch (the ModIcon leaves with `Mod/`), so it needs a version number, its dry-run on the exact commit and the owner approval of `steam-production`. Changelog entry waits under `[Unreleased]`
@@ -110,3 +110,5 @@ Open before `dormant`, none a defect:
 Subscription test of the item (13.b): done, stated OK by the owner in chat on 2026-10-11. `.github/tests` fix 2026-10-11: `build-check` and `changelog-section` tests call Git Bash on Windows instead of the WSL launcher; 71 of 71 under PowerShell too (the generated copy diverges from the `Rimworld-Release-Admin` template, to port there).
 
 Unverified, not defects: sources pass mounts 3 of 45 `loadAfter` mods (see `remaining`).
+
+Non-regression replay 2026-10-11 (14.a, owner request): bare 1/1 and sources 5/5 green on `ae9bb79`, see `tested_on` and `docs/runs/history.md`. Local scripts ruled by Audit workflow (Check-Patches kept; Run.ps1 and Check-ProtocolsRead.ps1 deleted); `.github` regenerated from the template (stamp `7a8f3a601751`, 0 drift, 75/75).
