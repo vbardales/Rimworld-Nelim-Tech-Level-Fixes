@@ -8,7 +8,7 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-workflow_stage: code[1.1.0]
+workflow_stage: declareDependencies[1.1.0]
 licence:      original
 upstream_mod_remotes:
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
@@ -18,7 +18,7 @@ showcase:     complete
 tested_on:    2026-10-11, tree of `ae9bb79` (49 patch files, 1.0.2 published, `Mod/` unchanged since `2cb1aa4`), Pickle in the WSL, non-regression: bare pass 1 of 1 and sources pass 5 of 5, both `exitReason: passed`, scenario names read; reports in `Tests/Pickle/Evidence/2026-10-11-bare` and `-sources`. No error or warning attributed to this mod. Previous: 2026-10-10 on `2cb1aa4`, same result
 workshop:      3806765254  # the item: 0.1.0 pre-publication of 2026-09-23, 1.0.0, 1.0.1 and 1.0.2 uploaded 2026-10-08; public
 remaining:
-  - feature 2026-10-15, owner request: 1.1.0 is the minor that brings RimWorld 1.7 (AUDIT.md, "Le tag 1.7 est une version MINEURE"). `<li>1.7</li>` is NOT in `supportedVersions` yet: it needs a green 1.7 Pickle run (`tested_1_7: yes`, English only), after the Pickle and PickleTools prerequisites. Then: Preview badge refreshed, `update_tags=true`, CHANGELOG `[1.1.0]`, shipped together with the pending ModIcon and Preview
+  - unverified 2026-10-15, owner request (not a `feature`: no code to write, the declaration follows the run, AUDIT.md "XML seul"): 1.1.0 is the minor that brings RimWorld 1.7 (AUDIT.md, "Le tag 1.7 est une version MINEURE"). `<li>1.7</li>` is NOT in `supportedVersions` yet: it needs a green 1.7 Pickle run (`tested_1_7: yes`, English only), after the Pickle and PickleTools prerequisites. Then: Preview badge refreshed, `update_tags=true`, CHANGELOG `[1.1.0]`, shipped together with the pending ModIcon and Preview
   - for the next release, owner decision 2026-10-10 (no version for images alone): publish the transparent `Mod/About/ModIcon.png` and the regenerated `Mod/About/Preview.png` (badge `translate` -12.5%, 12.5%; `Art/Gallery/0-preview.png` is its byte copy). Not on Steam yet: the CI sends the Preview only with `update_preview=true` in the dry-run and `--preview` in the dispatch (the ModIcon leaves with `Mod/`), so it needs a version number, its dry-run on the exact commit and the owner approval of `steam-production`. Changelog entry waits under `[Unreleased]`
   - reservation 2026-10-08, not a defect: Better Cribs (`Capi.bettercribs.biotech`) and BetterManger (`Eiten.BetterManger`) stop at RimWorld 1.4, so on 1.6 their defs are not loaded and the corrections for `BasicCrib`, `PillowCrib`, `EtnManger` and `EtnMangerSingle` stay inert. The unit suite checks their defNames against their 1.4 folder (`EffectiveVersion` in `Tests/PatchTests.cs`)
   - unverified 2026-09-26: the sources pass mounts 3 of the 45 source mods this mod lists in `loadAfter`; AUDIT.md defines the pass "with the optional mods" as all of them. A reservation, not a defect: the unit tests cover the others (15 against their real defs, the rest against fixtures)
@@ -124,3 +124,5 @@ Open, none a defect: (1) `Check-Status` WARN `rimworld-version`: the About.xml d
 ### Reopened for 1.1.0, 2026-10-15
 
 Owner request: bump the minor to move to 1.7. Stage `dormant` to `code[1.1.0]`: chain reopened, no patch change yet, and the 1.7 declaration waits for a green 1.7 run. Protocols re-read at HEAD (AGENTS.md markers rule, README.md, AUDIT.md WSL-cleanup link rule). Earlier transitions untouched by this version stay as audited 2026-10-11. The audit of the same day was cut before the unit suite rerun. `Check-Patches.ps1` found the shipped LICENSE and ATTRIBUTION.md identical to the root copies modulo line endings.
+
+Transition 2026-10-15, 3 to declareDependencies: 3.a no `feature` left (the 1.7 line is `unverified`: nothing to code, it waits for a run). 3.b no DLL, no build (only the `Tests/` console project, unit suite 190 passed, 0 failed, rerun 2026-10-15). 3.c `[Unreleased]` lists the ModIcon and Preview; the 1.7 line is added with the green run, not before.
