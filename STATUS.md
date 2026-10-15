@@ -8,7 +8,7 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-workflow_stage: declareDependencies[1.1.0]
+workflow_stage: settings[1.1.0]
 licence:      original
 upstream_mod_remotes:
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
@@ -126,3 +126,5 @@ Open, none a defect: (1) `Check-Status` WARN `rimworld-version`: the About.xml d
 Owner request: bump the minor to move to 1.7. Stage `dormant` to `code[1.1.0]`: chain reopened, no patch change yet, and the 1.7 declaration waits for a green 1.7 run. Protocols re-read at HEAD (AGENTS.md markers rule, README.md, AUDIT.md WSL-cleanup link rule). Earlier transitions untouched by this version stay as audited 2026-10-11. The audit of the same day was cut before the unit suite rerun. `Check-Patches.ps1` found the shipped LICENSE and ATTRIBUTION.md identical to the root copies modulo line endings.
 
 Transition 2026-10-15, 3 to declareDependencies: 3.a no `feature` left (the 1.7 line is `unverified`: nothing to code, it waits for a run). 3.b no DLL, no build (only the `Tests/` console project, unit suite 190 passed, 0 failed, rerun 2026-10-15). 3.c `[Unreleased]` lists the ModIcon and Preview; the 1.7 line is added with the green run, not before.
+
+Transition 2026-10-15, 4 to settings: `dependencies: none` reconfirmed in `About.xml` (no `modDependencies`, 49 `loadAfter`, `supportedVersions` 1.6 only, URL on the canonical repository); `Check-Patches.ps1` 49 files, 240 corrections, 49 `loadAfter` agree. `sort-load-order.py` not run: no Python on this machine (unverified, not a defect). Not an animal mod (4.f n/a). `<li>1.7</li>` still absent by design.
