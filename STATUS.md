@@ -32,7 +32,7 @@ code_review_sha: 28b3f7e571361bcfb3f400d12f15a6e0da201640  # 2026-10-10, range e
 publication_changelog_review_sha: e6178082334aec4511697edac8e561c4781c0913  # owner review of PUBLICATION.md + CHANGELOG.md, confirmed in chat 2026-10-10. Covers the Steam description of 1.0.2 and the [Unreleased] ModIcon/Preview entry
 protocols_read_sha: 6eeb289af92096fa3a7ee40825e3b5221030873d
 social_preview_sha256: 07def70bc9f87fe63a79d03a4b5373a3a47b78689ad322ebe504aac665e4d0a3  # 2026-10-10, GitHub og:image checked byte-identical to Mod/About/Preview.png
-echo_review_sha: fe2f03190044a52bc5f069bd9e57fc42071da3ef  # 2026-10-10, validated by the owner: echo-preview.png (workbench of tools line-art) kept, conceptual, the mod has no gallery capture
+echo_review_sha: f5c0cad3423407627ffb8faeb0648cf50512e2e9  # 2026-10-15, validated by the owner in chat: echo kept, conceptual, only renamed echo.png to echo-preview.png (Preview.config.json updated in the same commit)
 ---
 
 # Nelim's Tech Level Fixes: status
@@ -133,4 +133,6 @@ Transition 2026-10-15, 5 to localize: `settings_audit: not_applicable` reconfirm
 
 Transition 2026-10-15, 6 to writeTests: `localization` and both translations `not_applicable` reconfirmed: no `Languages/`, no `Keyed`, and no `label`, `description` or text element in any patch (techLevel corrections only). `FRENCH_REVIEW.md` not generated this pass (unverified, nothing displayed to translate).
 
-Transition 2026-10-15, 7 to playTests: 7.b unit suite rerun 2026-10-15, 190 passed, 0 failed (uninstalled source mods SKIP, accepted). 7.c XML checks: `Check-Patches.ps1` reports only LICENSE and ATTRIBUTION.md byte differences between root and `Mod/`; git blobs are identical (`5b587b29`, `6398c005`), the gap is line endings of the Windows working copy, not a defect. 7.d Pickle suites written, `01-alone` and `02-with-sources`, not run now. 7.a scenarios live in the table of `TESTING.md` (no `TEST_SCENARIOS.md` file; reservation, accepted by earlier audits). Tested sha: `f5c0cad` plus this STATUS commit; `Mod/` last changed in `8f863cb`.
+Transition 2026-10-15, 7 to playTests: 7.b unit suite rerun 2026-10-15, 190 passed, 0 failed (uninstalled source mods SKIP, accepted). 7.c XML checks: `Check-Patches.ps1` reports only LICENSE and ATTRIBUTION.md byte differences between root and `Mod/`; git blobs are identical (`5b587b29`, `6398c005`), the gap is line endings of the Windows working copy, not a defect. 7.d Pickle suites written, `01-alone` and `02-with-sources`, not run now. 7.a scenarios live in the table of `TESTING.md` (no `TEST_SCENARIOS.md` file; reservation, accepted by earlier audits). Tested sha: `f5c0cad` plus this STATUS commit; `Mod/` unchanged since `code_review_sha` `28b3f7e` (`git diff 28b3f7e HEAD -- Mod` empty; an earlier line of this transition wrongly named `8f863cb`, a `Tests/` commit), so the code review stays valid.
+
+2026-10-15, owner validation in chat: the echo is kept (conceptual, workbench of tools line-art), the rename to Art/echo-preview.png accepted; cho_review_sha set to the renaming commit. Also 2026-10-15: CHANGELOG.md [Unreleased] now carries the 1.7 line, written ahead of the run: remove it if the 1.7 run is red. The imworld-version linter false positive is reported to Audit workflow (message given to the owner).

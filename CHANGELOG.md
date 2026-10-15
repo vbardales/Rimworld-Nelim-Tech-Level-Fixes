@@ -5,6 +5,10 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ## [Unreleased]
 
+### Added
+
+- RimWorld 1.7 support: `supportedVersions` lists 1.7 once the Pickle run on 1.7 is green (English only). No file under `Mod/Patches/` changes; the Preview badge shows the new version.
+
 ### Changed
 
 - New `ModIcon` on a transparent background, trimmed to the art (the previous one had a black background), and the Preview regenerated with it. Goes out with the next publication, together with `update_preview`.
