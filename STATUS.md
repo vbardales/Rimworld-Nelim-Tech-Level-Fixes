@@ -8,7 +8,7 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-workflow_stage: settings[1.1.0]
+workflow_stage: localize[1.1.0]
 licence:      original
 upstream_mod_remotes:
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
@@ -128,3 +128,5 @@ Owner request: bump the minor to move to 1.7. Stage `dormant` to `code[1.1.0]`: 
 Transition 2026-10-15, 3 to declareDependencies: 3.a no `feature` left (the 1.7 line is `unverified`: nothing to code, it waits for a run). 3.b no DLL, no build (only the `Tests/` console project, unit suite 190 passed, 0 failed, rerun 2026-10-15). 3.c `[Unreleased]` lists the ModIcon and Preview; the 1.7 line is added with the green run, not before.
 
 Transition 2026-10-15, 4 to settings: `dependencies: none` reconfirmed in `About.xml` (no `modDependencies`, 49 `loadAfter`, `supportedVersions` 1.6 only, URL on the canonical repository); `Check-Patches.ps1` 49 files, 240 corrections, 49 `loadAfter` agree. `sort-load-order.py` not run: no Python on this machine (unverified, not a defect). Not an animal mod (4.f n/a). `<li>1.7</li>` still absent by design.
+
+Transition 2026-10-15, 5 to localize: `settings_audit: not_applicable` reconfirmed in the sources: `Mod/` holds `About/`, `Patches/` (49 XML) and two licence copies; no DLL, no `.cs`, no ModSettings, no MainButtons def.
