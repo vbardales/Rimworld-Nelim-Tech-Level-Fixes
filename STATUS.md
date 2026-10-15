@@ -8,7 +8,7 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-workflow_stage: localize[1.1.0]
+workflow_stage: writeTests[1.1.0]
 licence:      original
 upstream_mod_remotes:
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
@@ -130,3 +130,5 @@ Transition 2026-10-15, 3 to declareDependencies: 3.a no `feature` left (the 1.7 
 Transition 2026-10-15, 4 to settings: `dependencies: none` reconfirmed in `About.xml` (no `modDependencies`, 49 `loadAfter`, `supportedVersions` 1.6 only, URL on the canonical repository); `Check-Patches.ps1` 49 files, 240 corrections, 49 `loadAfter` agree. `sort-load-order.py` not run: no Python on this machine (unverified, not a defect). Not an animal mod (4.f n/a). `<li>1.7</li>` still absent by design.
 
 Transition 2026-10-15, 5 to localize: `settings_audit: not_applicable` reconfirmed in the sources: `Mod/` holds `About/`, `Patches/` (49 XML) and two licence copies; no DLL, no `.cs`, no ModSettings, no MainButtons def.
+
+Transition 2026-10-15, 6 to writeTests: `localization` and both translations `not_applicable` reconfirmed: no `Languages/`, no `Keyed`, and no `label`, `description` or text element in any patch (techLevel corrections only). `FRENCH_REVIEW.md` not generated this pass (unverified, nothing displayed to translate).
