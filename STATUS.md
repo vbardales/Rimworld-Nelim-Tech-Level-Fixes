@@ -8,7 +8,7 @@ packageId:    nelim.techlevelfixes
 repo:         Rimworld-Nelim-Tech-Level-Fixes
 visibility:   public
 detached:     yes
-workflow_stage: writeTests[1.1.0]
+workflow_stage: playTests[1.1.0]
 licence:      original
 upstream_mod_remotes:
   - N/A  # no origin project: the patches are original, the source mods are only the targets of a correction (audit 2026-10-07)
@@ -132,3 +132,5 @@ Transition 2026-10-15, 4 to settings: `dependencies: none` reconfirmed in `About
 Transition 2026-10-15, 5 to localize: `settings_audit: not_applicable` reconfirmed in the sources: `Mod/` holds `About/`, `Patches/` (49 XML) and two licence copies; no DLL, no `.cs`, no ModSettings, no MainButtons def.
 
 Transition 2026-10-15, 6 to writeTests: `localization` and both translations `not_applicable` reconfirmed: no `Languages/`, no `Keyed`, and no `label`, `description` or text element in any patch (techLevel corrections only). `FRENCH_REVIEW.md` not generated this pass (unverified, nothing displayed to translate).
+
+Transition 2026-10-15, 7 to playTests: 7.b unit suite rerun 2026-10-15, 190 passed, 0 failed (uninstalled source mods SKIP, accepted). 7.c XML checks: `Check-Patches.ps1` reports only LICENSE and ATTRIBUTION.md byte differences between root and `Mod/`; git blobs are identical (`5b587b29`, `6398c005`), the gap is line endings of the Windows working copy, not a defect. 7.d Pickle suites written, `01-alone` and `02-with-sources`, not run now. 7.a scenarios live in the table of `TESTING.md` (no `TEST_SCENARIOS.md` file; reservation, accepted by earlier audits). Tested sha: `f5c0cad` plus this STATUS commit; `Mod/` last changed in `8f863cb`.
