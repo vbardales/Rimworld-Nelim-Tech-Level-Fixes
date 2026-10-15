@@ -31,7 +31,7 @@ code_review_sha: 28b3f7e571361bcfb3f400d12f15a6e0da201640  # 2026-10-10, range e
 publication_changelog_review_sha: e6178082334aec4511697edac8e561c4781c0913  # owner review of PUBLICATION.md + CHANGELOG.md, confirmed in chat 2026-10-10. Covers the Steam description of 1.0.2 and the [Unreleased] ModIcon/Preview entry
 protocols_read_sha: 583ce1259235b54ebacca29e1116689d1d24e589
 social_preview_sha256: 07def70bc9f87fe63a79d03a4b5373a3a47b78689ad322ebe504aac665e4d0a3  # 2026-10-10, GitHub og:image checked byte-identical to Mod/About/Preview.png
-echo_review_sha: fe2f03190044a52bc5f069bd9e57fc42071da3ef  # 2026-10-10, validated by the owner: echo.png (workbench of tools line-art) kept, conceptual, the mod has no gallery capture
+echo_review_sha: fe2f03190044a52bc5f069bd9e57fc42071da3ef  # 2026-10-10, validated by the owner: echo-preview.png (workbench of tools line-art) kept, conceptual, the mod has no gallery capture
 ---
 
 # Nelim's Tech Level Fixes: status
